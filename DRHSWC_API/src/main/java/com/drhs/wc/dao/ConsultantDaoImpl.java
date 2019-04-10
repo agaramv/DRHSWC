@@ -23,7 +23,7 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
-	public Optional<ConsultantEntity> getConsultantById(String id){
+	public Optional<ConsultantEntity> getConsultantById(Integer id){
 		int k = Integer.valueOf(id);
 		System.out.print("I am here in conDao");
 		Optional<ConsultantEntity> consultantEntity = consultantRepo.findById(id);
@@ -38,7 +38,7 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
-	public int changeToInactive(int id) {
+	public int changeToInactive(Integer id) {
 		return consultantRepo.changeToInactive(id);
 	}
 

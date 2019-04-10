@@ -11,7 +11,7 @@ public class ConsultantEntity {
 	
 	@Id
 	@Column(name="consultant_id")
-	private int consultant_id;
+	private Integer consultant_id;
 	
 	@Column(name="first_name")
 	private String firstName;

@@ -30,7 +30,7 @@ public class ConsultantController {
 	}
 	
 	@GetMapping("/consultant/{id}")
-	public Optional<ConsultantEntity> getConsultantById(@PathVariable String id){
+	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
 		return consultantService.getConsultantById(id);
 	}
 	
