@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `drhswritingcenter` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `drhswritingcenter`;
+CREATE DATABASE  IF NOT EXISTS `drhswc` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `drhswc`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: drhswritingcenter
