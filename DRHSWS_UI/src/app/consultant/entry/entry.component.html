@@ -1,49 +1,51 @@
-<h1>Consultant Review</h1>
+<h3>Consultant Review</h3>
 	<p>Enter information down below: </p>
 	
 	<form>
 		<div class="form-group">
       <label>Consultant First Name: </label>
-      <input type="text" class="form-control" name="FirstName" value=""><br>
+      <input id="firstName" type="text" class="form-control" name="firstName" value="">
 		</div>
 		
 		<div class="form-group">
       <label >Consultant Last Name: </label>
-      <input type="text" class="form-control" name="LastName" value=""><br><hr>
+      <input id="lastName" type="text" class="form-control" name="lastName" value=""><hr>
 		</div>		
 
 		<div class="form-group">
-      <label >Student First Name: </label>
-      <input type="text" class="form-control" name="SFirstName" value=""><br>
+      <label>Student First Name: </label>
+      <input id="firstNameS" type="text" class="form-control" name="firstNameS" value="">
    </div>		
 
 		<div class="form-group">
-      <label >Student Last Name: </label>
-      <input type="text" class="form-control" name="SLastName" value=""><br><hr>
+      <label>Student Last Name: </label>
+      <input id="lastNameS" type="text" class="form-control" name="lastNameS" value=""><hr>
 		</div>		
 
 		<div class="form-group">
-      <label >Student’s Teacher: </label>
-      <input type=”text” class="form-control" name=”Teacher” value=""><br>
+      <label>Student’s Teacher: </label>
+      <input id="lastNameS" type=”text” class="form-control" name="teacher" value="">
 		</div>		
 
 		<div class="form-group">
-      <label >Where the student was successful: </label>
-      <input type="text" class="form-control" name="CFeedback" value=""><br>
+      <label>Where the student was successful: </label>
+      <!-- <input id="feedbackC1" type="text" class="form-control" name="feedbackC1" value=""> -->
+      <textarea class="form-control" id="feedbackC1" rows="3"></textarea>
 		</div>		
 
 		<div class="form-group">
-      <label >What the student could improve upon: </label>
-      <input type="text" name="NextStep" value=""><br>
+      <label>What the student could improve upon: </label>
+      <!-- <input id="feedbackC2" type="text" name="NextStep" value="feedbackC2"> -->
+      <textarea class="form-control" id="feedbackC2" rows="3"></textarea>
 		</div>		
 		
 		<div class="form-group">
-      <label >Consultant Email:</label> 
-      <input type="text" class="form-control" name="CEmail" value=""><br>
+      <label>Consultant Email:</label> 
+      <input id="emailC" type="text" class="form-control" name="emailC" value="">
 		</div>	
 	
 		<div class="form-group">
-		  <input type="submit" value="Submit" class="btn btn-primary">
+		  <input id="sumbit" type="submit" value="Submit" class="btn btn-primary">
 		</div>
 
     <label >Upload File (If necessary)</label>
