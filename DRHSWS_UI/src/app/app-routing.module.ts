@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'signup',  component: SignupComponent, children: [
     { path: ':index', component: FormComponent},
   ]},
-  { path: 'consultant', component: ConsultantComponent, children:[
+  { path: 'consultant', children:[
     { path: 'entry', component: EntryComponent},
     { path: 'assignments', component: AssignmentsComponent},
   ]},
