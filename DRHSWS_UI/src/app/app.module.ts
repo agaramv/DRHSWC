@@ -18,6 +18,9 @@ import { AdminComponent } from './admin/admin.component';
 import { CalendarComponent } from './signup/calendar/calendar.component';
 import { FormComponent } from './signup/form/form.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { ConsultantComponent } from './consultant/consultant.component';
+import { EntryComponent } from './consultant/entry/entry.component';
+import { AssignmentsComponent } from './consultant/assignments/assignments.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ResourcesComponent } from './resources/resources.component';
     AdminComponent,
     CalendarComponent,
     FormComponent,
-    ResourcesComponent
+    ResourcesComponent,
+    ConsultantComponent,
+    EntryComponent,
+    AssignmentsComponent
   ],
   imports: [
     BrowserModule,
