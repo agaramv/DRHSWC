@@ -7,13 +7,11 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @ViewChild('f') signupForm: NgForm;
   submitted: boolean = false;
-  grades = ["9th","10th","11th","12th"];
   data = {
-    firstname: "bob",
+    firstname: '',
     lastname: '',
-    // grade: '',
+    grade: '',
     topic: ''
   };
 
@@ -22,12 +20,11 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
   }
-  onSubmit() {
-    console.log(this.signupForm)
-    this.data.firstname = this.signupForm.value.firstname;
-    this.data.lastname = this.signupForm.value.lastname;
-    // this.data.grade = this.signupForm.value.grade;
-    this.data.topic = this.signupForm.value.topic;
+  onSubmit(form: NgForm) {
+    this.data.firstname = form.value.firstname;
+    this.data.lastname = form.value.lastname;
+    this.data.grade = form.value.grade;
+    this.data.topic = form.value.topic;
     this.submitted = true;
   }
 }
