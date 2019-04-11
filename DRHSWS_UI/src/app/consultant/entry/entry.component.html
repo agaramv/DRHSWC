@@ -12,43 +12,43 @@
         <div class="col">
           <div class="form-group">
             <label>Consultant First Name: </label>
-            <input id="firstName" type="text" class="form-control" name="firstName" placeholder="First Name">
+            <input id="firstName" type="text" class="form-control" name="firstName" placeholder="First Name" ngModel>
           </div>
               
           <div class="form-group">
             <label >Consultant Last Name: </label>
-            <input id="lastName" type="text" class="form-control" name="lastName" placeholder="Last Name">
+            <input id="lastName" type="text" class="form-control" name="lastName" placeholder="Last Name" ngModel>
           </div>		
               
           <div class="form-group">
             <label>Consultant Email:</label> 
-            <input id="emailC" type="text" class="form-control" name="emailC" placeholder="Email">
+            <input id="emailC" type="email" class="form-control" name="emailC" placeholder="Email" ngModel>
           </div>
 
           <div class="form-group">
             <label>Where the student was successful: </label>
-            <textarea class="form-control" id="feedbackC1" rows="3"></textarea>
+            <textarea class="form-control" id="feedbackc1" rows="3" name="feedbackc1" ngModel></textarea>
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label>Student First Name: </label>
-            <input id="firstNameS" type="text" class="form-control" name="firstNameS" placeholder="First Name">
+            <input id="firstNameS" type="text" class="form-control" name="firstNameS" placeholder="First Name" ngModel>
           </div>		
         
           <div class="form-group">
             <label>Student Last Name: </label>
-            <input id="lastNameS" type="text" class="form-control" name="lastNameS" placeholder="Last Name">
+            <input id="lastNameS" type="text" class="form-control" name="lastNameS" placeholder="Last Name" ngModel>
           </div>		
         
           <div class="form-group">
             <label>Student’s Teacher: </label>
-            <input id="lastNameS" type=”text” class="form-control" name="teacher" placeholder="Teacher">
+            <input id="lastNameS" type=”text” class="form-control" name="teacher" placeholder="Teacher" ngModel>
           </div>
 
           <div class="form-group">
               <label>What the student could improve upon: </label>
-              <textarea class="form-control" id="feedbackC2" rows="3"></textarea>
+              <textarea class="form-control" id="feedbackc2" rows="3" name="feedbackc2" ngModel></textarea>
             </div>
         </div>
       </div>					
@@ -56,7 +56,7 @@
       <label >Upload File (If necessary)</label><br>
       <div class="custom-file" id="upload">
         <input type="file" class="custom-file-input" id="customFile">
-        <label class="custom-file-label" for="customFile">Choose file</label>
+        <label class="custom-file-label" for="customFile" name="file">Choose file</label>
       </div>
       <br><br>
       <div class="form-group">

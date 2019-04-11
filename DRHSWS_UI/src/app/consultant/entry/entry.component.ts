@@ -24,6 +24,7 @@ export class EntryComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    console.log(form);
     //this.info.firstName = this.form.value.userData.firstName;
   }
 }
