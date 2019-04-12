@@ -40,6 +40,10 @@ public class ConsultantController {
 		return ce; 
 	}
 	
+	/*
+	 * set consultant inactive
+	 * 
+	 */
 	@PostMapping("/consultant/inactive")
 	public int changeToInactive(){
 		int ce = consultantService.changeToInactive(21);
