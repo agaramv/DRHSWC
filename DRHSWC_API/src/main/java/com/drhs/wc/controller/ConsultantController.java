@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.drhs.wc.entity.ConsultantEntity;
 import com.drhs.wc.service.ConsultantService;
 
+
 @RestController
 public class ConsultantController {
 
 	@Autowired
 	ConsultantService consultantService;
+	
+	//@Autowired
+	//ApplicationContext context;
+
+	//ConsultantService consultantService = (ConsultantService) context.getBean(ConsultantService.class);
 	
 	@GetMapping("/consultant/all")
 	public List<ConsultantEntity> getAllConsultants(){
@@ -44,9 +51,9 @@ public class ConsultantController {
 	 * set consultant inactive
 	 * 
 	 */
-	@PostMapping("/consultant/inactive")
-	public int changeToInactive(){
-		int ce = consultantService.changeToInactive(21);
+	@PostMapping("/consultant/inactive/{id}")
+	public int changeToInactive(@PathVariable Integer id){
+		int ce = consultantService.changeToInactive(id);
 		return ce; 
 	}
 	
