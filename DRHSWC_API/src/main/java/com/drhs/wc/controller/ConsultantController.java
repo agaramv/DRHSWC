@@ -51,8 +51,7 @@ public class ConsultantController {
 	}
 	
 	@DeleteMapping("/consultant/delete/{id}")
-	public ConsultantEntity deleteConsultant(@PathVariable int id){
-		ConsultantEntity ce = consultantService.deleteConsultant(id);
-		return ce; 
+	public void deleteConsultant(@PathVariable Integer id){
+		consultantService.deleteConsultant(id); 
 	}
 }

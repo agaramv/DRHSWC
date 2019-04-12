@@ -39,8 +39,8 @@ public class ConsultantServiceImpl implements ConsultantService{
 	}
 
 	@Override
-	public ConsultantEntity deleteConsultant(int id) {
-		return consultantDao.deleteConsultant(id);
+	public void deleteConsultant(Integer id) {
+		consultantDao.deleteConsultant(id);
 	}
 
 }

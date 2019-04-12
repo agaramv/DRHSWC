@@ -15,5 +15,5 @@ public interface ConsultantService {
 	
 	public int changeToInactive(Integer id);
 	
-	public ConsultantEntity deleteConsultant(int id);
+	public void deleteConsultant(Integer id);
 }

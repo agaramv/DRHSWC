@@ -38,15 +38,13 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
-	@Transactional
 	public int changeToInactive(Integer id) {
 		return consultantRepo.changeToInactive(id);
 	}
 
 	@Override
-	public ConsultantEntity deleteConsultant(int id) {
-		ConsultantEntity deletedEntity;
-		return null;
+	public void deleteConsultant(Integer id) {
+		consultantRepo.deleteById(id);
 	}
 
 }
