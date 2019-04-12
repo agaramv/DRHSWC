@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.drhs.wc.entity.ConsultantEntity;
 
 @Repository
-public interface ConsultantRepository extends JpaRepository<ConsultantEntity, String>{
-    @Modifying()
+public interface ConsultantRepository extends JpaRepository<ConsultantEntity, Integer>{
+    /* set consultant inactive */
+	@Modifying()
 	@Query(value="Update r_consultants Set active='I' Where consultant_id=:id", nativeQuery=true)
-	int changeToInactive(@Param("id") int id);
+	int changeToInactive(@Param("id") Integer id);
 	
 	@Query(value="Delete From r_consultants Where consultant_id=21", nativeQuery=true)
 	ConsultantEntity deleteConsultant(@Param("id") int id);

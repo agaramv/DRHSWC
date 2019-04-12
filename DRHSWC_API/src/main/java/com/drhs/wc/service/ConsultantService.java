@@ -9,7 +9,7 @@ public interface ConsultantService {
 
 	public List<ConsultantEntity> getAllConsultants();
 	
-	public Optional<ConsultantEntity> getConsultantById(String id);
+	public Optional<ConsultantEntity> getConsultantById(Integer id);
 	
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
 	
