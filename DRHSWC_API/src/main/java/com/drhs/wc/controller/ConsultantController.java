@@ -30,7 +30,7 @@ public class ConsultantController {
 	}
 	
 	@GetMapping("/consultant/{id}")
-	public Optional<ConsultantEntity> getConsultantById(@PathVariable String id){
+	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
 		return consultantService.getConsultantById(id);
 	}
 	
@@ -40,6 +40,10 @@ public class ConsultantController {
 		return ce; 
 	}
 	
+	/*
+	 * set consultant inactive
+	 * 
+	 */
 	@PostMapping("/consultant/inactive")
 	public int changeToInactive(){
 		int ce = consultantService.changeToInactive(21);
@@ -47,8 +51,7 @@ public class ConsultantController {
 	}
 	
 	@DeleteMapping("/consultant/delete/{id}")
-	public ConsultantEntity deleteConsultant(@PathVariable int id){
-		ConsultantEntity ce = consultantService.deleteConsultant(id);
-		return ce; 
+	public void deleteConsultant(@PathVariable Integer id){
+		consultantService.deleteConsultant(id); 
 	}
 }

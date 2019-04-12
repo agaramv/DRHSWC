@@ -9,11 +9,11 @@ public interface ConsultantService {
 
 	public List<ConsultantEntity> getAllConsultants();
 	
-	public Optional<ConsultantEntity> getConsultantById(String id);
+	public Optional<ConsultantEntity> getConsultantById(Integer id);
 	
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
 	
-	public int changeToInactive(int id);
+	public int changeToInactive(Integer id);
 	
-	public ConsultantEntity deleteConsultant(int id);
+	public void deleteConsultant(Integer id);
 }

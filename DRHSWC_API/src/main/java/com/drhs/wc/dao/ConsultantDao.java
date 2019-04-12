@@ -11,14 +11,14 @@ public interface ConsultantDao {
 	public List<ConsultantEntity> getAllConsultants();
 	
 	//Get one consultant
-	public Optional<ConsultantEntity> getConsultantById(String id);
+	public Optional<ConsultantEntity> getConsultantById(Integer id);
 		
 	//Create new consultant
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
 	
 	//Update consultant to I (Inactive) essentially deleting it
-	public int changeToInactive(int id);
+	public int changeToInactive(Integer id);
 	
 	//delete consultant
-	public ConsultantEntity deleteConsultant(int id);
+	public void deleteConsultant(Integer id);
 }

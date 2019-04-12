@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.drhs.wc.entity.ConsultantEntity;
 import com.drhs.wc.repository.ConsultantRepository;
@@ -23,11 +24,10 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
-	public Optional<ConsultantEntity> getConsultantById(String id){
-		int k = Integer.valueOf(id);
-		System.out.print("I am here in conDao");
+	public Optional<ConsultantEntity> getConsultantById(Integer id){
+	
 		Optional<ConsultantEntity> consultantEntity = consultantRepo.findById(id);
-		System.out.print("I am here in conDao");
+	
 		return consultantEntity;
 	}
 
@@ -38,14 +38,13 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
-	public int changeToInactive(int id) {
+	public int changeToInactive(Integer id) {
 		return consultantRepo.changeToInactive(id);
 	}
 
 	@Override
-	public ConsultantEntity deleteConsultant(int id) {
-		ConsultantEntity deletedEntity;
-		return null;
+	public void deleteConsultant(Integer id) {
+		consultantRepo.deleteById(id);
 	}
 
 }
