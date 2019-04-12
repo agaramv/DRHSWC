@@ -34,7 +34,7 @@ public class ConsultantServiceImpl implements ConsultantService{
 
 	@Override
 	@Transactional
-	public int changeToInactive(int id) {
+	public int changeToInactive(Integer id) {
 		return consultantDao.changeToInactive(id);
 	}
 

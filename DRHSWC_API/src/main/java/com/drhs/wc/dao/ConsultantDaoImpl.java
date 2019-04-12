@@ -25,10 +25,9 @@ public class ConsultantDaoImpl implements ConsultantDao{
 
 	@Override
 	public Optional<ConsultantEntity> getConsultantById(Integer id){
-		int k = Integer.valueOf(id);
-		System.out.print("I am here in conDao");
+	
 		Optional<ConsultantEntity> consultantEntity = consultantRepo.findById(id);
-		System.out.print("I am here in conDao");
+	
 		return consultantEntity;
 	}
 
