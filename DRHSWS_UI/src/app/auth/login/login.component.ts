@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authService.logout();
     this.buildForm();
-    // this.loginForm.patchValue({
+    // this.loginForm.patchvalue({
     //   email: 'a@a.com',
     //   password: 's'
     // });
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get formValues() {
+  get formvalues() {
     return this.loginForm.controls;
   }
 
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     }
     this.loading = true;
 
-    this.authService.login(this.formValues.email.value, this.formValues.password.value)
+    this.authService.login(this.formvalues.email.value, this.formvalues.password.value)
       .pipe(first())
       .subscribe(
         data => {

@@ -20,7 +20,7 @@ public class ConsultantEntity {
 	private String lastName;
 	
 	@Column(name="grade")
-	private int grade;
+	private Integer grade;
 	
 	@Column(name="email")
 	private String email;
