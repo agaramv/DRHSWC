@@ -10,7 +10,8 @@ import com.drhs.wc.entity.ConsultantEntity;
 
 @Repository
 public interface ConsultantRepository extends JpaRepository<ConsultantEntity, Integer>{
-    @Modifying()
+    /* set consultant inactive */
+	@Modifying()
 	@Query(value="Update r_consultants Set active='I' Where consultant_id=:id", nativeQuery=true)
 	int changeToInactive(@Param("id") Integer id);
 	
