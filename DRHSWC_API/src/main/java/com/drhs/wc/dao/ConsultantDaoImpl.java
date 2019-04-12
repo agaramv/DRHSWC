@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.drhs.wc.entity.ConsultantEntity;
 import com.drhs.wc.repository.ConsultantRepository;
@@ -38,6 +39,7 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
+	@Transactional
 	public int changeToInactive(Integer id) {
 		return consultantRepo.changeToInactive(id);
 	}
