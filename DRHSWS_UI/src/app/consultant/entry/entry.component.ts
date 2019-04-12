@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./entry.component.scss']
 })
 export class EntryComponent implements OnInit {
-
+  submitted: boolean = false;
   info = {
     firstName: '',
     lastName: '',
@@ -24,7 +24,15 @@ export class EntryComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    console.log(form);
-    //this.info.firstName = this.form.value.userData.firstName;
+    console.log(form.value);
+    this.info.firstName = form.value.firstName;
+    this.info.lastName = form.value.lastName;
+    this.info.firstNameS = form.value.firstNameS;
+    this.info.lastNameS = form.value.lastNameS;
+    this.info.emailC = form.value.emailC;
+    this.info.teacher = form.value.teacher;
+    this.info.feedback1 = form.value.feedbackc1;
+    this.info.feedback2 = form.value.feedbackc2;
+    this.submitted = true;
   }
 }
