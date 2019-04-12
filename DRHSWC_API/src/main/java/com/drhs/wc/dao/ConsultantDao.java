@@ -20,5 +20,5 @@ public interface ConsultantDao {
 	public int changeToInactive(Integer id);
 	
 	//delete consultant
-	public ConsultantEntity deleteConsultant(int id);
+	public void deleteConsultant(Integer id);
 }

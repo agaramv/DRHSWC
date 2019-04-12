@@ -34,13 +34,13 @@ public class ConsultantServiceImpl implements ConsultantService{
 
 	@Override
 	@Transactional
-	public int changeToInactive(int id) {
+	public int changeToInactive(Integer id) {
 		return consultantDao.changeToInactive(id);
 	}
 
 	@Override
-	public ConsultantEntity deleteConsultant(int id) {
-		return consultantDao.deleteConsultant(id);
+	public void deleteConsultant(Integer id) {
+		consultantDao.deleteConsultant(id);
 	}
 
 }

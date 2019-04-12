@@ -13,7 +13,7 @@ public interface ConsultantService {
 	
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
 	
-	public int changeToInactive(int id);
+	public int changeToInactive(Integer id);
 	
-	public ConsultantEntity deleteConsultant(int id);
+	public void deleteConsultant(Integer id);
 }
