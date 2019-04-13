@@ -1,5 +1,6 @@
 package com.drhs.wc.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,8 +13,8 @@ import javax.persistence.Table;
 public class AppointmentEntity {
 	
 	@Id
-	@Column(name="date")
-	private Date date;
+	@Column(name="appt_date")
+	private LocalDate date;
 	
 	@Column(name="type")
 	private String type;
@@ -41,7 +42,7 @@ public class AppointmentEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AppointmentEntity(Date date, String type, int slot, String firstName, String lastName, int grade,
+	public AppointmentEntity(LocalDate date, String type, int slot, String firstName, String lastName, int grade,
 			String teacher, int topic) {
 		super();
 		this.date = date;
@@ -54,7 +55,7 @@ public class AppointmentEntity {
 		this.topic = topic;
 	}
 	
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
@@ -86,7 +87,7 @@ public class AppointmentEntity {
 		return topic;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
