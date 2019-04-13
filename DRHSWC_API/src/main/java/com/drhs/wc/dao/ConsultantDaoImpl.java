@@ -44,7 +44,7 @@ public class ConsultantDaoImpl implements ConsultantDao{
 
 	@Override
 	public void deleteConsultant(Integer id) {
-		consultantRepo.deleteById(id);
+		consultantRepo.deleteById(id);;
 	}
 
 }

@@ -15,7 +15,8 @@ public interface ConsultantRepository extends JpaRepository<ConsultantEntity, In
 	@Query(value="Update r_consultants Set active='I' Where consultant_id=:id", nativeQuery=true)
 	int changeToInactive(@Param("id") Integer id);
 	
-	@Query(value="Delete From r_consultants Where consultant_id=21", nativeQuery=true)
+	/*@Query(value="Delete From r_consultants Where consultant_id=21", nativeQuery=true)
 	ConsultantEntity deleteConsultant(@Param("id") int id);
+	*/
 	
 }
