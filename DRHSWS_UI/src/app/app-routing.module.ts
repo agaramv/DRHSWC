@@ -23,8 +23,7 @@ const routes: Routes = [
     { path: 'assignments', component: AssignmentsComponent},
   ]},
   { path: 'admin', children: [
-    { path: '', component: AdminComponent},
-    { path: 'add', component: ManageConsultantsComponent},
+    { path: '', component: ManageConsultantsComponent},
   ]},
   { path: 'resource', component: ResourcesComponent}
   
