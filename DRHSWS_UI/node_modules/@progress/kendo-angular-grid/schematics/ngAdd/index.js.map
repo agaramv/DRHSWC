@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../tooling/schematics/ngAdd/index.ts"],"names":[],"mappings":";;AAAA,2DAKqC;AAErC,mBAAyB,OAAY;IACjC,MAAM,YAAY,qBACX,OAAO,IACV,YAAY,EAAE,YAAY,EAC1B,OAAO,EAAE,MAAM,CAAC,wBAAwB;OAC3C,CAAC;IAEF,MAAM,CAAC,8BAAiB,CAAC,4BAA4B,EAAE,QAAQ,EAAE,YAAY,CAAC,CAAC;AACnF,CAAC;AARD,4BAQC"}
