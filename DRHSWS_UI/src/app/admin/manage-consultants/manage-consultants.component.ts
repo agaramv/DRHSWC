@@ -6,6 +6,13 @@ import { ConsultantEntry } from 'src/app/consultant/entry/ConsultantEntry.model'
 import { Appointment } from 'src/app/appointment.model';
 import { SignupService } from 'src/app/signup/signup.service';
 
+const consultants: Consultant[] = [
+  {first: 'Vidur', last: 'Agaram', email:'stuff@gmail.com'},
+  {first: 'Thomas', last: 'Castillo', email:'stuff@gmail.com'},
+  {first: 'Mike', last: 'Krause', email:'stuff@gmail.com'},
+  {first: 'Naomi', last: 'Nickels', email:'stuff@gmail.com'},
+]
+
 @Component({
   selector: 'app-manage-consultants',
   templateUrl: './manage-consultants.component.html',

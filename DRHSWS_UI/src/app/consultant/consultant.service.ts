@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Consultant } from './consultant.model';
 import { ConsultantEntry } from './entry/ConsultantEntry.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,10 @@ export class ConsultantService {
     {firstName: 'Mike', lastName: 'Krause', firstNameS: 'Tomas', lastNameS: 'Castillo', emailC:'stuff@gmail.com', teacher:'Berry',feedback1:'Good',feedback2:'bad'},
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllReviews(){
+    //return this.http.get<any>('http://localhost:8080/consultant/all');
     return this.reviews.slice();
   }
 
