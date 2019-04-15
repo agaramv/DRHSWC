@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup',  component: SignupComponent, children: [
-    { path: ':index', component: FormComponent},
+    { path: ':day/:date/:lunch', component: FormComponent},
   ]},
   { path: 'consultant', children:[
     { path: 'entry', component: EntryComponent},
