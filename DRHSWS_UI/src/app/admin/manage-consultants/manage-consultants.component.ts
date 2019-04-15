@@ -21,10 +21,8 @@ const consultants: Consultant[] = [
 export class ManageConsultantsComponent implements OnInit {
   displayedColumnsC: string[] = ['Action', 'Name', 'Email'];
   displayedColumnsR: string[] = ['Action', 'Name', 'Email','Student','Teacher', 'Review'];
-  displayedColumnsA: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
   consultants: Consultant[];
   reviews: ConsultantEntry[];
-  appointments: Appointment[];
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -38,7 +36,6 @@ export class ManageConsultantsComponent implements OnInit {
     console.log(this.consultantService.getAllConsultants());
     this.consultants = this.consultantService.getAllConsultants();
     this.reviews = this.consultantService.getAllReviews();
-    this.appointments = this.signupService.getAllAppointments();
   }
 
 

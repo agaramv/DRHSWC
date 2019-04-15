@@ -25,6 +25,11 @@ const routes: Routes = [
   { path: 'admin', children: [
     { path: '', component: ManageConsultantsComponent},
   ]},
+  { path: 'manage', children: [
+    { path: '', redirectTo: '/a', pathMatch: 'full' },
+    { path: 'c', component: ManageConsultantsComponent},
+    { path: 'a', component: ManageConsultantsComponent},
+  ]},
   { path: 'resource', component: ResourcesComponent}
   
 ];
