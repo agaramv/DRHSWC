@@ -10,6 +10,7 @@ import { ResourcesComponent } from './resources/resources.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { EntryComponent } from './consultant/entry/entry.component';
 import { AssignmentsComponent } from './consultant/assignments/assignments.component';
+import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-appointments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: ':day/:date/:lunch', component: FormComponent},
   ]},
   { path: 'consultant', children:[
+    { path: '', redirectTo: 'entry', pathMatch: 'full' },
     { path: 'entry', component: EntryComponent},
     { path: 'assignments', component: AssignmentsComponent},
   ]},
@@ -26,9 +28,9 @@ const routes: Routes = [
     { path: '', component: ManageConsultantsComponent},
   ]},
   { path: 'manage', children: [
-    { path: '', redirectTo: '/a', pathMatch: 'full' },
+    { path: '', redirectTo: '/manage/a', pathMatch: 'full' },
     { path: 'c', component: ManageConsultantsComponent},
-    { path: 'a', component: ManageConsultantsComponent},
+    { path: 'a', component: ManageAppointmentsComponent},
   ]},
   { path: 'resource', component: ResourcesComponent}
   
