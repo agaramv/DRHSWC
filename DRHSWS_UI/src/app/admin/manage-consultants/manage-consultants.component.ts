@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./manage-consultants.component.scss']
 })
 export class ManageConsultantsComponent implements OnInit {
-  displayedColumnsC: string[] = ['Action', 'Name', 'Email'];
-  displayedColumnsR: string[] = ['Action', 'Name', 'Topic','Student','Teacher', 'Review'];
+  displayedColumnsC: string[] = ['Action', 'Name', 'Grade', 'Email', 'Email Second'];
+  displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
   consultantsObs: Observable<Consultant[]>;
   reviews: ConsultantEntry[];
