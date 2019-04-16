@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ConsultantService {
-  consultants: Consultant[];
+  //consultants: Consultant[];
   // consultants: Consultant[] = [
   //   {first: 'Vidur', last: 'Agaram', email:'stuff@gmail.com'},
   //   {first: 'Thomas', last: 'Castillo', email:'stuff@gmail.com
@@ -16,7 +16,6 @@ export class ConsultantService {
 
   getAllReviews(){
     return this.http.get<any>('http://localhost:8080/reviews/all');
-    //return this.reviews.slice();
   }
 
   getAllConsultants(){

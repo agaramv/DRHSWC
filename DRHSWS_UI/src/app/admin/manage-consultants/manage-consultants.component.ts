@@ -25,7 +25,7 @@ export class ManageConsultantsComponent implements OnInit {
         this.email.hasError('email') ? 'Not a valid email' : '';
   }
   constructor(private consultantService: ConsultantService, private signupService: SignupService) { 
-   this.getAllConsultants();
+    this.getAllConsultants();
     this.getAllReviews();
   }
 
@@ -42,8 +42,8 @@ export class ManageConsultantsComponent implements OnInit {
 
   getAllReviews(){
     this.consultantService.getAllReviews()
-      .subscribe((data: ConsultantEntry[])=>{
-        this.reviews = data;
+      .subscribe((res)=>{
+        this.reviews = res;
       });
   }
 
