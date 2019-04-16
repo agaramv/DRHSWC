@@ -19,7 +19,7 @@ export class SignupService {
 
   getAllAppointments(){
     //return this.http.get<any>(this.endpoint+'/appointments');
-    //return this.appointments.slice();
+    return this.appointments.slice();
   }
 
   getStudents(){
