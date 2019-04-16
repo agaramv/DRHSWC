@@ -14,7 +14,7 @@ export class ManageAppointmentsComponent implements OnInit {
   constructor(private signupService: SignupService) { }
 
   ngOnInit() {
-    this.appointments = this.signupService.getAllAppointments();
+    //this.appointments = this.signupService.getAllAppointments();
 
   }
 
