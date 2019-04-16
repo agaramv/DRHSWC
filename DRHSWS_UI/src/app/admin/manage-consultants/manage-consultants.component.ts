@@ -16,7 +16,6 @@ export class ManageConsultantsComponent implements OnInit {
   displayedColumnsC: string[] = ['Action', 'Name', 'Grade', 'Email', 'Email Second'];
   displayedColumnsR: string[] = ['Action', 'Name', 'Email','Student','Teacher', 'Review'];
   consultants: Consultant[];
-  consultantsObs: Observable<Consultant[]>;
   reviews: ConsultantEntry[];
 
   email = new FormControl('', [Validators.required, Validators.email]);
