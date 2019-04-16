@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class ManageConsultantsComponent implements OnInit {
   displayedColumnsC: string[] = ['Action', 'Name', 'Email'];
-  displayedColumnsR: string[] = ['Action', 'Name', 'Email','Student','Teacher', 'Review'];
+  displayedColumnsR: string[] = ['Action', 'Name', 'Topic','Student','Teacher', 'Review'];
   consultants: Consultant[];
   consultantsObs: Observable<Consultant[]>;
   reviews: ConsultantEntry[];
@@ -27,19 +27,24 @@ export class ManageConsultantsComponent implements OnInit {
   }
   constructor(private consultantService: ConsultantService, private signupService: SignupService) { 
    this.getAllConsultants();
-      
+    this.getAllReviews();
   }
 
   ngOnInit() {
     console.log(this.consultantService.getAllConsultants());
-    
-    this.reviews = this.consultantService.getAllReviews();
   }
 
   getAllConsultants(){
     this.consultantService.getAllConsultants()
       .subscribe((data: Consultant[])=>{
         this.consultants = data;
+      });
+  }
+
+  getAllReviews(){
+    this.consultantService.getAllReviews()
+      .subscribe((data: ConsultantEntry[])=>{
+        this.reviews = data;
       });
   }
 
