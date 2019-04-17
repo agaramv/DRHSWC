@@ -3,13 +3,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { Consultant } from 'src/app/consultant/consultant.model';
 import { ConsultantService } from 'src/app/consultant/consultant.service';
 import { ConsultantEntry } from 'src/app/consultant/entry/ConsultantEntry.model';
-
-const consultants: Consultant[] = [
-  {first: 'Vidur', last: 'Agaram', email:'stuff@gmail.com'},
-  {first: 'Thomas', last: 'Castillo', email:'stuff@gmail.com'},
-  {first: 'Mike', last: 'Krause', email:'stuff@gmail.com'},
-  {first: 'Naomi', last: 'Nickels', email:'stuff@gmail.com'},
-]
+import { Appointment } from 'src/app/appointment.model';
+import { SignupService } from 'src/app/signup/signup.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-consultants',
@@ -17,8 +13,8 @@ const consultants: Consultant[] = [
   styleUrls: ['./manage-consultants.component.scss']
 })
 export class ManageConsultantsComponent implements OnInit {
-  displayedColumnsC: string[] = ['Name', 'Email'];
-  displayedColumnsR: string[] = ['Name', 'Email','Student','Teacher', 'Review'];
+  displayedColumnsC: string[] = ['Action', 'Name', 'Grade', 'Email', 'Email Second'];
+  displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
   reviews: ConsultantEntry[];
 
@@ -28,14 +24,28 @@ export class ManageConsultantsComponent implements OnInit {
     return this.email.hasError('required') ? 'You must enter a value' :
         this.email.hasError('email') ? 'Not a valid email' : '';
   }
-  constructor(private consultantService: ConsultantService) { }
+  constructor(private consultantService: ConsultantService, private signupService: SignupService) { 
+    this.getAllConsultants();
+    this.getAllReviews();
+  }
 
   ngOnInit() {
     console.log(this.consultantService.getAllConsultants());
-    this.consultants = this.consultantService.getAllConsultants();
-    this.reviews = this.consultantService.getAllReviews();
   }
 
+  getAllConsultants(){
+    this.consultantService.getAllConsultants()
+      .subscribe((data: Consultant[])=>{
+        this.consultants = data;
+      });
+  }
+
+  getAllReviews(){
+    this.consultantService.getAllReviews()
+      .subscribe((res)=>{
+        this.reviews = res;
+      });
+  }
 
 
 }

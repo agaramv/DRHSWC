@@ -1,16 +1,37 @@
 <br>
-<h3>{{week}}</h3>
-<div class="btn-group" role="group">
-  <button type="button" class="btn btn-primary">Tuesday A Lunch <span class="badge badge-light">{{slots1[0]}}</span></button>
-  <button type="button" class="btn btn-primary">Tuesday B Lunch <span class="badge badge-light">{{slots1[1]}}</span></button>
-  <button type="button" class="btn btn-primary">Wendesday A Lunch <span class="badge badge-light">{{slots1[2]}}</span></button>
-  <button type="button" class="btn btn-primary">Wendesday B Lunch <span class="badge badge-light">{{slots1[3]}}</span></button>
-</div>
-<br>
-<h3>{{weekN}}</h3>
-<div class="btn-group" role="group">
-  <button type="button" class="btn btn-primary">Tuesday A Lunch <span class="badge badge-light">{{slots2[0]}}</span></button>
-  <button type="button" class="btn btn-primary">Tuesday B Lunch <span class="badge badge-light">{{slots2[1]}}</span></button>
-  <button type="button" class="btn btn-primary">Wendesday A Lunch <span class="badge badge-light">{{slots2[2]}}</span></button>
-  <button type="button" class="btn btn-primary">Wendesday B Lunch <span class="badge badge-light">{{slots2[3]}}</span></button>
+<div class="row justify-content-center">
+  <mat-card id="tues">
+    <mat-card-header>
+      <mat-card-title><h3>Tuesday</h3></mat-card-title>
+      <mat-card-subtitle>Date</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row" id="">
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [routerLink]="041619/1/1">A  <span class="badge badge-light">slots</span></button>
+        </div>
+        <mat-divider [vertical]=true></mat-divider>
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [routerLink]="041619/2/2">B  <span class="badge badge-light">slots</span></button>    
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card id="tues">
+    <mat-card-header>
+      <mat-card-title><h3>Wendesday</h3></mat-card-title>
+      <mat-card-subtitle>Date</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [routerLink]="041719/1/1">A  <span class="badge badge-light">slots</span></button>
+        </div>
+        <mat-divider [vertical]=true></mat-divider>
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [routerLink]="041719/2/2">B  <span class="badge badge-light">slots</span></button>    
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

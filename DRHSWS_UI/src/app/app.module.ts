@@ -21,6 +21,7 @@ import { ResourcesComponent } from './resources/resources.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { EntryComponent } from './consultant/entry/entry.component';
 import { AssignmentsComponent } from './consultant/assignments/assignments.component';
+import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-appointments.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AssignmentsComponent } from './consultant/assignments/assignments.compo
     ResourcesComponent,
     ConsultantComponent,
     EntryComponent,
-    AssignmentsComponent
+    AssignmentsComponent,
+    ManageAppointmentsComponent
   ],
   imports: [
     BrowserModule,

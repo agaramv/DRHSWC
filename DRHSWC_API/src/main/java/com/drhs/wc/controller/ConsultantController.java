@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.drhs.wc.service.ConsultantService;
  * @author VidurAgaram
  *
  */
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ConsultantController {
 
@@ -31,7 +33,7 @@ public class ConsultantController {
 	@GetMapping("/consultant/all")
 	public List<ConsultantEntity> getAllConsultants(){
 		return consultantService.getAllConsultants();
-		//return null;
+		//return nul]l;
 	}
 	
 	@GetMapping("/consultant/{id}")

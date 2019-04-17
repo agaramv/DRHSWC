@@ -16,8 +16,8 @@ public class AppointmentEntity {
 	@Column(name="appt_date")
 	private LocalDate date;
 	
-	@Column(name="type")
-	private String type;
+	@Column(name="lunch_type")
+	private String lunchtype;
 	
 	@Column(name="slot")
 	private int slot;
@@ -42,11 +42,21 @@ public class AppointmentEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AppointmentEntity(LocalDate date, String type, int slot, String firstName, String lastName, int grade,
+	/**
+	 * @param date
+	 * @param lunchtype
+	 * @param slot
+	 * @param firstName
+	 * @param lastName
+	 * @param grade
+	 * @param teacher
+	 * @param topic
+	 */
+	public AppointmentEntity(LocalDate date, String lunchtype, int slot, String firstName, String lastName, int grade,
 			String teacher, int topic) {
 		super();
 		this.date = date;
-		this.type = type;
+		this.lunchtype = lunchtype;
 		this.slot = slot;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -54,70 +64,71 @@ public class AppointmentEntity {
 		this.teacher = teacher;
 		this.topic = topic;
 	}
-	
+
 	public LocalDate getDate() {
 		return date;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public int getSlot() {
-		return slot;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public int getGrade() {
-		return grade;
-	}
-
-	public String getTeacher() {
-		return teacher;
-	}
-
-	public int getTopic() {
-		return topic;
 	}
 
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public String getLunchtype() {
+		return lunchtype;
+	}
+
+	public void setLunchtype(String lunchtype) {
+		this.lunchtype = lunchtype;
+	}
+
+	public int getSlot() {
+		return slot;
 	}
 
 	public void setSlot(int slot) {
 		this.slot = slot;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	public int getGrade() {
+		return grade;
+	}
+
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+
+	public String getTeacher() {
+		return teacher;
 	}
 
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
 	}
 
+	public int getTopic() {
+		return topic;
+	}
+
 	public void setTopic(int topic) {
 		this.topic = topic;
 	}
-	
+
+
 	
 }
