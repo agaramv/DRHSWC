@@ -17,10 +17,10 @@ public class AppointmentEntity {
 	private LocalDate date;
 	
 	@Column(name="lunch_type")
-	private String lunchtype;
+	private String lunchType;
 	
-	@Column(name="slot")
-	private int slot;
+	@Column(name="time_slot")
+	private int timeSlot;
 	
 	@Column(name="student_first_name")
 	private String firstName;
@@ -44,20 +44,20 @@ public class AppointmentEntity {
 
 	/**
 	 * @param date
-	 * @param lunchtype
-	 * @param slot
+	 * @param lunchType
+	 * @param timeSlot
 	 * @param firstName
 	 * @param lastName
 	 * @param grade
 	 * @param teacher
 	 * @param topic
 	 */
-	public AppointmentEntity(LocalDate date, String lunchtype, int slot, String firstName, String lastName, int grade,
-			String teacher, int topic) {
+	public AppointmentEntity(LocalDate date, String lunchType, int timeSlot, String firstName, String lastName,
+			int grade, String teacher, int topic) {
 		super();
 		this.date = date;
-		this.lunchtype = lunchtype;
-		this.slot = slot;
+		this.lunchType = lunchType;
+		this.timeSlot = timeSlot;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
@@ -73,20 +73,20 @@ public class AppointmentEntity {
 		this.date = date;
 	}
 
-	public String getLunchtype() {
-		return lunchtype;
+	public String getLunchType() {
+		return lunchType;
 	}
 
-	public void setLunchtype(String lunchtype) {
-		this.lunchtype = lunchtype;
+	public void setLunchType(String lunchType) {
+		this.lunchType = lunchType;
 	}
 
-	public int getSlot() {
-		return slot;
+	public int getTimeSlot() {
+		return timeSlot;
 	}
 
-	public void setSlot(int slot) {
-		this.slot = slot;
+	public void setTimeSlot(int timeSlot) {
+		this.timeSlot = timeSlot;
 	}
 
 	public String getFirstName() {
@@ -128,6 +128,8 @@ public class AppointmentEntity {
 	public void setTopic(int topic) {
 		this.topic = topic;
 	}
+
+	
 
 
 	
