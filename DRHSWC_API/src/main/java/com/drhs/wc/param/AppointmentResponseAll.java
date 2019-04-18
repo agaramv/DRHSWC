@@ -1,16 +1,6 @@
 package com.drhs.wc.param;
 
 import java.time.LocalDate;
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.drhs.wc.entity.AppointmentEntityKey;
-
 
 public class AppointmentResponseAll {
 	
