@@ -29,17 +29,9 @@ public class ConsultantController {
 	@Autowired
 	ConsultantService consultantService;
 
-	
-	@GetMapping("/consultant/all")
-	public List<ConsultantEntity> getAllConsultants(){
-		return consultantService.getAllConsultants();
-		//return nul]l;
-	}
-	
-	@GetMapping("/consultant/{id}")
-	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
-		return consultantService.getConsultantById(id);
-	}
+	/* *************************
+	// Add New Consultant
+	***************************/
 	
 	@PostMapping("/consultant/new")
 	public ConsultantEntity addNewConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
@@ -47,6 +39,39 @@ public class ConsultantController {
 		return ce; 
 	}
 	
+	//************************** 
+	//**  Get all Consultants
+	//*************************
+	@GetMapping("/consultant/all")
+	public List<ConsultantEntity> getAllConsultants(){
+		return consultantService.getAllConsultants();
+		//return nul]l;
+	}
+	//***************************
+	//** Get Consultant by ID 
+	//***************************
+	
+	@GetMapping("/consultant/{id}")
+	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
+		return consultantService.getConsultantById(id);
+	}
+	
+	/* *************************
+	 * Update consultants by ID
+	 ***************************/
+	@DeleteMapping("/consultant/update")
+	public void updateConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
+		consultantService.updateConsultant(consultantEntity); 
+	}
+	
+	/* *************************
+	 * Delete consultants by ID
+	 ***************************/
+	@DeleteMapping("/consultant/delete/{id}")
+	public void deleteConsultant(@PathVariable Integer id){
+		consultantService.deleteConsultant(id); 
+	}
+
 	/* *****************************
 	 * set consultant status inactive
 	 ********************************/
@@ -56,14 +81,7 @@ public class ConsultantController {
 		return ce; 
 	}
 	
-	/* *************************
-	 * Delete consultants
-	 * Input : Consultant ID
-	 ***************************/
-	@DeleteMapping("/consultant/delete/{id}")
-	public void deleteConsultant(@PathVariable Integer id){
-		consultantService.deleteConsultant(id); 
-	}
+	
 	
 	
 }

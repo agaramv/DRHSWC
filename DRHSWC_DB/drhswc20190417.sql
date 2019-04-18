@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `drhswc` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `drhswc`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: localhost    Database: drhswritingcenter
+-- Host: localhost    Database: drhswc
 -- ------------------------------------------------------
--- Server version	5.5.57
+-- Server version	5.7.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,15 +25,15 @@ DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appointment` (
-  `date` datetime NOT NULL,
-  `type` varchar(1) NOT NULL,
-  `slot` int(11) NOT NULL,
+  `appt_date` date NOT NULL,
+  `lunch_type` varchar(1) NOT NULL COMMENT 'Lunch types values - Lunch-A and Lunch-B',
+  `time_slot` int(2) NOT NULL COMMENT 'Max time slots in numerical order',
   `student_first_name` varchar(25) DEFAULT NULL,
   `student_last_name` varchar(30) DEFAULT NULL,
   `student_grade` int(11) DEFAULT NULL,
   `student_teacher` varchar(30) DEFAULT NULL,
   `student_topic` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`date`,`type`,`slot`)
+  PRIMARY KEY (`appt_date`,`lunch_type`,`time_slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -43,6 +43,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES ('2019-04-16','T',1,'Vidur','Agaram',11,'Norris','STEM'),('2019-04-16','T',2,'Vidur','Agaram',11,'Norris','STEM');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,7 +74,7 @@ CREATE TABLE `r_consultants` (
 
 LOCK TABLES `r_consultants` WRITE;
 /*!40000 ALTER TABLE `r_consultants` DISABLE KEYS */;
-INSERT INTO `r_consultants` VALUES (1,'Alannah','Bell',12,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','A',NULL,NULL),(2,'Mia ','Brown',12,'hcps-brownmc5@henricostudents.org;','bcmiabrown@gmail.com','A',NULL,NULL),(3,'Gautam','Chiang',11,'hcps-chiangg1@henricostudents.org','gautamchiang@gmail.com','A',NULL,NULL),(4,'Zoe','Fields',12,'hcps-fieldsza@henricostudents.org','emutaht@gmail.com','A',NULL,NULL),(5,'Drew','Greene',11,'hcps-greeneac@henricostudents.org;','drewgr33ne12@gmail.com','A',NULL,NULL),(6,'Sarah','Hossain',10,'hcps-hossains@henricostudents.org','hossain.sarah1716@gmail.com','A',NULL,NULL),(7,'Sahil','Jaiswal',12,'hcps-jaiswalsd@henricostudents.org','sdjaiswal@outlook.com','A',NULL,NULL),(8,'Emma','Johnson',12,'hcps-johnsoec3@henricostudents.org','johnsoec3@gmail.com','A',NULL,NULL),(9,'Kasey','Kiefer',12,'hcps-kieferkl@henricostudents.org','kaseykiefer66@gmail.com','A',NULL,NULL),(10,'Jason','Leung',11,'hcps-leungjr2@henricostudents.org','leungjr2works@gmail.com','A',NULL,NULL),(11,'Alyssa','Manalo',10,'hcps-manaloaj@henricostudents.org','alyssa.manalo31@gmail.com','A',NULL,NULL),(12,'Mollie','Mero',10,'hcps-merome@henricostudents.org','crud132@gmail.com','A',NULL,NULL),(13,'Kali','McGough',12,'hcps-mcgoughkm@henricostudents.org','mcgoughkali@gmail.com','A',NULL,NULL),(14,'Sarita','Mithal',11,'hcps-mithals@henricostudents.org','saritamithal01@gmail.com','A',NULL,NULL),(15,'Ben','Nelson',11,'hcpsnilsonbb@henricostudents.org','bbntsa@gmail.com','A',NULL,NULL),(16,'Donovan','Pierce',11,'hcps-piercedm1@henricostudents.org','dmpierce@gmail.com','A',NULL,NULL),(17,'Vaishnavi','Ranganathan',11,'hcps-ranganatv@henricostudents.org','oneskyblue2@gmail.com','A',NULL,NULL),(18,'Jenna','Sliman',10,'hcps-slimanjn@henricostudents.org','jsliman948@gmail.com','A',NULL,NULL),(19,'Julia','Snow',11,'hcps-snowjs@henricostudents.org','jsnowhome@gmail.com','A',NULL,NULL),(20,'Olivia','Wilkinson',11,'hcps-wilkinsoj@henricostudents.org;','oliviawilk002@gmail.com','A',NULL,NULL),(21,'Vidur','d',11,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','I',NULL,NULL);
+INSERT INTO `r_consultants` VALUES (1,'Alannah','Bell',12,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','A',NULL,NULL),(2,'Mia ','Brown',12,'hcps-brownmc5@henricostudents.org;','bcmiabrown@gmail.com','A',NULL,NULL),(3,'Gautam','Chiang',11,'hcps-chiangg1@henricostudents.org','gautamchiang@gmail.com','A',NULL,NULL),(4,'Zoe','Fields',12,'hcps-fieldsza@henricostudents.org','emutaht@gmail.com','A',NULL,NULL),(5,'Drew','Greene',11,'hcps-greeneac@henricostudents.org;','drewgr33ne12@gmail.com','A',NULL,NULL),(6,'Sarah','Hossain',10,'hcps-hossains@henricostudents.org','hossain.sarah1716@gmail.com','A',NULL,NULL),(7,'Sahil','Jaiswal',12,'hcps-jaiswalsd@henricostudents.org','sdjaiswal@outlook.com','A',NULL,NULL),(8,'Emma','Johnson',12,'hcps-johnsoec3@henricostudents.org','johnsoec3@gmail.com','A',NULL,NULL),(9,'Kasey','Kiefer',12,'hcps-kieferkl@henricostudents.org','kaseykiefer66@gmail.com','A',NULL,NULL),(10,'Jason','Leung',11,'hcps-leungjr2@henricostudents.org','leungjr2works@gmail.com','A',NULL,NULL),(11,'Alyssa','Manalo',10,'hcps-manaloaj@henricostudents.org','alyssa.manalo31@gmail.com','A',NULL,NULL),(12,'Mollie','Mero',10,'hcps-merome@henricostudents.org','crud132@gmail.com','A',NULL,NULL),(13,'Kali','McGough',12,'hcps-mcgoughkm@henricostudents.org','mcgoughkali@gmail.com','A',NULL,NULL),(14,'Sarita','Mithal',11,'hcps-mithals@henricostudents.org','saritamithal01@gmail.com','A',NULL,NULL),(15,'Ben','Nelson',11,'hcpsnilsonbb@henricostudents.org','bbntsa@gmail.com','I',NULL,NULL),(16,'Donovan','Pierce',11,'hcps-piercedm1@henricostudents.org','dmpierce@gmail.com','A',NULL,NULL),(17,'Vaishnavi','Ranganathan',11,'hcps-ranganatv@henricostudents.org','oneskyblue2@gmail.com','A',NULL,NULL),(18,'Jenna','Sliman',10,'hcps-slimanjn@henricostudents.org','jsliman948@gmail.com','A',NULL,NULL),(19,'Julia','Snow',11,'hcps-snowjs@henricostudents.org','jsnowhome@gmail.com','A',NULL,NULL),(20,'Olivia','Wilkinson',11,'hcps-wilkinsoj@henricostudents.org;','oliviawilk002@gmail.com','I',NULL,NULL);
 /*!40000 ALTER TABLE `r_consultants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,4 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-09 22:17:32
+-- Dump completed on 2019-04-17  6:45:50

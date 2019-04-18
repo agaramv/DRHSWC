@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.ConsultantEntity;
 import com.drhs.wc.repository.AppointmentRepository;
 
@@ -16,6 +17,12 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	private AppointmentRepository appointmentRepository;
 
 	@Override
+	public List<AppointmentEntity> getAllAppointments() {
+	
+		return appointmentRepository.findAll();
+	}
+	
+	@Override
 	public List<ConsultantEntity> getAllReviews() {
 		// TODO Auto-generated method stub
 		return null;
@@ -23,7 +30,10 @@ public class AppointmentDaoImpl implements AppointmentDao {
 
 	@Override
 	public Integer findByDate(LocalDate date) {
-		return appointmentRepository.countByDate(date);
+		//return appointmentRepository.countByDate(date);
+		return 0;
 	}
+
+
 
 }

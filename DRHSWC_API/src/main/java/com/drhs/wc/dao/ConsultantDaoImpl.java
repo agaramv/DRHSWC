@@ -33,8 +33,8 @@ public class ConsultantDaoImpl implements ConsultantDao{
 
 	@Override
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity) {
-		ConsultantEntity savedEntity = consultantRepo.saveAndFlush(consultantEntity);
-		return savedEntity;
+		ConsultantEntity addEntity = consultantRepo.saveAndFlush(consultantEntity);
+		return addEntity;
 	}
 
 	@Override
@@ -44,7 +44,13 @@ public class ConsultantDaoImpl implements ConsultantDao{
 
 	@Override
 	public void deleteConsultant(Integer id) {
-		consultantRepo.deleteById(id);;
+		consultantRepo.deleteById(id);
+	}
+
+	@Override
+	public ConsultantEntity updateConsultant(ConsultantEntity consultantEntity) {
+		ConsultantEntity updateEntity = consultantRepo.saveAndFlush(consultantEntity); 
+		return updateEntity;
 	}
 
 }

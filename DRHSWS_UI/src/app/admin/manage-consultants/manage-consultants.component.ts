@@ -16,7 +16,6 @@ export class ManageConsultantsComponent implements OnInit {
   displayedColumnsC: string[] = ['Action', 'Name', 'Grade', 'Email', 'Email Second'];
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
-  consultantsObs: Observable<Consultant[]>;
   reviews: ConsultantEntry[];
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -26,7 +25,7 @@ export class ManageConsultantsComponent implements OnInit {
         this.email.hasError('email') ? 'Not a valid email' : '';
   }
   constructor(private consultantService: ConsultantService, private signupService: SignupService) { 
-   this.getAllConsultants();
+    this.getAllConsultants();
     this.getAllReviews();
   }
 
@@ -43,8 +42,8 @@ export class ManageConsultantsComponent implements OnInit {
 
   getAllReviews(){
     this.consultantService.getAllReviews()
-      .subscribe((data: ConsultantEntry[])=>{
-        this.reviews = data;
+      .subscribe((res)=>{
+        this.reviews = res;
       });
   }
 

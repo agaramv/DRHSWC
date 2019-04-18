@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drhs.wc.param.AppointmentResponse;
+import com.drhs.wc.param.AppointmentResponseAll;
 import com.drhs.wc.service.AppointmentService;
 
 /**
@@ -26,9 +27,16 @@ public class AppointmentController {
 	@Autowired
 	AppointmentService appointmentService;
 	
-	@GetMapping("/appointments")
+	@GetMapping("/appointment/all")
+	public List<AppointmentResponseAll> getAllAppointments(){
+		
+		return appointmentService.getAllAppointments();
+	}
+	
+	
+	@GetMapping("/appointment/date")
 	public List<AppointmentResponse> getAppointments(){
-		LocalDate currDate = LocalDate.of(2019, 5, 9);
+		LocalDate currDate = LocalDate.of(2019, 4,17);
 		return appointmentService.getAppointmentDays(currDate);
 	}
 }

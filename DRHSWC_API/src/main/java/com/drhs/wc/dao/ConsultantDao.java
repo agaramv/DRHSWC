@@ -10,11 +10,14 @@ public interface ConsultantDao {
 	//Get all consultants
 	public List<ConsultantEntity> getAllConsultants();
 	
-	//Get one consultant
+	//Get consultant by ID
 	public Optional<ConsultantEntity> getConsultantById(Integer id);
 		
-	//Create new consultant
+	//Add new consultant
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
+	
+	//Update consultant by ID
+	public ConsultantEntity updateConsultant(ConsultantEntity consultantEntity);
 	
 	//Update consultant to I (Inactive) essentially deleting it
 	public int changeToInactive(Integer id);
