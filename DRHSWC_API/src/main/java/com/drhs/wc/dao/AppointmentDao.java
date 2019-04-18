@@ -5,15 +5,16 @@ import java.util.List;
 
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.ConsultantEntity;
+import com.drhs.wc.param.AppointmentResponseAll;
 
 public interface AppointmentDao {
 
 	//Get all appointments
 	public List<AppointmentEntity> getAllAppointments();
 	
+	//Get appointments by date
+	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate appDate); 
 	
-	//Get all appointments
-	public List<ConsultantEntity> getAllReviews();
 	
 	Integer findByDate(LocalDate date);
 

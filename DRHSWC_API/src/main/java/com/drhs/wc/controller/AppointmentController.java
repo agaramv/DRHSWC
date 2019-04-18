@@ -34,7 +34,7 @@ public class AppointmentController {
 	}
 	
 	
-	@GetMapping("/appointment/date")
+	@GetMapping("/appointment/schedule")
 	public List<AppointmentResponse> getAppointments(){
 		LocalDate currDate = LocalDate.of(2019, 4,17);
 		return appointmentService.getAppointmentDays(currDate);
