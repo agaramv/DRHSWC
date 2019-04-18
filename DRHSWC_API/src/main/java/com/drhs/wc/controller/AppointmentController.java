@@ -33,6 +33,7 @@ public class AppointmentController {
 		return appointmentService.getAllAppointments();
 	}
 	
+	
 	@GetMapping("/appointment/date")
 	public List<AppointmentResponse> getAppointments(){
 		LocalDate currDate = LocalDate.of(2019, 4,17);
