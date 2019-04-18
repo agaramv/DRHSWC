@@ -21,6 +21,42 @@ public class AppointmentServiceImpl implements AppointmentService{
 	private AppointmentDao appointmentDao;
 
 	
+	//**********************************
+	// Build Appointment Response object
+	// This is needed to send a flat JSON object to the client
+	// since the appointment entity has a embedded composite key. 
+	//**********************************
+	
+	
+	public List<AppointmentResponseAll> buildAppointmentReponse(AppointmentEntity appointmentEntity){
+		
+		
+		
+		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
+	    
+		
+		/*appointmentResponseAll = appointmentEntity.stream().map(
+				appointment -> new AppointmentResponseAll(
+						appointment.getAppointmentEntityKey().getApptDate(),
+						appointment.getAppointmentEntityKey().getLunchType(),
+						appointment.getAppointmentEntityKey().getTimeSlot(),
+						appointment.getFirstName(),
+						appointment.getLastName(),
+						appointment.getGrade(),
+						appointment.getTeacher(),
+						appointment.getTopic()
+						)
+				).collect(Collectors.toList());*/
+		
+		return appointmentResponseAll;
+		
+		
+	}
+	
+	//**********************
+	// Get All Appointments
+	//**********************
+	
 	@Override
 	public List<AppointmentResponseAll> getAllAppointments() {
 		
@@ -44,6 +80,39 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentResponseAll;
 	}
 	
+	//***********************************
+	// Get Appointments for a given date
+	//***********************************
+	@Override
+	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate) {
+		
+		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
+		
+	    List<AppointmentEntity> appointmentEntity = new ArrayList<AppointmentEntity>();
+		
+		appointmentEntity = appointmentDao.getAppointmentsByDate(apptDate);
+		
+		//Flten the response 
+		appointmentResponseAll = appointmentEntity.stream().map(
+				appointment -> new AppointmentResponseAll(
+						appointment.getAppointmentEntityKey().getApptDate(),
+						appointment.getAppointmentEntityKey().getLunchType(),
+						appointment.getAppointmentEntityKey().getTimeSlot(),
+						appointment.getFirstName(),
+						appointment.getLastName(),
+						appointment.getGrade(),
+						appointment.getTeacher(),
+						appointment.getTopic()
+						)
+				).collect(Collectors.toList());
+		
+		return appointmentResponseAll;
+		
+	}
+	
+	//************************************
+	// Count appointments made for a given date
+	//************************************
 	
 	@Override
 	public List<AppointmentResponse> countByAppointment() {
@@ -58,6 +127,13 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return null;
 	}
 
+	
+	//*************************************************************
+	//Landing Page
+	//Get Appointment schedule to make appointment
+	//Will retrieve Tuesday and Wednesday dates for user to select 
+	//*************************************************************
+	
 	@Override
 	public List<AppointmentResponse> getAppointmentDays(LocalDate currDate) {
 		
@@ -214,6 +290,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentResponse;
 		//return null;
 	}
+
+
+	
 
 	
 	

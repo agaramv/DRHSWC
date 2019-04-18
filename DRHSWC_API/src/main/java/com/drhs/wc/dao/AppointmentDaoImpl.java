@@ -31,9 +31,9 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return 0;
 	}
 
-
+    //Get appointments by date
 	@Override
-	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate) {
+	public List<AppointmentEntity> getAppointmentsByDate(LocalDate apptDate) {
 		return appointmentRepository.getAppointmentsByDate(apptDate);
 	}
 
