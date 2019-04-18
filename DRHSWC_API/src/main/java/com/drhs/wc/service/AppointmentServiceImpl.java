@@ -4,18 +4,47 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drhs.wc.dao.AppointmentDao;
+import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.param.AppointmentResponse;
+import com.drhs.wc.param.AppointmentResponseAll;
+
 @Service
 public class AppointmentServiceImpl implements AppointmentService{
 
 	@Autowired
 	private AppointmentDao appointmentDao;
 
+	
+	@Override
+	public List<AppointmentResponseAll> getAllAppointments() {
+		
+		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
+		
+		List<AppointmentEntity> appointmentyEntity = appointmentDao.getAllAppointments();
+		
+		appointmentResponseAll = appointmentyEntity.stream().map(
+				appointment -> new AppointmentResponseAll(
+						appointment.getAppointmentEntityKey().getApptDate(),
+						appointment.getAppointmentEntityKey().getLunchType(),
+						appointment.getAppointmentEntityKey().getTimeSlot(),
+						appointment.getFirstName(),
+						appointment.getLastName(),
+						appointment.getGrade(),
+						appointment.getTeacher(),
+						appointment.getTopic()
+						)
+				).collect(Collectors.toList());
+		
+		return appointmentResponseAll;
+	}
+	
+	
 	@Override
 	public List<AppointmentResponse> countByAppointment() {
 		
@@ -185,6 +214,8 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentResponse;
 		//return null;
 	}
+
+	
 	
 	
 
