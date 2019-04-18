@@ -18,7 +18,7 @@ import com.drhs.wc.entity.AppointmentEntityKey;
 public interface AppointmentRepository extends JpaRepository<AppointmentEntity, AppointmentEntityKey> {
 
 	@Query(value = "select * from appointment where appt_date=:apptDate",nativeQuery = true)
-	List<AppointmentResponseAll> getAppointmentsByDate(@Param("apptDate") LocalDate apptDate);
+	List<AppointmentEntity> getAppointmentsByDate(@Param("apptDate") LocalDate apptDate);
 
 
 	//Integer countByDate(LocalDate date);

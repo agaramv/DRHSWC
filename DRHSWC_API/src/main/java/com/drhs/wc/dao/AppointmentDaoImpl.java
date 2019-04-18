@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.ConsultantEntity;
+import com.drhs.wc.param.AppointmentResponseAll;
 import com.drhs.wc.repository.AppointmentRepository;
 
 @Service
@@ -16,17 +17,13 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 
+	//Get All appointments
 	@Override
 	public List<AppointmentEntity> getAllAppointments() {
 	
 		return appointmentRepository.findAll();
 	}
 	
-	@Override
-	public List<ConsultantEntity> getAllReviews() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Integer findByDate(LocalDate date) {
@@ -34,6 +31,11 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return 0;
 	}
 
+    //Get appointments by date
+	@Override
+	public List<AppointmentEntity> getAppointmentsByDate(LocalDate apptDate) {
+		return appointmentRepository.getAppointmentsByDate(apptDate);
+	}
 
 
 }
