@@ -27,13 +27,14 @@ public class AppointmentController {
 	@Autowired
 	AppointmentService appointmentService;
 	
+	//Get all appointment
 	@GetMapping("/appointment/all")
 	public List<AppointmentResponseAll> getAllAppointments(){
 		
 		return appointmentService.getAllAppointments();
 	}
 	
-	
+	//Get all appointment schedule to make appointments
 	@GetMapping("/appointment/schedule")
 	public List<AppointmentResponse> getAppointments(){
 		LocalDate currDate = LocalDate.of(2019, 4,17);

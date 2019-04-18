@@ -13,7 +13,7 @@ public interface AppointmentDao {
 	public List<AppointmentEntity> getAllAppointments();
 	
 	//Get appointments by date
-	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate appDate); 
+	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate); 
 	
 	
 	Integer findByDate(LocalDate date);

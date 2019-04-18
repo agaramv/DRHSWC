@@ -33,9 +33,8 @@ public class AppointmentDaoImpl implements AppointmentDao {
 
 
 	@Override
-	public List<ConsultantEntity> getAllReviews(LocalDate appDate) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate) {
+		return appointmentRepository.getAppointmentsByDate(apptDate);
 	}
 
 
