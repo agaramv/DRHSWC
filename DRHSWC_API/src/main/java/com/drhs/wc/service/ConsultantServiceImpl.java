@@ -43,22 +43,11 @@ public class ConsultantServiceImpl implements ConsultantService{
 	}
 
 	@Override
-	//@Transactional(propagation=)
+	@Transactional
 	public int changeToInactive(Integer id) {
-		  //EntityManager em = null;
-		EntityTransaction tx = null;
-		int ret_code =0;
-		try {
-		  tx = entityManager.getTransaction();
-		  tx.begin();
-		   ret_code = consultantDao.changeToInactive(id);
-		  tx.commit();
-		}catch(Exception e){
-			e.printStackTrace();
-			if(tx != null)
-			tx.rollback();
-		}
-		return ret_code;
+	
+		 return consultantDao.changeToInactive(id);
+		 
 	}
 
 	@Override
@@ -66,4 +55,9 @@ public class ConsultantServiceImpl implements ConsultantService{
 		consultantDao.deleteConsultant(id);
 	}
 
+	@Override
+	public ConsultantEntity updateConsultant(ConsultantEntity consultantEntity) {
+		return consultantDao.updateConsultant(consultantEntity);
+	
+	}
 }
