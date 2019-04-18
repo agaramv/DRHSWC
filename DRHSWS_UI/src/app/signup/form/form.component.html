@@ -2,7 +2,7 @@
 <div class="justify-content-center">
   <mat-card class="">
     <mat-card-header>
-      <mat-card-title>Day of the Week + date + lunch</mat-card-title>
+      <mat-card-title *ngIf="selected">Day of the Week + date + lunch</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form #f="ngForm" (ngSubmit)="onSubmit(f)" >

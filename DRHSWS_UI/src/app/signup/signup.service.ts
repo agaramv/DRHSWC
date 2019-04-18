@@ -18,8 +18,8 @@ export class SignupService {
   constructor(private http: HttpClient) { }
 
   getAllAppointments(){
-    return this.http.get<any>(this.endpoint+'/appointments/schedule');
-    //return this.appointments.slice();
+    //return this.http.get<any>(this.endpoint+'/appointments/schedule');
+    return this.appointments.slice();
   }
 
   getStudents(){
