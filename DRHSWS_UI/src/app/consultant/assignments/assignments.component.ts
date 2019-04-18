@@ -21,7 +21,7 @@ const consultants: Consultant[] = [
 })
 export class AssignmentsComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'email', 'file'];
+  displayedColumns: string[] = ['name', 'email', 'file','review'];
   data: Consultant[] = consultants;
 
   constructor() { }

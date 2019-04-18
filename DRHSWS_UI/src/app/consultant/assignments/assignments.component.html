@@ -16,6 +16,13 @@
     <th mat-header-cell *matHeaderCellDef> File </th>
     <td mat-cell *matCellDef="let consultant"> {{consultant.file}} </td>
   </ng-container>
+
+  <ng-container matColumnDef="review">
+      <th mat-header-cell *matHeaderCellDef> Write Review </th>
+      <td mat-cell *matCellDef="let consultant">
+        <button id="edit" mat-button color="primary" [routerLink]="entry">Write Review</button>
+      </td>
+    </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
