@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupInfo } from '../signupInfo.model';
+import { SignupService } from '../signup.service';
 
 @Component({
   selector: 'app-calendar',
@@ -13,7 +14,7 @@ export class CalendarComponent implements OnInit {
   slots2 = [2,9,7,2];
   date: string = "4/17/19";
   appointmentSelection: SignupInfo = {date: "",day: "",lunch: ""};
-  constructor() { }
+  constructor(private signupService: SignupService) { }
 
   ngOnInit() {
   }
@@ -24,7 +25,7 @@ export class CalendarComponent implements OnInit {
       this.appointmentSelection.date = this.date;
       this.appointmentSelection.day = "Tuesday";
       this.appointmentSelection.day = "A Lunch";
-      return this.appointmentSelection;
+      //this.signupService.onSelectedTime(this.appointmentSelection);
     }
     if(day==2){
       return 2;

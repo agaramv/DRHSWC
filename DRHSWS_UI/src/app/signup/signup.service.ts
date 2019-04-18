@@ -22,6 +22,10 @@ export class SignupService {
     return this.appointments.slice();
   }
 
+  onSelectedTime(){
+    return true;
+  }
+
   getStudents(){
     return this.http.get<any>('/students');
   }

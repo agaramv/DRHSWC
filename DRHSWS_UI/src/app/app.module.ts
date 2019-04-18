@@ -22,6 +22,7 @@ import { ConsultantComponent } from './consultant/consultant.component';
 import { EntryComponent } from './consultant/entry/entry.component';
 import { AssignmentsComponent } from './consultant/assignments/assignments.component';
 import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-appointments.component';
+import { AppointmentComponent } from './signup/appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-
     ConsultantComponent,
     EntryComponent,
     AssignmentsComponent,
-    ManageAppointmentsComponent
+    ManageAppointmentsComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,

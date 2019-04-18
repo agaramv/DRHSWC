@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { SignupService } from '../signup.service';
 
 @Component({
   selector: 'app-form',
@@ -7,7 +8,8 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  submitted: boolean = false;
+  submitted: boolean = this.signupService.onSelectedTime();
+  selected: boolean = false;
   data = {
     firstname: '',
     lastname: '',
@@ -16,11 +18,12 @@ export class FormComponent implements OnInit {
   };
 
 
-  constructor() { }
+  constructor(private signupService: SignupService) { }
 
   ngOnInit() {
-    
+
   }
+ 
   onSubmit(form: NgForm) {
     this.data.firstname = form.value.firstname;
     this.data.lastname = form.value.lastname;
