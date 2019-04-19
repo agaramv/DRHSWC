@@ -91,7 +91,10 @@ public class AppointmentServiceImpl implements AppointmentService{
 		AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
 				appointmentResponseAdd.getApptDate(),
 				appointmentResponseAdd.getLunchType(),
-				appointmentResponseAdd.getTimeSlot()
+				appointmentDao.apptCountByDateLunchType(
+						appointmentResponseAdd.getApptDate(), 
+						appointmentResponseAdd.getLunchType()
+						)+1
 				);
 		//Built entity using key and other response fields
 		AppointmentEntity appointmentEntity = new AppointmentEntity(
