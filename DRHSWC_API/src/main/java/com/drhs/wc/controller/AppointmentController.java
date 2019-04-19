@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.param.AppointmentResponse;
+import com.drhs.wc.param.AppointmentResponseAdd;
 import com.drhs.wc.param.AppointmentResponseAll;
 import com.drhs.wc.service.AppointmentService;
 
@@ -36,6 +39,14 @@ public class AppointmentController {
 		return appointmentService.getAllAppointments();
 	}
 	
+	//********************
+	// Add appointment
+	//*******************
+	@PostMapping("/appointment/add")
+	public AppointmentEntity addAppointment(@RequestBody AppointmentResponseAdd appointmentResponseAdd){
+		return appointmentService.addAppointments(appointmentResponseAdd);
+	}
+	
 	//*************************************************
 	//Get appointment schedule to make appointments
 	//*************************************************
@@ -53,7 +64,7 @@ public class AppointmentController {
 	//****************************************************
 	@GetMapping("/appointment/schedule/{apptDate}")
 	public List<AppointmentResponse> getAppointmentsByDate(@PathVariable("apptDate") String argDate){
-		//Pass the parameter date to get schdule for desired date
+		//Pass the parameter date to get schedule for desired date
 		LocalDate apptDate = LocalDate.parse(argDate);
 		return appointmentService.getAppointmentDays(apptDate);
 	}
@@ -88,6 +99,11 @@ public class AppointmentController {
 	
 	
 	
+	
+	
+	//********************************
+	//Get all appointment by last name
+	//********************************
 	
 	
 	//****************************

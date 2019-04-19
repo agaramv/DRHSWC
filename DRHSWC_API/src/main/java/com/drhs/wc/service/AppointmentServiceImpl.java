@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.drhs.wc.dao.AppointmentDao;
 import com.drhs.wc.entity.AppointmentEntity;
+import com.drhs.wc.entity.AppointmentEntityKey;
 import com.drhs.wc.param.AppointmentResponse;
+import com.drhs.wc.param.AppointmentResponseAdd;
 import com.drhs.wc.param.AppointmentResponseAll;
 
 @Service
@@ -28,14 +30,14 @@ public class AppointmentServiceImpl implements AppointmentService{
 	//**********************************
 	
 	
-	public List<AppointmentResponseAll> buildAppointmentReponse(AppointmentEntity appointmentEntity){
+	private List<AppointmentResponseAll> buildAppointmentReponse(List<AppointmentEntity> appointmentEntity){
 		
 		
 		
 		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
 	    
 		
-		/*appointmentResponseAll = appointmentEntity.stream().map(
+		appointmentResponseAll = appointmentEntity.stream().map(
 				appointment -> new AppointmentResponseAll(
 						appointment.getAppointmentEntityKey().getApptDate(),
 						appointment.getAppointmentEntityKey().getLunchType(),
@@ -46,7 +48,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 						appointment.getTeacher(),
 						appointment.getTopic()
 						)
-				).collect(Collectors.toList());*/
+				).collect(Collectors.toList());
 		
 		return appointmentResponseAll;
 		
@@ -81,6 +83,30 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 	
 	//***********************************
+	// 			Add Appointment
+	//***********************************
+	@Override
+	public AppointmentEntity addAppointments(AppointmentResponseAdd appointmentResponseAdd) {
+		//Built primary key from response
+		AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
+				appointmentResponseAdd.getApptDate(),
+				appointmentResponseAdd.getLunchType(),
+				appointmentResponseAdd.getTimeSlot()
+				);
+		//Built entity using key and other response fields
+		AppointmentEntity appointmentEntity = new AppointmentEntity(
+				appointmentEntityKey,
+				appointmentResponseAdd.getFirstName(),
+				appointmentResponseAdd.getLastName(),
+				appointmentResponseAdd.getGrade(),
+				appointmentResponseAdd.getTeacher(),
+				appointmentResponseAdd.getTopic()
+				);
+		
+		return appointmentDao.addAppointment(appointmentEntity);
+	}
+	
+	//***********************************
 	// Get Appointments for a given date
 	//***********************************
 	@Override
@@ -92,7 +118,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		appointmentEntity = appointmentDao.getAppointmentsByDate(apptDate);
 		
-		//Flten the response 
+		//Flaten the response 
 		appointmentResponseAll = appointmentEntity.stream().map(
 				appointment -> new AppointmentResponseAll(
 						appointment.getAppointmentEntityKey().getApptDate(),
@@ -109,24 +135,6 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentResponseAll;
 		
 	}
-	
-	//************************************
-	// Count appointments made for a given date
-	//************************************
-	
-	@Override
-	public List<AppointmentResponse> countByAppointment() {
-		
-		try {
-			AppointmentResponse AppointmentResponse = new AppointmentResponse();
-			System.out.println(appointmentDao.findByDate(LocalDate.now().plusDays(4)));
-			
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		return null;
-	}
-
 	
 	//*************************************************************
 	//Landing Page
@@ -204,80 +212,91 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//*****  TUESDAY ********
 		//************************
 		
-		//Set Values for Tuesday
-		String apptForWeek = "CURRENTWEEK";
-		int apptFilled     = appointmentDao.findByDate(dateTuesday);
-		int apptOpen       = totalApptSlots - apptFilled;
+		//Set Values for Tuesday A Lunch
+//		String apptForWeek = "CURRENTWEEK";
+		String lunchType   = "A";
+		Integer apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
+		Integer apptOpen       = totalApptSlots - apptFilled;
 		String apptDayName = dateTuesday.getDayOfWeek().name();
 		Month apptMonth    = dateTuesday.getMonth();
 		
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(apptForWeek,
-                											dateTuesday,
-                											apptDayName,
-                											apptMonth,
-                											apptFilled,
-                											apptOpen
-                											));
+		//Add to List for response for A-lunch
+		appointmentResponse.add(new AppointmentResponse(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));	
+		
+		//Set Values for Tuesday B Lunch
+		lunchType   = "B";
+		apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
+		apptOpen       = totalApptSlots - apptFilled;
+		//Add to List for response for B-lunch
+		appointmentResponse.add(new AppointmentResponse(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));
+
 		
 		//************************	
 		//***** WEDNESDAY ********
 		//************************
 		
-		//Set Values for Wednesday 
-		apptForWeek   = "CURRENTWEEK";
-		apptFilled    = appointmentDao.findByDate(dateWednesday);
+		//Set Values for Wednesday A Lunch
+		lunchType  = "A";
+		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
 		apptOpen      = totalApptSlots - apptFilled;
 		apptDayName   = dateWednesday.getDayOfWeek().name();
 		apptMonth     = dateWednesday.getMonth();
 		
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(apptForWeek,
-														dateWednesday,
-														apptDayName,
-														apptMonth,
-														apptFilled,
-														apptOpen
-														));
+		appointmentResponse.add(new AppointmentResponse(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));
+		
+		//Set Values for Wednesday A Lunch
+		lunchType  = "B";
+		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
+		apptOpen      = totalApptSlots - apptFilled;
+
+		//Add to List for response
+		appointmentResponse.add(new AppointmentResponse(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));	
 		
 		//******************************	
 		//***** NEXT WEEK TUESDAY ******
 		//******************************
 		
-		//Set Values for Tuesday date Next Week
-		apptForWeek   = "NEXTWEEK";
-		apptFilled    = appointmentDao.findByDate(dateTuesdayNextweek);
+		//Set Values for Tuesday A Lunch date Next Week
+		lunchType     = "A";
+		apptFilled    = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek, lunchType);
 		apptOpen      = totalApptSlots - apptFilled;
 		apptDayName   = dateTuesdayNextweek.getDayOfWeek().name();
 		apptMonth     = dateTuesdayNextweek.getMonth();
 		
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(apptForWeek,
-														dateTuesdayNextweek,
-														apptDayName,
-														apptMonth,
-														apptFilled,
-														apptOpen
-														));
+		appointmentResponse.add(new AppointmentResponse(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		
+		//Set Values for Tuesday B Lunch date Next Week
+		lunchType     = "B";
+		apptFilled    = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek, lunchType);
+		apptOpen      = totalApptSlots - apptFilled;
+				
+		//Add to List for response
+		appointmentResponse.add(new AppointmentResponse(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+
 		
 		//******************************	
 		//***** NEXT WEEK WEDNESDAY ******
 		//******************************
-		//Set Values for Tuesday date Next Week
-		apptForWeek   = "NEXTWEEK";
-		apptFilled    = appointmentDao.findByDate(dateWednesdayNextweek);
+		//Set Values for Tuesday A Lunch date Next Week
+		lunchType     = "A";
+		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek, lunchType);
 		apptOpen      = totalApptSlots - apptFilled;
 		apptDayName   = dateWednesdayNextweek.getDayOfWeek().name();
 		apptMonth     = dateWednesdayNextweek.getMonth();
 		
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(apptForWeek,
-														dateWednesdayNextweek,
-														apptDayName,
-														apptMonth,
-														apptFilled,
-														apptOpen
-														));
+		appointmentResponse.add(new AppointmentResponse(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		
+		//Set Values for Tuesday B Lunch date Next Week
+		lunchType     = "B";
+		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek, lunchType);
+		apptOpen      = totalApptSlots - apptFilled;
+				
+		//Add to List for response
+		appointmentResponse.add(new AppointmentResponse(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+
 		/*//Display for debugging  
 		System.out.println(apptForWeek);
 		System.out.println("Appt Month  " + apptMonth);
@@ -290,6 +309,14 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentResponse;
 		//return null;
 	}
+
+	@Override
+	public List<AppointmentResponse> countByAppointment() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 	

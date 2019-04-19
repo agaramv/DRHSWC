@@ -5,13 +5,15 @@ import java.util.List;
 
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.param.AppointmentResponse;
+import com.drhs.wc.param.AppointmentResponseAdd;
 import com.drhs.wc.param.AppointmentResponseAll;
 
 public interface AppointmentService {
 	
-	List<AppointmentResponseAll> buildAppointmentReponse(AppointmentEntity appointmentEntity);
 	
 	List<AppointmentResponseAll> getAllAppointments();
+	
+	AppointmentEntity addAppointments(AppointmentResponseAdd appointmentResponseAdd);
 	
 	List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate);
 	
