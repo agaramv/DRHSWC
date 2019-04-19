@@ -12,13 +12,15 @@ public interface AppointmentDao {
 	//Get all appointments
 	public List<AppointmentEntity> getAllAppointments();
 	
+	//Save a appointments
+	public AppointmentEntity addAppointment(AppointmentEntity appointmentEntity);
+	
 	//Get appointments by date
 	public List<AppointmentEntity> getAppointmentsByDate(LocalDate apptDate); 
 	
-	
-	Integer findByDate(LocalDate date);
+	//Get count of appointment by date and Lunch type
+	public Integer apptCountByDateLunchType(LocalDate apptDate,String lunchType);
 
-	//Get available slots 
 	
 	//
 }

@@ -24,18 +24,27 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return appointmentRepository.findAll();
 	}
 	
-
+	//Add an appointment
 	@Override
-	public Integer findByDate(LocalDate date) {
-		//return appointmentRepository.countByDate(date);
-		return 0;
+	public AppointmentEntity addAppointment(AppointmentEntity appointmentEntity) {
+		return appointmentRepository.saveAndFlush(appointmentEntity);
 	}
-
+	
     //Get appointments by date
 	@Override
 	public List<AppointmentEntity> getAppointmentsByDate(LocalDate apptDate) {
 		return appointmentRepository.getAppointmentsByDate(apptDate);
 	}
+
+	//get appointments by date and lunch type
+	@Override
+	public Integer apptCountByDateLunchType(LocalDate apptDate,String lunchType) {
+		
+		return appointmentRepository.apptCountByDateLunchType(apptDate,lunchType);
+	}
+
+
+
 
 
 }
