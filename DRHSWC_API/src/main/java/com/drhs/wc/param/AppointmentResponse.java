@@ -5,29 +5,14 @@ import java.time.Month;
 
 public class AppointmentResponse {
 
-	private String apptforWeek;	
+	
 	private LocalDate apptDate;
-	private String apptDayName;
-	private Month apptMonth;
+	private String lunchType;
 	private int apptFilled;
 	private int apptOpen;
-	/**
-	 * @param apptforWeek
-	 * @param apptDate
-	 * @param apptDayName
-	 * @param apptMonth
-	 * @param apptFilled
-	 * @param apptOpen
-	 */
-	public AppointmentResponse(String apptforWeek, LocalDate apptDate, String apptDayName, Month apptMonth,
-			int apptFilled, int apptOpen) {
-		this.apptforWeek = apptforWeek;
-		this.apptDate = apptDate;
-		this.apptDayName = apptDayName;
-		this.apptMonth = apptMonth;
-		this.apptFilled = apptFilled;
-		this.apptOpen = apptOpen;
-	}
+	private Month apptMonth;      //JANUARY, FEBRUARY....	
+	
+	
 	/**
 	 * 
 	 */
@@ -35,41 +20,75 @@ public class AppointmentResponse {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getApptforWeek() {
-		return apptforWeek;
+
+
+	/**
+	 * @param apptDate
+	 * @param lunchType
+	 * @param apptFilled
+	 * @param apptOpen
+	 * @param apptMonth
+	 */
+	public AppointmentResponse(LocalDate apptDate, String lunchType, int apptFilled, int apptOpen, Month apptMonth) {
+		super();
+		this.apptDate = apptDate;
+		this.lunchType = lunchType;
+		this.apptFilled = apptFilled;
+		this.apptOpen = apptOpen;
+		this.apptMonth = apptMonth;
 	}
-	public void setApptforWeek(String apptforWeek) {
-		this.apptforWeek = apptforWeek;
-	}
+
+
 	public LocalDate getApptDate() {
 		return apptDate;
 	}
+
+
 	public void setApptDate(LocalDate apptDate) {
 		this.apptDate = apptDate;
 	}
-	public String getApptDayName() {
-		return apptDayName;
+
+
+	public String getLunchType() {
+		return lunchType;
 	}
-	public void setApptDayName(String apptDayName) {
-		this.apptDayName = apptDayName;
+
+
+	public void setLunchType(String lunchType) {
+		this.lunchType = lunchType;
 	}
-	public Month getApptMonth() {
-		return apptMonth;
-	}
-	public void setApptMonth(Month apptMonth) {
-		this.apptMonth = apptMonth;
-	}
+
+
 	public int getApptFilled() {
 		return apptFilled;
 	}
+
+
 	public void setApptFilled(int apptFilled) {
 		this.apptFilled = apptFilled;
 	}
+
+
 	public int getApptOpen() {
 		return apptOpen;
 	}
+
+
 	public void setApptOpen(int apptOpen) {
 		this.apptOpen = apptOpen;
 	}
+
+
+	public Month getApptMonth() {
+		return apptMonth;
+	}
+
+
+	public void setApptMonth(Month apptMonth) {
+		this.apptMonth = apptMonth;
+	}
+
+
+	
 	
 }
