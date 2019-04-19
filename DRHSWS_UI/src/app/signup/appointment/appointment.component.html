@@ -12,11 +12,11 @@
     <mat-card-content>
       <div class="row" id="">
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" [routerLink]="041619/1/1" (click)="onSelected(1)">A Lunch <span class="badge badge-light">slots</span></button>
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(1)">A Lunch <span class="badge badge-light">slots</span></button>
         </div>
         <mat-divider [vertical]=true></mat-divider>
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" [routerLink]="041619/2/2" (click)="onSelected(2)">B Lunch <span class="badge badge-light">slots</span></button>    
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(2)">B Lunch <span class="badge badge-light">slots</span></button>    
         </div>
       </div>
     </mat-card-content>
@@ -29,11 +29,11 @@
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" [routerLink]="041719/1/1" (click)="onSelected(3)">A Lunch <span class="badge badge-light">slots</span></button>
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(3)">A Lunch <span class="badge badge-light">slots</span></button>
         </div>
         <mat-divider [vertical]=true></mat-divider>
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" [routerLink]="041719/2/2" (click)="onSelected(4)">B Lunch <span class="badge badge-light">slots</span></button>    
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(4)">B Lunch <span class="badge badge-light">slots</span></button>    
         </div>
       </div>
     </mat-card-content>
@@ -42,31 +42,35 @@
 <div class="justify-content-center">
   <mat-card id="form">
     <mat-card-header>
-      <mat-card-title *ngIf="selected"><h3> {{apptSelc.day}}, {{apptSelc.date}} during {{apptSelc.lunch}} </h3></mat-card-title>
+      <mat-card-title *ngIf="selected"><h3> {{apptSelc.day}}, {{apptSelc.date}} during {{apptSelc.lunch}} Lunch </h3></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="form-group">
-          <label for="firstname">First Name</label>
-          <input ngModel name="firstname" nametype="text" class="form-control" id="firstname" placeholder="Enter First Name">
+          <label for="firstName">First Name</label>
+          <input ngModel name="firstName" nametype="text" class="form-control" id="firstName" placeholder="Enter First Name" required>
         </div>
         <div class="form-group">
-          <label for="lastname">Last Name</label>
-          <input ngModel name="lastname" type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
+          <label for="lastName">Last Name</label>
+          <input ngModel name="lastName" type="text" class="form-control" id="lastName" placeholder="Enter Last Name" required>
         </div>
         <div class="form-group">
           <label for="grade">Grade</label>
-          <select ngModel name="grade" class="custom-select" id="grade">
+          <select ngModel name="grade" class="custom-select" id="grade" required>
             <option selected>Open this select menu</option>
-            <option value="9th">9th</option>
-            <option value="10th">10th</option>
-            <option value="11th">11th</option>
-            <option value="12th">12th</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
           </select>
         </div>
         <div class="form-group">
           <label for="topic">Topic of Assignment</label>
-          <input ngModel name="topic" type="text" class="form-control" id="topic" placeholder="Enter Topic">
+          <input ngModel name="topic" type="text" class="form-control" id="topic" placeholder="Enter Topic" required>
+        </div>
+        <div class="form-group">
+          <label for="teacher">Teacher</label>
+          <input ngModel name="teacher" type="text" class="form-control" id="teacher" placeholder="Enter Teacher" required>
         </div>
         <button type="submit" class="btn btn-primary">Sign-up</button>
       </form>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Appointment } from '../appointment.model';
 import { HttpClient } from '@angular/common/http';
+import { Appointment } from './appointment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +9,12 @@ export class SignupService {
 
   endpoint:string = "http://localhost:8080";
   
-  appointments: Appointment[] = [
-    {date: '4/12/19', type: 'A', slot: '2', firstName: 'Vidur', lastName: 'Agaram', grade: 12, teacher:'Berry', topic:'English'},
-    {date: '4/12/19', type: 'B', slot: '3', firstName: 'Tomas', lastName: 'Castillo', grade: 12, teacher:'Berry', topic:'English'},
-    {date: '4/12/19', type: 'B', slot: '4', firstName: 'Mike', lastName: 'Krause', grade: 12, teacher:'Berry', topic:'English'},
-  ]
 
   constructor(private http: HttpClient) { }
 
   getAllAppointments(){
     //return this.http.get<any>(this.endpoint+'/appointments/schedule');
-    return this.appointments.slice();
+    //return this.appointments.slice();
   }
 
   onSelectedTime(){
@@ -28,6 +23,10 @@ export class SignupService {
 
   getStudents(){
     return this.http.get<any>('/students');
+  }
+
+  saveAppointment(apptDate, lunch_type, firstName, lastName, grade, teacher, topic){
+    this.http.post<any>(this.endpoint+'/appointment/add', {apptDate, lunch_type, firstName, lastName, grade, teacher, topic});
   }
   
 }
