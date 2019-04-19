@@ -33,6 +33,11 @@ export class ManageConsultantsComponent implements OnInit {
     console.log(this.consultantService.getAllConsultants());
   }
 
+  //delete consultant
+
+  //
+  
+  //Get all consultants
   getAllConsultants(){
     this.consultantService.getAllConsultants()
       .subscribe((data: Consultant[])=>{
@@ -40,6 +45,7 @@ export class ManageConsultantsComponent implements OnInit {
       });
   }
 
+  //get all reviews
   getAllReviews(){
     this.consultantService.getAllReviews()
       .subscribe((res)=>{

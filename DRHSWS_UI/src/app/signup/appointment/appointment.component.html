@@ -1,4 +1,8 @@
 <br>
+<div id="weekButtons" class="row justify-content-between">
+  <button id="current" type="button" [disabled]="curWeek" class="btn btn-primary" (click)="toggle()">Current Week</button>
+  <button id="next" type="button" [disabled]="nextWeek" class="btn btn-primary" (click)="toggle()">Next Week</button>
+</div>
 <div class="row justify-content-center">
   <mat-card class="dates calendar">
     <mat-card-header>

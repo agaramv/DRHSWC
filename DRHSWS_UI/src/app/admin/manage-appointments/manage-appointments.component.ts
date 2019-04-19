@@ -18,4 +18,12 @@ export class ManageAppointmentsComponent implements OnInit {
 
   }
 
+  //get all appointments
+
+  //get past two weeks appointments
+  
+  //reserve day
+
+  //Disable day; This will reserve the day, but with specific creditionals, which show it is disabled
+
 }

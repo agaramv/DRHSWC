@@ -17,12 +17,28 @@ export class AppointmentComponent implements OnInit {
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
+  curWeek: boolean = false;
+  nextWeek: boolean = true;
   constructor(private signupService: SignupService) { }
 
   ngOnInit() {
   }
 
-  
+  //Get Request all of the current appointments
+  getCurrentCalendar(){
+
+  }
+
+  //Post Request of appointment
+  saveAppointment(){
+
+  }
+
+  //Re gets values for the week
+  toggle(){
+    this.curWeek = !this.curWeek;
+    this.nextWeek = !this.nextWeek;
+  }
 
   onSelected(day){
     if(day==1){
