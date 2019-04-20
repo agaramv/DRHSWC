@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup',  component: SignupComponent, children: [
-    { path: ':day/:date/:lunch', component: FormComponent},
+    { path: 'l', component: FormComponent},
   ]},
   { path: 'consultant', children:[
     { path: '', redirectTo: 'entry', pathMatch: 'full' },

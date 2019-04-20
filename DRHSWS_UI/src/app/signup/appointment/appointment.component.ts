@@ -22,7 +22,24 @@ export class AppointmentComponent implements OnInit {
   selected: boolean = false;
   curWeek: boolean = false;
   nextWeek: boolean = true;
-  newAppt: Appointment;
+  newAppt: Appointment= {
+    apptDate: '',
+    lunch_type: 'a',
+    firstName: '',
+    lastName: '',
+    grade: 0,
+    teacher: '',
+    topic: ''
+  };
+  data = {
+    apptDate: '',
+    lunch_type: '',
+    firstName: '',
+    lastName: '',
+    grade: 0,
+    teacher: '',
+    topic: ''
+  };
 
   constructor(private signupService: SignupService, private http: HttpClient) { }
 
@@ -40,20 +57,20 @@ export class AppointmentComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // this.newAppt.firstName = form.value.firstName;
-    // this.newAppt.lastName = form.value.lastName;
-    // this.newAppt.grade = form.value.grade;
-    // this.newAppt.teacher = form.value.teacher;
-    // this.newAppt.topic = form.value.topic;
-    // this.submitted = true;
+    this.newAppt.firstName = form.value.firstName;
+    this.newAppt.lastName = form.value.lastName;
+    this.newAppt.grade = form.value.grade;
+    this.newAppt.teacher = form.value.teacher;
+    this.newAppt.topic = form.value.topic;
+    this.submitted = true;
     this.saveAppointment(this.newAppt);
   }
 
   //Post Request of appointment
   saveAppointment(newAppt: Appointment){
     this.assign();
-    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunch_type, 'j', 'k', 9, 'h', 'u');
-    //this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunch_type, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic);
+    console.log(newAppt)
+    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunch_type, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic);
   }
 
   //Re gets values for the week

@@ -26,6 +26,7 @@ export class SignupService {
   }
 
   saveAppointment(apptDate, lunch_type, firstName, lastName, grade, teacher, topic){
+    //console.log(apptDate, lunch_type, firstName, lastName, grade, teacher, topic)
     this.http.post<any>(this.endpoint+'/appointment/add', {apptDate, lunch_type, firstName, lastName, grade, teacher, topic});
   }
   
