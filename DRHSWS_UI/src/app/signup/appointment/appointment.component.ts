@@ -12,10 +12,10 @@ import { AppointmentSchedule } from '../appointmentSchedule.model';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
-  slots1 = [10,9,0,2];
-  slots2 = [2,9,7,2];
-  dateT: string = "2019-04-17";
-  dateW: string = "2019-04-18";
+  slotsT = [];
+  slotsW = [];
+  dateT: string = "2019-04-16";
+  dateW: string = "2019-04-17";
   
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
   apptSch: AppointmentSchedule;
@@ -37,27 +37,40 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit() {
     //getCurrentCalendar()
+    this.getCurrentCalendar();
+    this.setValues();
+  }
+
+  //Sets the values that come from Current Calendar
+  setValues(){
+    //this.dateT = this.apptSch[0].apptDate;
+    //this.dateW = this.apptSch[2].apptDate;
   }
 
   //Get Request all of the current appointments
   getCurrentCalendar(){
-    this.signupService.getSchedule().subscribe((data: AppointmentSchedule)=>{
-      this.apptSch = data;
+    this.signupService.getSchedule()
+      .subscribe((data: AppointmentSchedule)=>{
+        this.apptSch = data;
+        console.log(this.apptSch[1].apptDate);
     });
   }
 
+  //Assigns the Date and Lunch to the New Appt obj
   assign(){
     this.newAppt.apptDate = this.apptSelc.date;
     this.newAppt.lunchType = this.apptSelc.lunch;
   }
 
+  //Captures the form data
   onSubmit(form: NgForm) {
     this.newAppt.firstName = form.value.firstName;
     this.newAppt.lastName = form.value.lastName;
-    this.newAppt.grade = form.value.grade;
+    this.newAppt.grade = Number(form.value.grade);
     this.newAppt.teacher = form.value.teacher;
     this.newAppt.topic = form.value.topic;
     this.submitted = true;
+    
     this.saveAppointment(this.newAppt);
   }
 
@@ -74,6 +87,7 @@ export class AppointmentComponent implements OnInit {
     this.nextWeek = !this.nextWeek;
   }
 
+  //Assigns selected day
   onSelected(day){
     if(day==1){
       this.apptSelc.date = this.dateT;
