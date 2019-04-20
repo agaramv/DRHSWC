@@ -27,18 +27,9 @@ export class SignupService {
     return this.http.get<any>(this.endpoint + '/appointment/schedule');
   }
 
-  saveAppointment(apptDate, lunchType, firstName, lastName, grade, teacher, topic) {
-    console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
-    return this.http.post<any>(this.endpoint + '/appointment/add',
-      {
-        apptDate: apptDate,
-        lunchType: lunchType,
-        firstName: firstName,
-        lastName: lastName,
-        grade: grade,
-        teacher: teacher,
-        topic: topic
-      });
+  saveAppointment(newAppt){
+    //console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
+    return this.http.post<any>(this.endpoint+'/appointment/add', newAppt);
   }
 
 }

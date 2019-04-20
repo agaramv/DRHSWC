@@ -21,9 +21,9 @@ export class AppointmentComponent implements OnInit {
   apptSch: AppointmentSchedule;
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
-  curWeek: boolean = false;
-  nextWeek: boolean = true;
-  newAppt: Appointment = {
+  curWeek: boolean = true;
+  nextWeek: boolean = false;
+  newAppt: Appointment= {
     apptDate: '',
     lunchType: 'a',
     firstName: '',
@@ -37,14 +37,16 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentCalendar();
+    console.log(this.apptSch)
   }
 
-  //Sets the values that come from Current Calendar
-  setValues() {
+
+  setValues(){
     this.dateT = this.apptSch[0].apptDate;
     this.dateW = this.apptSch[2].apptDate;
+    this.slotsT+=this.apptSch[0].lunchType;
+    this.slotsW+=this.apptSch[0].lunchType;
   }
-
   //Get Request all of the current appointments
   getCurrentCalendar() {
     this.signupService.getSchedule()
@@ -74,14 +76,11 @@ export class AppointmentComponent implements OnInit {
   }
 
   //Post Request of appointment
-  saveAppointment(newAppt: Appointment) {
-    //this.assign(); // posting local var but assigning to global var
-
-    this.newAppt.apptDate = this.apptSelc.date;
-    this.newAppt.lunchType = this.apptSelc.lunch;
-
-    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunchType, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic).subscribe(data => {
-      //do things here after post success
+  saveAppointment(newAppt: Appointment){
+    this.assign();
+    //console.log(newAppt)
+    this.signupService.saveAppointment(newAppt).subscribe((data)=>{
+      console.log('New Appointment Added');
     });
   }
 
