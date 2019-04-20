@@ -4,6 +4,7 @@ import { SignupService } from '../signup.service';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Appointment } from '../appointment.model';
+import { AppointmentSchedule } from '../appointmentSchedule.model';
 
 @Component({
   selector: 'app-appointment',
@@ -11,13 +12,13 @@ import { Appointment } from '../appointment.model';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
-  week: String = "3/17/19";
-  weekN: String = "3/24/19";
   slots1 = [10,9,0,2];
   slots2 = [2,9,7,2];
   dateT: string = "4-17-19";
   dateW: string = "4-18-19";
+  
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
+  apptSch: AppointmentSchedule;
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
   curWeek: boolean = false;
@@ -31,24 +32,18 @@ export class AppointmentComponent implements OnInit {
     teacher: '',
     topic: ''
   };
-  data = {
-    apptDate: '',
-    lunch_type: '',
-    firstName: '',
-    lastName: '',
-    grade: 0,
-    teacher: '',
-    topic: ''
-  };
 
   constructor(private signupService: SignupService, private http: HttpClient) { }
 
   ngOnInit() {
+    //getCurrentCalendar()
   }
 
   //Get Request all of the current appointments
   getCurrentCalendar(){
-
+    this.signupService.getSchedule().subscribe((data: AppointmentSchedule)=>{
+      this.apptSch = data;
+    });
   }
 
   assign(){

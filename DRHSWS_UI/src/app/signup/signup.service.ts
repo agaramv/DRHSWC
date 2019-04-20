@@ -12,8 +12,9 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
+  //table of appointments
   getAllAppointments(){
-    //return this.http.get<any>(this.endpoint+'/appointments/schedule');
+    return this.http.get<any>(this.endpoint+'/appointments/all');
     //return this.appointments.slice();
   }
 
@@ -21,13 +22,14 @@ export class SignupService {
     return true;
   }
 
-  getStudents(){
-    return this.http.get<any>('/students');
+  //get schedule
+  getSchedule(){
+    return this.http.get<any>(this.endpoint+'/appointment/schedule');
   }
 
   saveAppointment(apptDate, lunch_type, firstName, lastName, grade, teacher, topic){
     //console.log(apptDate, lunch_type, firstName, lastName, grade, teacher, topic)
-    this.http.post<any>(this.endpoint+'/appointment/add', {apptDate, lunch_type, firstName, lastName, grade, teacher, topic});
+    this.http.post<any>('http://localhost:8080/appointment/add', {apptDate, lunch_type, firstName, lastName, grade, teacher, topic});
   }
   
 }
