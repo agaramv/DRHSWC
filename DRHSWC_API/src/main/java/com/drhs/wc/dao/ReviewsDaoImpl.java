@@ -14,6 +14,9 @@ public class ReviewsDaoImpl implements ReviewsDao{
 	@Autowired
 	ReviewsRepository reviewsRepo;
 	
+//	@Autowired
+//	ReviewsPastRepository reviewsPastRepo;
+	
 	@Override
 	public List<ReviewsEntity> getAllReviews() {
 		List<ReviewsEntity> reviewsEntity = reviewsRepo.findAll();

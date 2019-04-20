@@ -3,6 +3,7 @@ package com.drhs.wc.entity;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,18 +12,11 @@ import javax.persistence.Table;
 @Table(name="reviews")
 public class ReviewsEntity {
 	
-	@Column(name ="appt_date")
-	LocalDate apptDate;
+	@EmbeddedId
+	AppointmentEntityKey appointmentEntityKey;
 	
-	@Column(name ="lunch_type")
-	String lunchType;
-	
-	@Column(name ="time_slot")
-	Integer timeSlot;
-	
-	@Id
 	@Column(name="consultant_id")
-	private int consultant_id;
+	private Integer consultant_id;
 	
 	@Column(name="review")
 	private String review;
@@ -31,46 +25,35 @@ public class ReviewsEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	/**
-	 * @param apptDate
-	 * @param lunchType
-	 * @param timeSlot
+	 * @param appointmentEntityKey
 	 * @param consultant_id
 	 * @param review
 	 */
-	public ReviewsEntity(LocalDate apptDate, String lunchType, Integer timeSlot, int consultant_id, String review) {
+	public ReviewsEntity(AppointmentEntityKey appointmentEntityKey, Integer consultant_id, String review) {
 		super();
-		this.apptDate = apptDate;
-		this.lunchType = lunchType;
-		this.timeSlot = timeSlot;
+		this.appointmentEntityKey = appointmentEntityKey;
 		this.consultant_id = consultant_id;
 		this.review = review;
 	}
 
-	public LocalDate getApptDate() {
-		return apptDate;
+
+	public AppointmentEntityKey getAppointmentEntityKey() {
+		return appointmentEntityKey;
 	}
 
-	public void setApptDate(LocalDate apptDate) {
-		this.apptDate = apptDate;
+
+	public void setAppointmentEntityKey(AppointmentEntityKey appointmentEntityKey) {
+		this.appointmentEntityKey = appointmentEntityKey;
 	}
 
-	public String getLunchType() {
-		return lunchType;
+
+	public void setConsultant_id(Integer consultant_id) {
+		this.consultant_id = consultant_id;
 	}
 
-	public void setLunchType(String lunchType) {
-		this.lunchType = lunchType;
-	}
-
-	public Integer getTimeSlot() {
-		return timeSlot;
-	}
-
-	public void setTimeSlot(Integer timeSlot) {
-		this.timeSlot = timeSlot;
-	}
 
 	public int getConsultant_id() {
 		return consultant_id;
