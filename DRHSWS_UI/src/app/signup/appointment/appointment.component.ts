@@ -21,8 +21,8 @@ export class AppointmentComponent implements OnInit {
   apptSch: AppointmentSchedule;
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
-  curWeek: boolean = false;
-  nextWeek: boolean = true;
+  curWeek: boolean = true;
+  nextWeek: boolean = false;
   newAppt: Appointment= {
     apptDate: '',
     lunchType: 'a',
@@ -36,24 +36,17 @@ export class AppointmentComponent implements OnInit {
   constructor(private signupService: SignupService, private http: HttpClient) { }
 
   ngOnInit() {
-    //getCurrentCalendar()
     this.getCurrentCalendar();
-    this.dateT = this.apptSch[0].apptDate;
-    this.dateW = this.apptSch[2].apptDate;
-    //this.setValues();
   }
 
-  //Sets the values that come from Current Calendar
-  setValues(){
-    
-  }
 
   //Get Request all of the current appointments
   getCurrentCalendar(){
     this.signupService.getSchedule()
       .subscribe((data: AppointmentSchedule)=>{
         this.apptSch = data;
-        console.log(this.apptSch[1].apptDate);
+        this.dateT = this.apptSch[0].apptDate;
+        this.dateW = this.apptSch[2].apptDate;
     });
   }
 
@@ -78,9 +71,10 @@ export class AppointmentComponent implements OnInit {
   //Post Request of appointment
   saveAppointment(newAppt: Appointment){
     this.assign();
-    console.log(newAppt)
-    this.signupService.saveAppointment(newAppt)
-    .subscribe();
+    //console.log(newAppt)
+    this.signupService.saveAppointment(newAppt).subscribe((data)=>{
+      console.log('New Appointment Added');
+    });
   }
 
   //Re gets values for the week
