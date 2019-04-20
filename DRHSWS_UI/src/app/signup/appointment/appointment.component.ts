@@ -37,6 +37,7 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentCalendar();
+    console.log(this.apptSch)
   }
 
 
@@ -47,6 +48,8 @@ export class AppointmentComponent implements OnInit {
         this.apptSch = data;
         this.dateT = this.apptSch[0].apptDate;
         this.dateW = this.apptSch[2].apptDate;
+        this.slotsT+=this.apptSch[0].lunchType;
+        this.slotsW+=this.apptSch[0].lunchType;
     });
   }
 
