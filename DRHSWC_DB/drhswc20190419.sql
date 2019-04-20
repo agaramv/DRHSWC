@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `drhswc` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `drhswc`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: localhost    Database: drhswc
+-- Host: 127.0.0.1    Database: drhswc
 -- ------------------------------------------------------
 -- Server version	5.7.17
 
@@ -43,7 +41,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES ('2019-04-16','T',1,'Vidur','Agaram',11,'Norris','STEM'),('2019-04-16','T',2,'Vidur','Agaram',11,'Norris','STEM');
+INSERT INTO `appointment` VALUES ('2019-04-16','A',1,'Vidur','Agaram',11,'Norris','STEM'),('2019-04-16','A',2,'Thomas','Castillo',11,'Berry','RA Essay'),('2019-04-16','A',3,'Nandu','Agaram',12,'Berry','Ra'),('2019-04-16','B',1,'Chewie','Agaram',9,'Norris','STEM'),('2019-04-17','A',1,'Chewie','Agaram',9,'Skinner','CA'),('2019-04-17','A',2,'Krithi','Vudu',9,'Skinner','CA'),('2019-04-17','A',3,'Anishika','Vudu',9,'Skinner','CA'),('2019-04-17','A',4,'Kavitha','Vudu',9,'Skinner','CA'),('2019-04-23','A',1,'Vidur','Agaram',11,'Berry','RA'),('2019-04-23','A',2,'Ravi','Vudu',9,'Skinner','CA'),('2019-04-24','B',1,'Nandu','Agaram',12,'Berry','SA');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +72,7 @@ CREATE TABLE `r_consultants` (
 
 LOCK TABLES `r_consultants` WRITE;
 /*!40000 ALTER TABLE `r_consultants` DISABLE KEYS */;
-INSERT INTO `r_consultants` VALUES (1,'Alannah','Bell',12,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','A',NULL,NULL),(2,'Mia ','Brown',12,'hcps-brownmc5@henricostudents.org;','bcmiabrown@gmail.com','A',NULL,NULL),(3,'Gautam','Chiang',11,'hcps-chiangg1@henricostudents.org','gautamchiang@gmail.com','A',NULL,NULL),(4,'Zoe','Fields',12,'hcps-fieldsza@henricostudents.org','emutaht@gmail.com','A',NULL,NULL),(5,'Drew','Greene',11,'hcps-greeneac@henricostudents.org;','drewgr33ne12@gmail.com','A',NULL,NULL),(6,'Sarah','Hossain',10,'hcps-hossains@henricostudents.org','hossain.sarah1716@gmail.com','A',NULL,NULL),(7,'Sahil','Jaiswal',12,'hcps-jaiswalsd@henricostudents.org','sdjaiswal@outlook.com','A',NULL,NULL),(8,'Emma','Johnson',12,'hcps-johnsoec3@henricostudents.org','johnsoec3@gmail.com','A',NULL,NULL),(9,'Kasey','Kiefer',12,'hcps-kieferkl@henricostudents.org','kaseykiefer66@gmail.com','A',NULL,NULL),(10,'Jason','Leung',11,'hcps-leungjr2@henricostudents.org','leungjr2works@gmail.com','A',NULL,NULL),(11,'Alyssa','Manalo',10,'hcps-manaloaj@henricostudents.org','alyssa.manalo31@gmail.com','A',NULL,NULL),(12,'Mollie','Mero',10,'hcps-merome@henricostudents.org','crud132@gmail.com','A',NULL,NULL),(13,'Kali','McGough',12,'hcps-mcgoughkm@henricostudents.org','mcgoughkali@gmail.com','A',NULL,NULL),(14,'Sarita','Mithal',11,'hcps-mithals@henricostudents.org','saritamithal01@gmail.com','A',NULL,NULL),(15,'Ben','Nelson',11,'hcpsnilsonbb@henricostudents.org','bbntsa@gmail.com','I',NULL,NULL),(16,'Donovan','Pierce',11,'hcps-piercedm1@henricostudents.org','dmpierce@gmail.com','A',NULL,NULL),(17,'Vaishnavi','Ranganathan',11,'hcps-ranganatv@henricostudents.org','oneskyblue2@gmail.com','A',NULL,NULL),(18,'Jenna','Sliman',10,'hcps-slimanjn@henricostudents.org','jsliman948@gmail.com','A',NULL,NULL),(19,'Julia','Snow',11,'hcps-snowjs@henricostudents.org','jsnowhome@gmail.com','A',NULL,NULL),(20,'Olivia','Wilkinson',11,'hcps-wilkinsoj@henricostudents.org;','oliviawilk002@gmail.com','I',NULL,NULL);
+INSERT INTO `r_consultants` VALUES (1,'Alannah','Bell',12,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','A',NULL,NULL),(2,'Mia ','Brown',12,'hcps-brownmc5@henricostudents.org;','bcmiabrown@gmail.com','A',NULL,NULL),(3,'Gautam','Chiang',11,'hcps-chiangg1@henricostudents.org','gautamchiang@gmail.com','A',NULL,NULL),(4,'Zoe','Fields',12,'hcps-fieldsza@henricostudents.org','emutaht@gmail.com','A',NULL,NULL),(5,'Drew','Greene',11,'hcps-greeneac@henricostudents.org;','drewgr33ne12@gmail.com','A',NULL,NULL),(6,'Sarah','Hossain',10,'hcps-hossains@henricostudents.org','hossain.sarah1716@gmail.com','A',NULL,NULL),(7,'Sahil','Jaiswal',12,'hcps-jaiswalsd@henricostudents.org','sdjaiswal@outlook.com','A',NULL,NULL),(8,'Emma','Johnson',12,'hcps-johnsoec3@henricostudents.org','johnsoec3@gmail.com','A',NULL,NULL),(9,'Kasey','Kiefer',12,'hcps-kieferkl@henricostudents.org','kaseykiefer66@gmail.com','A',NULL,NULL),(10,'Jason','Leung',11,'hcps-leungjr2@henricostudents.org','leungjr2works@gmail.com','I',NULL,NULL),(11,'Alyssa','Manalo',10,'hcps-manaloaj@henricostudents.org','alyssa.manalo31@gmail.com','A',NULL,NULL),(12,'Mollie','Mero',10,'hcps-merome@henricostudents.org','crud132@gmail.com','A',NULL,NULL),(13,'Kali','McGough',12,'hcps-mcgoughkm@henricostudents.org','mcgoughkali@gmail.com','A',NULL,NULL),(14,'Sarita','Mithal',11,'hcps-mithals@henricostudents.org','saritamithal01@gmail.com','A',NULL,NULL),(15,'Ben','Nelson',11,'hcpsnilsonbb@henricostudents.org','bbntsa@gmail.com','I',NULL,NULL),(16,'Donovan','Pierce',11,'hcps-piercedm1@henricostudents.org','dmpierce@gmail.com','A',NULL,NULL),(17,'Vaishnavi','Ranganathan',11,'hcps-ranganatv@henricostudents.org','oneskyblue2@gmail.com','A',NULL,NULL),(18,'Jenna','Sliman',10,'hcps-slimanjn@henricostudents.org','jsliman948@gmail.com','A',NULL,NULL),(19,'Julia','Snow',11,'hcps-snowjs@henricostudents.org','jsnowhome@gmail.com','A',NULL,NULL),(20,'Olivia','Wilkinson',11,'hcps-wilkinsoj@henricostudents.org;','oliviawilk002@gmail.com','I',NULL,NULL),(22,'Bill','Gates',11,'hcps-chiangg1@henricostudents.org','billg@gmail.com','A',NULL,NULL);
 /*!40000 ALTER TABLE `r_consultants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-17  6:45:50
+-- Dump completed on 2019-04-19 21:59:16
