@@ -26,22 +26,29 @@ public class ConsultantServiceImpl implements ConsultantService{
 	@Autowired
 	EntityManager entityManager;
 	
+	//Get all Consultants
+	
 	@Override
 	public List<ConsultantEntity> getAllConsultants() {
 		return consultantDao.getAllConsultants();
 	}
 
+	//Get Consultants by ID
+	
 	@Override
 	public Optional<ConsultantEntity> getConsultantById(Integer id) {
 		//String k = String.valueOf(id);
 		return consultantDao.getConsultantById(id);
 	}
 
+	//Add new consultants
+	
 	@Override
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity) {
 		return consultantDao.addNewConsultant(consultantEntity);
 	}
 
+	//Update consultant to inactive
 	@Override
 	@Transactional
 	public int changeToInactive(Integer id) {
@@ -50,11 +57,13 @@ public class ConsultantServiceImpl implements ConsultantService{
 		 
 	}
 
+	//Delete consultant
 	@Override
 	public void deleteConsultant(Integer id) {
 		consultantDao.deleteConsultant(id);
 	}
 
+	//Update Consultant
 	@Override
 	public ConsultantEntity updateConsultant(ConsultantEntity consultantEntity) {
 		return consultantDao.updateConsultant(consultantEntity);

@@ -17,12 +17,14 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	@Autowired
 	ConsultantRepository consultantRepo;
 	
+	//Get all Consultants
 	@Override
 	public List<ConsultantEntity> getAllConsultants() {
 		List<ConsultantEntity> consultantEntity = consultantRepo.findAll();
 		return consultantEntity;
 	}
 
+	//Get consultant by ID
 	@Override
 	public Optional<ConsultantEntity> getConsultantById(Integer id){
 	
@@ -31,22 +33,26 @@ public class ConsultantDaoImpl implements ConsultantDao{
 		return consultantEntity;
 	}
 
+	//Add consultants
 	@Override
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity) {
 		ConsultantEntity addEntity = consultantRepo.saveAndFlush(consultantEntity);
 		return addEntity;
 	}
 
+	//Inactivate consultants
 	@Override
 	public int changeToInactive(Integer id) {
 		return consultantRepo.changeToInactive(id);
 	}
 
+	//Delete consultants
 	@Override
 	public void deleteConsultant(Integer id) {
 		consultantRepo.deleteById(id);
 	}
 
+	//Update Consultants
 	@Override
 	public ConsultantEntity updateConsultant(ConsultantEntity consultantEntity) {
 		ConsultantEntity updateEntity = consultantRepo.saveAndFlush(consultantEntity); 
