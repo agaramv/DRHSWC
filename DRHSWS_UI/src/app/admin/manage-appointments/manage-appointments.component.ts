@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { Appointment } from 'src/app/appointment.model';
 import { SignupService } from 'src/app/signup/signup.service';
+import { Appointment } from 'src/app/signup/appointment.model';
 
 @Component({
   selector: 'app-manage-appointments',
@@ -9,7 +10,7 @@ import { SignupService } from 'src/app/signup/signup.service';
 })
 export class ManageAppointmentsComponent implements OnInit {
   displayedColumnsA: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
-  //appointments: Appointment[];
+  appointments: Appointment[];
 
   constructor(private signupService: SignupService) { }
 
@@ -19,7 +20,12 @@ export class ManageAppointmentsComponent implements OnInit {
   }
 
   //get all appointments
-
+  getAllAppointments(){
+    this.signupService.getAllAppointments()
+      .subscribe((data: Appointment[]) =>{
+        this.appointments = data;
+      })
+  }
   //get past two weeks appointments
   
   //reserve day

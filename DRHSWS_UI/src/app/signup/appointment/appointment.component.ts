@@ -14,8 +14,8 @@ import { AppointmentSchedule } from '../appointmentSchedule.model';
 export class AppointmentComponent implements OnInit {
   slots1 = [10,9,0,2];
   slots2 = [2,9,7,2];
-  dateT: string = "4-17-19";
-  dateW: string = "4-18-19";
+  dateT: string = "2019-04-17";
+  dateW: string = "2019-04-18";
   
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
   apptSch: AppointmentSchedule;
@@ -25,7 +25,7 @@ export class AppointmentComponent implements OnInit {
   nextWeek: boolean = true;
   newAppt: Appointment= {
     apptDate: '',
-    lunch_type: 'a',
+    lunchType: 'a',
     firstName: '',
     lastName: '',
     grade: 0,
@@ -48,7 +48,7 @@ export class AppointmentComponent implements OnInit {
 
   assign(){
     this.newAppt.apptDate = this.apptSelc.date;
-    this.newAppt.lunch_type = this.apptSelc.lunch;
+    this.newAppt.lunchType = this.apptSelc.lunch;
   }
 
   onSubmit(form: NgForm) {
@@ -65,7 +65,7 @@ export class AppointmentComponent implements OnInit {
   saveAppointment(newAppt: Appointment){
     this.assign();
     console.log(newAppt)
-    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunch_type, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic);
+    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunchType, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic);
   }
 
   //Re gets values for the week
