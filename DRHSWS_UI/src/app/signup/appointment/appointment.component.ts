@@ -14,8 +14,8 @@ import { AppointmentSchedule } from '../appointmentSchedule.model';
 export class AppointmentComponent implements OnInit {
   slotsT = [];
   slotsW = [];
-  dateT: string = "2019-04-16";
-  dateW: string = "2019-04-17";
+  dateT: string;
+  dateW: string;
   
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
   apptSch: AppointmentSchedule;
@@ -38,13 +38,14 @@ export class AppointmentComponent implements OnInit {
   ngOnInit() {
     //getCurrentCalendar()
     this.getCurrentCalendar();
+    this.dateT = this.apptSch[0].apptDate;
+    this.dateW = this.apptSch[2].apptDate;
     this.setValues();
   }
 
   //Sets the values that come from Current Calendar
   setValues(){
-    //this.dateT = this.apptSch[0].apptDate;
-    //this.dateW = this.apptSch[2].apptDate;
+    
   }
 
   //Get Request all of the current appointments

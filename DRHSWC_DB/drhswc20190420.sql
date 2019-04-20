@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `drhswc` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `drhswc`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: drhswc
+-- Host: localhost    Database: drhswc
 -- ------------------------------------------------------
--- Server version	5.7.17
+-- Server version	5.5.57
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +43,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES ('2019-04-16','A',1,'Vidur','Agaram',11,'Norris','STEM'),('2019-04-16','A',2,'Thomas','Castillo',11,'Berry','RA Essay'),('2019-04-16','A',3,'Nandu','Agaram',12,'Berry','Ra'),('2019-04-16','B',1,'Chewie','Agaram',9,'Norris','STEM'),('2019-04-17','A',1,'Chewie','Agaram',9,'Skinner','CA'),('2019-04-17','A',2,'Krithi','Vudu',9,'Skinner','CA'),('2019-04-17','A',3,'Anishika','Vudu',9,'Skinner','CA'),('2019-04-17','A',4,'Kavitha','Vudu',9,'Skinner','CA'),('2019-04-23','A',1,'Vidur','Agaram',11,'Berry','RA'),('2019-04-23','A',2,'Ravi','Vudu',9,'Skinner','CA'),('2019-04-24','B',1,'Nandu','Agaram',12,'Berry','SA');
+INSERT INTO `appointment` VALUES ('2019-04-16','A',1,'Vidur','Agaram',11,'Norris','STEM'),('2019-04-16','A',2,'Thomas','Castillo',11,'Berry','RA Essay'),('2019-04-16','A',3,'Nandu','Agaram',12,'Berry','Ra'),('2019-04-16','A',4,'Test','test',11,'Norris','STEM'),('2019-04-16','B',1,'Chewie','Agaram',9,'Norris','STEM'),('2019-04-17','A',1,'Chewie','Agaram',9,'Skinner','CA'),('2019-04-17','A',2,'Krithi','Vudu',9,'Skinner','CA'),('2019-04-17','A',3,'Anishika','Vudu',9,'Skinner','CA'),('2019-04-17','A',4,'Kavitha','Vudu',9,'Skinner','CA'),('2019-04-23','A',1,'Vidur','Agaram',11,'Berry','RA'),('2019-04-23','A',2,'Ravi','Vudu',9,'Skinner','CA'),('2019-04-24','B',1,'Nandu','Agaram',12,'Berry','SA');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,14 +140,15 @@ DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reviews` (
-  `consultant_id` int(11) NOT NULL,
-  `student_first_name` varchar(25) DEFAULT NULL,
-  `student_last_name` varchar(30) DEFAULT NULL,
-  `grade` int(2) DEFAULT NULL,
-  `topic` varchar(20) DEFAULT NULL,
-  `teacher` varchar(20) DEFAULT NULL,
+  `appt_Date` date NOT NULL,
+  `lunch_type` varchar(1) NOT NULL,
+  `time_slot` int(2) NOT NULL,
+  `consultant_id` int(11) DEFAULT NULL,
   `review` longtext,
-  PRIMARY KEY (`consultant_id`)
+  PRIMARY KEY (`appt_Date`,`lunch_type`,`time_slot`),
+  CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`appt_Date`, `lunch_type`, `time_slot`) REFERENCES `appointment` (`appt_date`, `lunch_type`, `time_slot`),
+  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`appt_Date`, `lunch_type`, `time_slot`) REFERENCES `appointment` (`appt_date`, `lunch_type`, `time_slot`),
+  CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`appt_Date`, `lunch_type`, `time_slot`) REFERENCES `appointment` (`appt_date`, `lunch_type`, `time_slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -155,7 +158,7 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (1,'Vidur','Agaram',11,'English','berry','Good'),(2,'Alannah','Bell',12,'hcps','bellaj','a');
+INSERT INTO `reviews` VALUES ('2019-04-16','A',1,1,'The apples are good'),('2019-04-23','A',1,3,'The oranges are good');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-19 21:59:16
+-- Dump completed on 2019-04-20 17:34:32
