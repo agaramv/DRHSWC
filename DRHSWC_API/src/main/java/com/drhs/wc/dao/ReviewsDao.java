@@ -11,4 +11,12 @@ public interface ReviewsDao {
 
 	//Get add review
 	public ReviewsEntity addNewReview(ReviewsEntity reviewEntity);
+	
+	//get past reviews
+	public List<ReviewsEntity> getPastReviews();
+	
+	//get upcoming reviews
+	public List<ReviewsEntity> getUpcomingReviews();
+	
+	
 }

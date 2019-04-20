@@ -24,4 +24,14 @@ public class ReviewsServiceImpl implements ReviewsService{
 		return reviewsDao.addNewReview(reviewEntity);
 	}
 
+	@Override
+	public List<ReviewsEntity> getPastReviews() {
+		return reviewsDao.getPastReviews();
+	}
+
+	@Override
+	public List<ReviewsEntity> getUpcomingReviews() {
+		return reviewsDao.getUpcomingReviews();
+	}
+
 }

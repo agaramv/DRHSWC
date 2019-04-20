@@ -24,9 +24,11 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
 	@Query(value = "select count(1) from appointment where appt_date=:apptDate and lunch_Type = :lunchType",nativeQuery = true)
 	Integer apptCountByDateLunchType(@Param("apptDate") LocalDate apptDate, @Param("lunchType") String lunchType);
 	
+	//Get past appointments
 	@Query(value = "select * from appointment where appt_date < :apptDate",nativeQuery = true)
 	List<AppointmentEntity> getPastAppointments(@Param("apptDate") LocalDate apptDate);
 
+	//get upcoming appointments
 	@Query(value = "select * from appointment where appt_date >=:apptDate",nativeQuery = true)
 	List<AppointmentEntity> getUpcomingAppointments(@Param("apptDate") LocalDate apptDate);
 	

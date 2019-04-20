@@ -9,5 +9,9 @@ public interface ReviewsService {
 	public List<ReviewsEntity> getAllReviews();
 	
 	public ReviewsEntity addNewReview(ReviewsEntity reviewEntity);
+	
+	public List<ReviewsEntity> getPastReviews();
+	
+	public List<ReviewsEntity> getUpcomingReviews();
 
 }

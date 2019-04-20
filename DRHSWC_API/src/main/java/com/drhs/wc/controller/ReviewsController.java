@@ -31,4 +31,14 @@ public class ReviewsController {
 		ReviewsEntity re = reviewsService.addNewReview(reviewEntity);
 		return re;
 	}
+	
+	@GetMapping("/reviews/past")
+	public List<ReviewsEntity> getPastReviews(){
+		return reviewsService.getPastReviews();
+	}
+	
+	@GetMapping("/reviews/upcoming")
+	public List<ReviewsEntity> getUpcomingReviews(){
+		return reviewsService.getUpcomingReviews();
+	}
 }

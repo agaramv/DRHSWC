@@ -1,5 +1,7 @@
 package com.drhs.wc.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,30 +11,18 @@ import javax.persistence.Table;
 @Table(name="reviews")
 public class ReviewsEntity {
 	
+	@Column(name ="appt_date")
+	LocalDate apptDate;
+	
+	@Column(name ="lunch_type")
+	String lunchType;
+	
+	@Column(name ="time_slot")
+	Integer timeSlot;
+	
 	@Id
 	@Column(name="consultant_id")
 	private int consultant_id;
-	
-	@Column(name="consultant_first_name")
-	private String firstName;
-	
-	@Column(name="consultant_last_name")
-	private String lastName;
-	
-	@Column(name="student_first_name")
-	private String firstNameS;
-	
-	@Column(name="student_last_name")
-	private String lastNameS;
-	
-	@Column(name="grade")
-	private int grade;
-	
-	@Column(name="topic")
-	private String topic;
-	
-	@Column(name="teacher")
-	private String teacher;
 	
 	@Column(name="review")
 	private String review;
@@ -43,28 +33,43 @@ public class ReviewsEntity {
 	}
 
 	/**
+	 * @param apptDate
+	 * @param lunchType
+	 * @param timeSlot
 	 * @param consultant_id
-	 * @param firstName
-	 * @param lastName
-	 * @param firstNameS
-	 * @param lastNameS
-	 * @param grade
-	 * @param topic
-	 * @param teacher
 	 * @param review
 	 */
-	public ReviewsEntity(int consultant_id, String firstName, String lastName, String firstNameS, String lastNameS,
-			int grade, String topic, String teacher, String review) {
+	public ReviewsEntity(LocalDate apptDate, String lunchType, Integer timeSlot, int consultant_id, String review) {
 		super();
+		this.apptDate = apptDate;
+		this.lunchType = lunchType;
+		this.timeSlot = timeSlot;
 		this.consultant_id = consultant_id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.firstNameS = firstNameS;
-		this.lastNameS = lastNameS;
-		this.grade = grade;
-		this.topic = topic;
-		this.teacher = teacher;
 		this.review = review;
+	}
+
+	public LocalDate getApptDate() {
+		return apptDate;
+	}
+
+	public void setApptDate(LocalDate apptDate) {
+		this.apptDate = apptDate;
+	}
+
+	public String getLunchType() {
+		return lunchType;
+	}
+
+	public void setLunchType(String lunchType) {
+		this.lunchType = lunchType;
+	}
+
+	public Integer getTimeSlot() {
+		return timeSlot;
+	}
+
+	public void setTimeSlot(Integer timeSlot) {
+		this.timeSlot = timeSlot;
 	}
 
 	public int getConsultant_id() {
@@ -75,62 +80,6 @@ public class ReviewsEntity {
 		this.consultant_id = consultant_id;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getFirstNameS() {
-		return firstNameS;
-	}
-
-	public void setFirstNameS(String firstNameS) {
-		this.firstNameS = firstNameS;
-	}
-
-	public String getLastNameS() {
-		return lastNameS;
-	}
-
-	public void setLastNameS(String lastNameS) {
-		this.lastNameS = lastNameS;
-	}
-
-	public int getGrade() {
-		return grade;
-	}
-
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
-
-	public String getTopic() {
-		return topic;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
-	public String getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
-	}
-
 	public String getReview() {
 		return review;
 	}
@@ -138,9 +87,6 @@ public class ReviewsEntity {
 	public void setReview(String review) {
 		this.review = review;
 	}
-
-	
-	
 	
 	
 }

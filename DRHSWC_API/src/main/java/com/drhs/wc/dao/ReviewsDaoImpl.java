@@ -26,4 +26,15 @@ public class ReviewsDaoImpl implements ReviewsDao{
 		return newEntity;
 	}
 
+	@Override
+	public List<ReviewsEntity> getPastReviews() {
+		return reviewsRepo.getPastReviews();
+	}
+
+	@Override
+	public List<ReviewsEntity> getUpcomingReviews() {
+		return reviewsRepo.getUpcomingReviews();
+	}
 }
+
+
