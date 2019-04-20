@@ -22,7 +22,9 @@ export class ManageAppointmentsComponent implements OnInit {
 
   ngOnInit() {
     //this.appointments = this.signupService.getAllAppointments();
-
+    this.getPastAppointments();
+    this.getUpcomingAppointments();
+    //console.log(this.apptPast.firstName)
   }
 
   //get all appointments
@@ -36,7 +38,9 @@ export class ManageAppointmentsComponent implements OnInit {
   getPastAppointments(){
     this.apptService.getPastAppoinments()
       .subscribe((data: AppointmentUpcPst[])=>{
+        //console.log(data.appointmentEntityKey);
         this.apptPast = data;
+        
       })
   }
 
@@ -44,7 +48,8 @@ export class ManageAppointmentsComponent implements OnInit {
   getUpcomingAppointments(){
     this.apptService.getUpcomingAppointments()
       .subscribe((data: AppointmentUpcPst[])=>{
-        this.apptPast = data;
+        console.log(data)
+        this.apptUpcoming = data;
       })
   }
 

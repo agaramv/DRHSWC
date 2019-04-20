@@ -1,13 +1,15 @@
+import { ApptInfo } from './apptInfo.model';
+
 export class AppointmentUpcPst{
-    apptInfo: any[];
+    appointmentEntityKey: any[];
     firstName: string;
     lastName: string;
     grade: string;
     teacher: string;
     topic: string;
 
-    constructor(apptInfo: any[],firstName: string, lastName: string, grade: string, teacher: string, topic: string ){
-        this.apptInfo = apptInfo;
+    constructor(appointmentEntityKey: any[],firstName: string, lastName: string, grade: string, teacher: string, topic: string ){
+        this.appointmentEntityKey = appointmentEntityKey;
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
