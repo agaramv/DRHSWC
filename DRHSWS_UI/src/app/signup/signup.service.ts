@@ -29,7 +29,14 @@ export class SignupService {
 
   saveAppointment(apptDate, lunchType, firstName, lastName, grade, teacher, topic){
     console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
-    this.http.post<any>('http://localhost:8080/appointment/add', {apptDate, lunchType, firstName, lastName, grade, teacher, topic});
+    this.http.post<any>('http://localhost:8080/appointment/add', 
+    {apptDate: apptDate, 
+      lunchType: lunchType, 
+      firstName: firstName, 
+      lastName: lastName, 
+      grade: grade, 
+      teacher: teacher, 
+      topic: topic});
   }
   
 }
