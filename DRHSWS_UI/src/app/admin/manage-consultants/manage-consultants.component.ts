@@ -15,8 +15,8 @@ import { Observable } from 'rxjs';
 export class ManageConsultantsComponent implements OnInit {
   displayedColumnsC: string[] = ['Action', 'Name', 'Grade', 'Email', 'Email Second'];
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
-  consultants: Consultant[];
-  reviews: ConsultantEntry[];
+  consultants: Consultant[] = this.consultantService.getLC();
+  reviews: ConsultantEntry[] = this.consultantService.getLR();
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -25,8 +25,8 @@ export class ManageConsultantsComponent implements OnInit {
         this.email.hasError('email') ? 'Not a valid email' : '';
   }
   constructor(private consultantService: ConsultantService, private signupService: SignupService) { 
-    this.getAllConsultants();
-    this.getAllReviews();
+    //this.getAllConsultants();
+    //this.getAllReviews();
   }
 
   ngOnInit() {
