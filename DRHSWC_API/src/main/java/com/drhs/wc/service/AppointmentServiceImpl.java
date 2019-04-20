@@ -33,10 +33,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 	private List<AppointmentResponseAll> buildAppointmentReponse(List<AppointmentEntity> appointmentEntity){
 		
 		
-		
 		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
 	    
-		
+		//Build a flat Jason object to send to client (avoid sending composite jason object to client)
 		appointmentResponseAll = appointmentEntity.stream().map(
 				appointment -> new AppointmentResponseAll(
 						appointment.getAppointmentEntityKey().getApptDate(),
@@ -55,6 +54,35 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 	}
 	
+	
+	//***********************************
+	// 			Add Appointment
+	//***********************************
+		@Override
+		public AppointmentEntity addAppointments(AppointmentResponseAdd appointmentResponseAdd) {
+			//Built primary key from response
+			AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
+					appointmentResponseAdd.getApptDate(),
+					appointmentResponseAdd.getLunchType(),
+					appointmentDao.apptCountByDateLunchType(
+							appointmentResponseAdd.getApptDate(), 
+							appointmentResponseAdd.getLunchType()
+							)+1
+					);
+			//Built entity using key and other response fields
+			AppointmentEntity appointmentEntity = new AppointmentEntity(
+					appointmentEntityKey,
+					appointmentResponseAdd.getFirstName(),
+					appointmentResponseAdd.getLastName(),
+					appointmentResponseAdd.getGrade(),
+					appointmentResponseAdd.getTeacher(),
+					appointmentResponseAdd.getTopic()
+					);
+			
+			return appointmentDao.addAppointment(appointmentEntity);
+		}
+		
+		
 	//**********************
 	// Get All Appointments
 	//**********************
@@ -62,52 +90,15 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Override
 	public List<AppointmentResponseAll> getAllAppointments() {
 		
-		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
 		
+		//retrieve data for all appointment
 		List<AppointmentEntity> appointmentyEntity = appointmentDao.getAllAppointments();
 		
-		appointmentResponseAll = appointmentyEntity.stream().map(
-				appointment -> new AppointmentResponseAll(
-						appointment.getAppointmentEntityKey().getApptDate(),
-						appointment.getAppointmentEntityKey().getLunchType(),
-						appointment.getAppointmentEntityKey().getTimeSlot(),
-						appointment.getFirstName(),
-						appointment.getLastName(),
-						appointment.getGrade(),
-						appointment.getTeacher(),
-						appointment.getTopic()
-						)
-				).collect(Collectors.toList());
+		//build a flat jason response object  (avoid nested due to composite key) 
+		return buildAppointmentReponse(appointmentyEntity);
 		
-		return appointmentResponseAll;
 	}
-	
-	//***********************************
-	// 			Add Appointment
-	//***********************************
-	@Override
-	public AppointmentEntity addAppointments(AppointmentResponseAdd appointmentResponseAdd) {
-		//Built primary key from response
-		AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
-				appointmentResponseAdd.getApptDate(),
-				appointmentResponseAdd.getLunchType(),
-				appointmentDao.apptCountByDateLunchType(
-						appointmentResponseAdd.getApptDate(), 
-						appointmentResponseAdd.getLunchType()
-						)+1
-				);
-		//Built entity using key and other response fields
-		AppointmentEntity appointmentEntity = new AppointmentEntity(
-				appointmentEntityKey,
-				appointmentResponseAdd.getFirstName(),
-				appointmentResponseAdd.getLastName(),
-				appointmentResponseAdd.getGrade(),
-				appointmentResponseAdd.getTeacher(),
-				appointmentResponseAdd.getTopic()
-				);
-		
-		return appointmentDao.addAppointment(appointmentEntity);
-	}
+	 
 	
 	//***********************************
 	// Get Appointments for a given date
@@ -115,27 +106,12 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Override
 	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate) {
 		
-		List<AppointmentResponseAll> appointmentResponseAll = new ArrayList<AppointmentResponseAll>();
-		
 	    List<AppointmentEntity> appointmentEntity = new ArrayList<AppointmentEntity>();
 		
 		appointmentEntity = appointmentDao.getAppointmentsByDate(apptDate);
 		
-		//Flaten the response 
-		appointmentResponseAll = appointmentEntity.stream().map(
-				appointment -> new AppointmentResponseAll(
-						appointment.getAppointmentEntityKey().getApptDate(),
-						appointment.getAppointmentEntityKey().getLunchType(),
-						appointment.getAppointmentEntityKey().getTimeSlot(),
-						appointment.getFirstName(),
-						appointment.getLastName(),
-						appointment.getGrade(),
-						appointment.getTeacher(),
-						appointment.getTopic()
-						)
-				).collect(Collectors.toList());
-		
-		return appointmentResponseAll;
+		//build a flat jason response object (avoid nested due to composite key) 
+		return buildAppointmentReponse(appointmentEntity);
 		
 	}
 	
@@ -143,33 +119,33 @@ public class AppointmentServiceImpl implements AppointmentService{
 	// Get past appointments from a given date
 	//***********************************
 	@Override
-	public List<AppointmentEntity> getPastAppointments(LocalDate apptDate) {
-		LocalDate sysDate;
+	public List<AppointmentResponseAll> getPastAppointments(LocalDate apptDate) {
+
 		
-//		if (apptDate != null) {
-//			sysDate = apptDate;
-//		}else {
-			sysDate = LocalDate.now();
-//		}
+		//get system date
+		LocalDate sysDate = LocalDate.now();
 		
-		return appointmentDao.getPastAppointments(sysDate);
+	    List<AppointmentEntity> appointmentEntity = new ArrayList<AppointmentEntity>();
+	    
+		//get past appointment
+	    appointmentEntity = appointmentDao.getPastAppointments(sysDate);
+	    
+	  //build a flat (avoid nested due to composit key) jason response object 
+	  	return buildAppointmentReponse(appointmentEntity);
 	}
 
 	//***********************************
 	// Get upcoming appointments from a given date
 	//***********************************
 	@Override
-	public List<AppointmentEntity> getUpcomingAppointments(LocalDate apptDate) {
+	public List<AppointmentResponseAll> getUpcomingAppointments(LocalDate apptDate) {
 
-		LocalDate sysDate;
+		LocalDate sysDate =  LocalDate.now();
 		
-//		if (apptDate != null) {
-//			sysDate = apptDate;
-//		}else {
-			sysDate = LocalDate.now();
-	//	}
+		List<AppointmentEntity> appointmentEntity =  appointmentDao.getUpcomingAppointments(sysDate);
 		
-		return appointmentDao.getUpcomingAppointments(sysDate);
+		//build a flat jason response object 
+	  	return buildAppointmentReponse(appointmentEntity);
 	}
 	
 	//*************************************************************
