@@ -43,6 +43,16 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return appointmentRepository.apptCountByDateLunchType(apptDate,lunchType);
 	}
 
+	@Override
+	public List<AppointmentEntity> getPastAppointments(LocalDate apptDate) {
+		return appointmentRepository.getPastAppointments(apptDate);
+	}
+
+	@Override
+	public List<AppointmentEntity> getUpcomingAppointments(LocalDate apptDate) {
+		return appointmentRepository.getUpcomingAppointments(apptDate);
+	}
+
 
 
 

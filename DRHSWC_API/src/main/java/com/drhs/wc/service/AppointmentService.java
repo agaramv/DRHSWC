@@ -17,6 +17,10 @@ public interface AppointmentService {
 	
 	List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate);
 	
+	List<AppointmentEntity> getPastAppointments(LocalDate apptDate);
+	
+	List<AppointmentEntity> getUpcomingAppointments(LocalDate apptDate);
+	
 	List<AppointmentResponse> countByAppointment();
 	
 	List<AppointmentResponse> getAppointmentDays(LocalDate currDate);

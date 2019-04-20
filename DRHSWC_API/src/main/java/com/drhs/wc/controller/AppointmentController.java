@@ -74,7 +74,23 @@ public class AppointmentController {
 	//*******************
 	
 	
+	//***********************
+	// Get past appointments
+	//***********************
+	@GetMapping("/appointment/past/{apptDate}")
+	public List<AppointmentEntity> getPastAppointments(@PathVariable("apptDate") String date){
+		LocalDate apptDate = LocalDate.parse(date);
+		return appointmentService.getPastAppointments(apptDate);
+	}
 	
+	//***********************
+	// Get upcoming appointments
+	//***********************
+	@GetMapping("/appointment/upcoming/{apptDate}")
+	public List<AppointmentEntity> getUpcomingAppointments(@PathVariable("apptDate") String date){
+		LocalDate apptDate = LocalDate.parse(date);
+		return appointmentService.getUpcomingAppointments(apptDate);
+	}
 	
 	//***********************
 	// Delete Appointment

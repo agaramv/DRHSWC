@@ -18,6 +18,12 @@ public interface AppointmentDao {
 	//Get appointments by date
 	public List<AppointmentEntity> getAppointmentsByDate(LocalDate apptDate); 
 	
+	//Get past appointments
+	public List<AppointmentEntity> getPastAppointments(LocalDate apptDate);
+	
+	//Get upcoming appointments
+	public List<AppointmentEntity> getUpcomingAppointments(LocalDate apptDate);
+	
 	//Get count of appointment by date and Lunch type
 	public Integer apptCountByDateLunchType(LocalDate apptDate,String lunchType);
 

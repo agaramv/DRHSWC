@@ -139,6 +139,24 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 	}
 	
+	//***********************************
+	// Get past appointments from a given date
+	//***********************************
+	@Override
+	public List<AppointmentEntity> getPastAppointments(LocalDate apptDate) {
+		// TODO Auto-generated method stub
+		return appointmentDao.getPastAppointments(apptDate);
+	}
+
+	//***********************************
+	// Get upcoming appointments from a given date
+	//***********************************
+	@Override
+	public List<AppointmentEntity> getUpcomingAppointments(LocalDate apptDate) {
+		// TODO Auto-generated method stub
+		return appointmentDao.getUpcomingAppointments(apptDate);
+	}
+	
 	//*************************************************************
 	//Landing Page
 	//Get Appointment schedule to make appointment
@@ -318,6 +336,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 
