@@ -4,16 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.persistence.Query;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.drhs.wc.dao.ConsultantDao;
 import com.drhs.wc.entity.ConsultantEntity;
 

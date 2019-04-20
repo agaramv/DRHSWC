@@ -78,7 +78,7 @@ public class AppointmentController {
 	// Get past appointments
 	//***********************
 	@GetMapping("/appointment/past")
-	public List<AppointmentEntity> getPastAppointments(){
+	public List<AppointmentResponseAll> getPastAppointments(){
 		return appointmentService.getPastAppointments(null);
 	}
 	
@@ -86,7 +86,7 @@ public class AppointmentController {
 	// Get upcoming appointments
 	//***********************
 	@GetMapping("/appointment/upcoming")
-	public List<AppointmentEntity> getUpcomingAppointments(){
+	public List<AppointmentResponseAll> getUpcomingAppointments(){
 		return appointmentService.getUpcomingAppointments(null);
 	}
 	
