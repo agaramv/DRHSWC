@@ -40,7 +40,7 @@ export class AppointmentComponent implements OnInit {
     this.getCurrentCalendar();
     this.dateT = this.apptSch[0].apptDate;
     this.dateW = this.apptSch[2].apptDate;
-    this.setValues();
+    //this.setValues();
   }
 
   //Sets the values that come from Current Calendar
@@ -79,7 +79,8 @@ export class AppointmentComponent implements OnInit {
   saveAppointment(newAppt: Appointment){
     this.assign();
     console.log(newAppt)
-    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunchType, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic);
+    this.signupService.saveAppointment(newAppt)
+    .subscribe();
   }
 
   //Re gets values for the week
