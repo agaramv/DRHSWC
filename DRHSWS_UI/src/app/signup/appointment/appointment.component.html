@@ -6,22 +6,25 @@
 <div class="row justify-content-center">
   <mat-card class="dates calendar">
     <mat-card-header>
-      <mat-card-title><h3>Tuesday</h3></mat-card-title>
-      <mat-card-title><h5>{{dateT}}</h5></mat-card-title>
+      <mat-card-title>
+        <h3>Tuesday</h3>
+      </mat-card-title>
+      <mat-card-title>
+        <h5>{{dateT}}</h5>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row" id="">
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(1)">A Lunch <span class="badge badge-light">{{slotsT[0]}}</span></button>
-          <!-- <span class="badge badge-light" *ngIf="curWeek">{{apptSch[0].open}}</span> -->
-          <!-- <span class="badge badge-light" *ngIf="nextWeek">{{apptSch[4].open}}</span> -->
-
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(1)" [disabled]="">A Lunch 
+            <span class="badge badge-light">{{slotsT[0]}}</span>
+          </button>
         </div>
         <mat-divider [vertical]=true></mat-divider>
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(2)">B Lunch <span class="badge badge-light">{{slotsT[1]}}</span></button>    
-          <!-- <span class="badge badge-light" *ngIf="curWeek">{{apptSch[1].open}}</span> -->
-          <!-- <span class="badge badge-light" *ngIf="nextWeek">{{apptSch[5].open}}</span> -->
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(2)" [disabled]="">B Lunch 
+            <span class="badge badge-light">{{slotsT[1]}}</span>
+          </button>    
         </div>
       </div>
     </mat-card-content>
@@ -34,16 +37,11 @@
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(3)">A Lunch <span class="badge badge-light">{{slotsW[0]}}</span></button>
-          <!-- <span class="badge badge-light" *ngIf="curWeek">{{apptSch[2].open}}</span> -->
-          <!-- <span class="badge badge-light" *ngIf="nextWeek">{{apptSch[6].open}}</span> -->
-
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(3)" [disabled]="">A Lunch <span class="badge badge-light">{{slotsW[0]}}</span></button>
         </div>
         <mat-divider [vertical]=true></mat-divider>
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(4)">B Lunch <span class="badge badge-light">{{slotsW[1]}}</span></button>    
-          <!-- <span class="badge badge-light" *ngIf="curWeek">{{apptSch[3].open}}</span> -->      
-          <!-- <span class="badge badge-light" *ngIf="nextWeek">{{apptSch[7].open}}</span> -->
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(4)" [disabled]="">B Lunch <span class="badge badge-light">{{slotsW[1]}}</span></button>    
         </div>
       </div>
     </mat-card-content>
