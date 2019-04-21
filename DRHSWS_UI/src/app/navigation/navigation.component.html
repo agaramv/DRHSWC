@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div><a routerLink="/"><img  alt="WC logo" /></a></div>
+  <div><a routerLink="/"><img alt="WC logo" /></a></div>
 
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
@@ -16,7 +16,8 @@
         <a class="nav-link" routerLink="/admin">Admin(Ease)</a>
       </li> -->
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" routerLink="manage" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" routerLink="manage"
+          aria-haspopup="true" aria-expanded="false">
           Manage
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +31,12 @@
     </ul>
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login"><button class="btn btn-outline-primary my-2 my-sm-0">Login in</button></a>
+        <a class="nav-link" routerLink="/login"><button class="btn btn-outline-primary my-2 my-sm-0">Login
+            in</button></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="logout()"><button
+            class="btn btn-outline-primary my-2 my-sm-0">Logout</button></a>
       </li>
     </ul>
   </div>

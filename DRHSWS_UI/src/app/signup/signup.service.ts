@@ -7,29 +7,29 @@ import { Appointment } from './appointment.model';
 })
 export class SignupService {
 
-  endpoint:string = "http://localhost:8080";
-  
+  endpoint: string = "/api" || "http://localhost:8081";
+
 
   constructor(private http: HttpClient) { }
 
   //table of appointments
-  getAllAppointments(){
-    return this.http.get<any>(this.endpoint+'/appointments/all');
+  getAllAppointments() {
+    return this.http.get<any>(this.endpoint + '/appointments/all');
     //return this.appointments.slice();
   }
 
-  onSelectedTime(){
+  onSelectedTime() {
     return true;
   }
 
   //get schedule
-  getSchedule(){
-    return this.http.get<any>(this.endpoint+'/appointment/schedule');
+  getSchedule() {
+    return this.http.get<any>(this.endpoint + '/appointment/schedule');
   }
 
-  saveAppointment(apptDate, lunchType, firstName, lastName, grade, teacher, topic){
-    console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
-    this.http.post<any>('http://localhost:8080/appointment/add', {apptDate, lunchType, firstName, lastName, grade, teacher, topic});
+  saveAppointment(newAppt) {
+    //console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
+    return this.http.post<any>(this.endpoint + '/appointment/add', newAppt);
   }
-  
+
 }

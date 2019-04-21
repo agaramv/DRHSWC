@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Appointment } from '../appointment.model';
 import { AppointmentSchedule } from '../appointmentSchedule.model';
+import { SELECT_VALUE_ACCESSOR } from '@angular/forms/src/directives/select_control_value_accessor';
 
 @Component({
   selector: 'app-appointment',
@@ -12,17 +13,29 @@ import { AppointmentSchedule } from '../appointmentSchedule.model';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
-  slots1 = [10,9,0,2];
-  slots2 = [2,9,7,2];
-  dateT: string = "2019-04-17";
-  dateW: string = "2019-04-18";
-  
+  //Current Week Vars
+  slotsTC = [];
+  slotsWC = [];
+  dateTC: string;
+  dateWC: string;
+  //Next Week Vars
+  slotsTN = [];
+  slotsWN = [];
+  dateTN: string;
+  dateWN: string;
+
+  //Displayed Vars
+  slotsT = [];
+  slotsW = [];
+  dateT: string;
+  dateW: string;
+  //All other Vars
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
-  apptSch: AppointmentSchedule;
+  apptSch;
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
-  curWeek: boolean = false;
-  nextWeek: boolean = true;
+  curWeek: boolean = true;
+  nextWeek: boolean = false;
   newAppt: Appointment= {
     apptDate: '',
     lunchType: 'a',
@@ -36,65 +49,134 @@ export class AppointmentComponent implements OnInit {
   constructor(private signupService: SignupService, private http: HttpClient) { }
 
   ngOnInit() {
-    //getCurrentCalendar()
+    this.getCurrentCalendar();
+    console.log(this.dateTC)
   }
 
+
+  setValues(){
+    this.dateT = this.apptSch[0].apptDate;
+    this.dateW = this.apptSch[2].apptDate;
+    this.slotsT+=this.apptSch[0].lunchType;
+    this.slotsW+=this.apptSch[0].lunchType;
+  }
   //Get Request all of the current appointments
-  getCurrentCalendar(){
-    this.signupService.getSchedule().subscribe((data: AppointmentSchedule)=>{
-      this.apptSch = data;
+  getCurrentCalendar() {
+    this.signupService.getSchedule()
+      .subscribe((data: any[])=>{
+        this.apptSch = data;
+        //Sets the Current and Next Weeks values in set vars
+        this.setValuesCur();
+        this.setValuesNext();
+        //Sets default Current Weeks Values
+        this.dateT = this.dateTC;
+        this.dateW = this.dateWC;
+        this.slotsT = this.slotsTC;
+        this.slotsW = this.slotsWC;
+        console.log(this.dateTC)
     });
   }
 
-  assign(){
+  //Set values for Current Week
+  setValuesCur(){
+    //Sets the dates for Curent Week
+    this.dateTC = this.apptSch[0].apptDate;
+    console.log(this.dateTC)
+    this.dateWC = this.apptSch[2].apptDate;
+    //The First entry will be Tuesday A then B lunch is following command
+    this.slotsTC[0]=this.apptSch[0].apptOpen;
+    this.slotsTC[1]=this.apptSch[1].apptOpen;
+    //The First entry will be Wed A then B lunch is following command
+    this.slotsWC[0]=this.apptSch[2].apptOpen;
+    this.slotsWC[1]=this.apptSch[3].apptOpen;
+  }
+
+  //Set values for Next Week
+  setValuesNext(){
+    //Sets the dates for Next Week
+    this.dateTN = this.apptSch[4].apptDate;
+    this.dateWN = this.apptSch[6].apptDate;
+    //The First entry will be Tuesday A then B lunch is following command
+    this.slotsTN[0]=this.apptSch[4].apptOpen;
+    this.slotsTN[1]=this.apptSch[5].apptOpen;
+    //The First entry will be Wed A then B lunch is following command
+    this.slotsWN[0]=this.apptSch[6].apptOpen;
+    this.slotsWN[1]=this.apptSch[7].apptOpen;
+  }
+  
+    //Sets correct values when current week
+  onClickCurrent(){
+    this.dateT = this.dateTC;
+    this.dateW = this.dateWC;
+    this.slotsT = this.slotsTC;
+    this.slotsW = this.slotsWC;
+    this.toggle()
+  }
+
+  //Sets correct values when Next week
+  onClickNext(){
+    this.dateT = this.dateTN;
+    this.dateW = this.dateWN;
+    this.slotsT = this.slotsTN;
+    this.slotsW = this.slotsWN;
+    this.toggle();
+  }
+
+  //Assigns the Date and Lunch to the New Appt obj
+  assign() {
     this.newAppt.apptDate = this.apptSelc.date;
     this.newAppt.lunchType = this.apptSelc.lunch;
   }
 
+  //Captures the form data
   onSubmit(form: NgForm) {
     this.newAppt.firstName = form.value.firstName;
     this.newAppt.lastName = form.value.lastName;
-    this.newAppt.grade = form.value.grade;
+    this.newAppt.grade = Number(form.value.grade);
     this.newAppt.teacher = form.value.teacher;
     this.newAppt.topic = form.value.topic;
     this.submitted = true;
+
     this.saveAppointment(this.newAppt);
   }
 
   //Post Request of appointment
   saveAppointment(newAppt: Appointment){
     this.assign();
-    console.log(newAppt)
-    this.signupService.saveAppointment(newAppt.apptDate, newAppt.lunchType, newAppt.firstName, newAppt.lastName, newAppt.grade, newAppt.teacher, newAppt.topic);
+    //console.log(newAppt)
+    this.signupService.saveAppointment(newAppt).subscribe((data)=>{
+      console.log('New Appointment Added');
+    });
   }
 
   //Re gets values for the week
-  toggle(){
+  toggle() {
     this.curWeek = !this.curWeek;
     this.nextWeek = !this.nextWeek;
   }
 
-  onSelected(day){
-    if(day==1){
+  //Assigns selected day
+  onSelected(day) {
+    if (day == 1) {
       this.apptSelc.date = this.dateT;
       this.apptSelc.day = "Tuesday";
       this.apptSelc.lunch = "A";
       this.selected = true;
       //this.signupService.onSelectedTime(this.appointmentSelection);
     }
-    if(day==2){
+    if (day == 2) {
       this.apptSelc.date = this.dateT;
       this.apptSelc.day = "Tuesday";
       this.apptSelc.lunch = "B";
       this.selected = true;
     }
-    if(day==3){
+    if (day == 3) {
       this.apptSelc.date = this.dateW;
       this.apptSelc.day = "Wednesday";
       this.apptSelc.lunch = "A";
       this.selected = true;
     }
-    if(day==4){
+    if (day == 4) {
       this.apptSelc.date = this.dateW;
       this.apptSelc.day = "Wednesday";
       this.apptSelc.lunch = "B";

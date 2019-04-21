@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map} from 'rxjs/operators';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(email:string, password: string){
-    return this.http.post<any>('/login', {email, password})
-    .pipe(map(user=>{
-      if(user.token){
-        localStorage.setItem('currUser', JSON.stringify(user));
-      }
-      return user;
-    }))
+  login(username: string, password: string) {
+    // return this.http.post<any>('http://localhost:8081/login', { username, password })
+
+    let data = { username: username, password: password }
+
+    return this.http.post<any>('/api/login',
+      new HttpParams()
+        .set('username', username)
+        .set('password', password).toString(),
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/x-www-form-urlencoded')
+      })
   }
-  signup(firstName:string, lastname:string, email:string, password:string){
-    return this.http.post<any>('/signup', {firstName, lastname, email, password});
-  }
-  logout(){
-    localStorage.removeItem('currUser');
+
+  // signup(firstName: string, lastname: string, email: string, password: string) {
+  //   return this.http.post<any>('/signup', { firstName, lastname, email, password });
+  // }
+
+  logout() {
+    this.http.get('/api/logout').subscribe(data => {
+      this.router.navigate(['/login'])
+    });
   }
 }

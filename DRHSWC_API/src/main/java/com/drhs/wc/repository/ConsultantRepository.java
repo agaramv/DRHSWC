@@ -1,5 +1,7 @@
 package com.drhs.wc.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +16,8 @@ public interface ConsultantRepository extends JpaRepository<ConsultantEntity, In
 	@Modifying()
 	@Query(value="Update r_consultants Set active='I' Where consultant_id=:id", nativeQuery=true)
 	int changeToInactive(@Param("id") Integer id);
+
+	ConsultantEntity findByEmail(String email);
 	
 	/*@Query(value="Delete From r_consultants Where consultant_id=21", nativeQuery=true)
 	ConsultantEntity deleteConsultant(@Param("id") int id);

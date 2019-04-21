@@ -24,6 +24,8 @@ public interface ConsultantService {
 	
 	//delete consultant
 	public void deleteConsultant(Integer id);
+
+	public ConsultantEntity findUserByEmail(String email);
 	
 	
 }
