@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Appointment } from '../appointment.model';
 import { AppointmentSchedule } from '../appointmentSchedule.model';
+import { SELECT_VALUE_ACCESSOR } from '@angular/forms/src/directives/select_control_value_accessor';
 
 @Component({
   selector: 'app-appointment',
@@ -12,13 +13,25 @@ import { AppointmentSchedule } from '../appointmentSchedule.model';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
+  //Current Week Vars
+  slotsTC = [];
+  slotsWC = [];
+  dateTC: string;
+  dateWC: string;
+  //Next Week Vars
+  slotsTN = [];
+  slotsWN = [];
+  dateTN: string;
+  dateWN: string;
+
+  //Displayed Vars
   slotsT = [];
   slotsW = [];
   dateT: string;
   dateW: string;
-  
+  //All other Vars
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
-  apptSch: AppointmentSchedule;
+  apptSch;
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
   curWeek: boolean = true;
@@ -37,20 +50,70 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentCalendar();
-    console.log(this.apptSch)
+    console.log(this.dateTC)
   }
 
 
   //Get Request all of the current appointments
   getCurrentCalendar(){
     this.signupService.getSchedule()
-      .subscribe((data: AppointmentSchedule)=>{
+      .subscribe((data: any[])=>{
         this.apptSch = data;
-        this.dateT = this.apptSch[0].apptDate;
-        this.dateW = this.apptSch[2].apptDate;
-        this.slotsT+=this.apptSch[0].lunchType;
-        this.slotsW+=this.apptSch[0].lunchType;
+        //Sets the Current and Next Weeks values in set vars
+        this.setValuesCur();
+        this.setValuesNext();
+        //Sets default Current Weeks Values
+        this.dateT = this.dateTC;
+        this.dateW = this.dateWC;
+        this.slotsT = this.slotsTC;
+        this.slotsW = this.slotsWC;
+        console.log(this.dateTC)
     });
+  }
+
+  //Set values for Current Week
+  setValuesCur(){
+    //Sets the dates for Curent Week
+    this.dateTC = this.apptSch[0].apptDate;
+    console.log(this.dateTC)
+    this.dateWC = this.apptSch[2].apptDate;
+    //The First entry will be Tuesday A then B lunch is following command
+    this.slotsTC[0]=this.apptSch[0].apptOpen;
+    this.slotsTC[1]=this.apptSch[1].apptOpen;
+    //The First entry will be Wed A then B lunch is following command
+    this.slotsWC[0]=this.apptSch[2].apptOpen;
+    this.slotsWC[1]=this.apptSch[3].apptOpen;
+  }
+
+  //Set values for Next Week
+  setValuesNext(){
+    //Sets the dates for Next Week
+    this.dateTN = this.apptSch[4].apptDate;
+    this.dateWN = this.apptSch[6].apptDate;
+    //The First entry will be Tuesday A then B lunch is following command
+    this.slotsTN[0]=this.apptSch[4].apptOpen;
+    this.slotsTN[1]=this.apptSch[5].apptOpen;
+    //The First entry will be Wed A then B lunch is following command
+    this.slotsWN[0]=this.apptSch[6].apptOpen;
+    this.slotsWN[1]=this.apptSch[7].apptOpen;
+  }
+  
+    //Sets correct values when current week
+  onClickCurrent(){
+    this.dateT = this.dateTC;
+    this.dateW = this.dateWC;
+    this.slotsT = this.slotsTC;
+    this.slotsW = this.slotsWC;
+    this.toggle()
+  }
+
+  //Sets correct values when Next week
+  onClickNext(){
+    this.dateT = this.dateTN;
+    this.dateW = this.dateWN;
+    this.slotsT = this.slotsTN;
+    this.slotsW = this.slotsWN;
+    this.toggle();
   }
 
   //Assigns the Date and Lunch to the New Appt obj
