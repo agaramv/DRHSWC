@@ -59,4 +59,11 @@ public class ConsultantDaoImpl implements ConsultantDao{
 		return updateEntity;
 	}
 
+	@Override
+	public ConsultantEntity getConsultantByEmail(String email) {
+		ConsultantEntity consultantEntity = consultantRepo.findByEmail(email);
+	
+		return consultantEntity;
+	}
+
 }

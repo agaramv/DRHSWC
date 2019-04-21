@@ -14,30 +14,38 @@ import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'signup',  component: SignupComponent, children: [
-    { path: 'l', component: FormComponent},
-  ]},
-  { path: 'consultant', children:[
-    { path: '', redirectTo: 'entry', pathMatch: 'full' },
-    { path: 'entry', component: EntryComponent},
-    { path: 'assignments', component: AssignmentsComponent},
-  ]},
-  { path: 'admin', children: [
-    { path: '', component: ManageConsultantsComponent},
-  ]},
-  { path: 'manage', children: [
-    { path: '', redirectTo: '/manage/a', pathMatch: 'full' },
-    { path: 'c', component: ManageConsultantsComponent},
-    { path: 'a', component: ManageAppointmentsComponent},
-  ]},
-  { path: 'resource', component: ResourcesComponent}
-  
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'signup', component: SignupComponent, children: [
+      { path: 'l', component: FormComponent },
+    ]
+  },
+  {
+    path: 'consultant', children: [
+      { path: '', redirectTo: 'entry', pathMatch: 'full' },
+      { path: 'entry', component: EntryComponent },
+      { path: 'assignments', component: AssignmentsComponent },
+    ]
+  },
+  {
+    path: 'admin', children: [
+      { path: '', component: ManageConsultantsComponent },
+    ]
+  },
+  {
+    path: 'manage', children: [
+      { path: '', redirectTo: '/manage/a', pathMatch: 'full' },
+      { path: 'c', component: ManageConsultantsComponent },
+      { path: 'a', component: ManageAppointmentsComponent },
+    ]
+  },
+  { path: 'resource', component: ResourcesComponent }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

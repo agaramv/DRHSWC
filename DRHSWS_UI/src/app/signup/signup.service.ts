@@ -7,7 +7,7 @@ import { Appointment } from './appointment.model';
 })
 export class SignupService {
 
-  endpoint: string = "http://localhost:8080";
+  endpoint: string = "/api" || "http://localhost:8081";
 
 
   constructor(private http: HttpClient) { }
@@ -27,9 +27,9 @@ export class SignupService {
     return this.http.get<any>(this.endpoint + '/appointment/schedule');
   }
 
-  saveAppointment(newAppt){
+  saveAppointment(newAppt) {
     //console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
-    return this.http.post<any>(this.endpoint+'/appointment/add', newAppt);
+    return this.http.post<any>(this.endpoint + '/appointment/add', newAppt);
   }
 
 }

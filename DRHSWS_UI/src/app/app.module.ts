@@ -50,10 +50,12 @@ import { AppointmentComponent } from './signup/appointment/appointment.component
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    
+
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true}, fakeBackendInterceptor
+    // { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // /fakeBackendInterceptor
   ],
   bootstrap: [AppComponent]
 })

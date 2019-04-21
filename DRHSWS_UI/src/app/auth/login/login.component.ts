@@ -24,15 +24,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authService.logout();
     this.buildForm();
-    // this.loginForm.patchvalue({
-    //   email: 'a@a.com',
-    //   password: 's'
-    // });
+    this.loginForm.patchValue({
+      username: 'hcps-bellaj7@henricostudents.org',
+      //   password: 's'
+    });
   }
 
   buildForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    
     this.errorText = '';
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -50,14 +49,14 @@ export class LoginComponent implements OnInit {
     }
     this.loading = true;
 
-    this.authService.login(this.formvalues.email.value, this.formvalues.password.value)
+    this.authService.login(this.formvalues.username.value, this.formvalues.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/dashboard'], { replaceUrl: true })
+          this.router.navigate(['/signup'], { replaceUrl: true })
         },
         error => {
-          this.errorText = error;
+          this.errorText = 'Incorrect Email or Password';
           this.loading = false;
         }
       )
