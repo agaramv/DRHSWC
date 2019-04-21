@@ -62,4 +62,10 @@ public class ConsultantServiceImpl implements ConsultantService{
 		return consultantDao.updateConsultant(consultantEntity);
 	
 	}
+
+	@Override
+	public ConsultantEntity findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return consultantDao.getConsultantByEmail(email);
+	}
 }

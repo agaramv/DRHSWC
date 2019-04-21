@@ -50,17 +50,21 @@
 <div class="justify-content-center">
   <mat-card id="form">
     <mat-card-header>
-      <mat-card-title *ngIf="selected"><h3> {{apptSelc.day}}, {{apptSelc.date}} during {{apptSelc.lunch}} Lunch </h3></mat-card-title>
+      <mat-card-title *ngIf="selected">
+        <h3> {{apptSelc.day}}, {{apptSelc.date}} during {{apptSelc.lunch}} Lunch </h3>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="form-group">
           <label for="firstName">First Name</label>
-          <input ngModel name="firstName" nametype="text" class="form-control" id="firstName" placeholder="Enter First Name" required>
+          <input ngModel name="firstName" nametype="text" class="form-control" id="firstName"
+            placeholder="Enter First Name" required>
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input ngModel name="lastName" type="text" class="form-control" id="lastName" placeholder="Enter Last Name" required>
+          <input ngModel name="lastName" type="text" class="form-control" id="lastName" placeholder="Enter Last Name"
+            required>
         </div>
         <div class="form-group">
           <label for="grade">Grade</label>
@@ -78,7 +82,8 @@
         </div>
         <div class="form-group">
           <label for="teacher">Teacher</label>
-          <input ngModel name="teacher" type="text" class="form-control" id="teacher" placeholder="Enter Teacher" required>
+          <input ngModel name="teacher" type="text" class="form-control" id="teacher" placeholder="Enter Teacher"
+            required>
         </div>
         <button type="submit" class="btn btn-primary">Sign-up</button>
       </form>
@@ -93,4 +98,3 @@
   <p> Grade: {{ data.grade }} </p>
   <p> Topic: {{ data.topic }} </p>
 </div> -->
-

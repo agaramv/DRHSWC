@@ -24,4 +24,6 @@ public interface ConsultantDao {
 	
 	//delete consultant
 	public void deleteConsultant(Integer id);
+
+	public ConsultantEntity getConsultantByEmail(String email);
 }

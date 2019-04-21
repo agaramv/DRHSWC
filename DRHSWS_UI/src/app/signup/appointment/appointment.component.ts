@@ -54,8 +54,14 @@ export class AppointmentComponent implements OnInit {
   }
 
 
+  setValues(){
+    this.dateT = this.apptSch[0].apptDate;
+    this.dateW = this.apptSch[2].apptDate;
+    this.slotsT+=this.apptSch[0].lunchType;
+    this.slotsW+=this.apptSch[0].lunchType;
+  }
   //Get Request all of the current appointments
-  getCurrentCalendar(){
+  getCurrentCalendar() {
     this.signupService.getSchedule()
       .subscribe((data: any[])=>{
         this.apptSch = data;
@@ -117,7 +123,7 @@ export class AppointmentComponent implements OnInit {
   }
 
   //Assigns the Date and Lunch to the New Appt obj
-  assign(){
+  assign() {
     this.newAppt.apptDate = this.apptSelc.date;
     this.newAppt.lunchType = this.apptSelc.lunch;
   }
@@ -130,7 +136,7 @@ export class AppointmentComponent implements OnInit {
     this.newAppt.teacher = form.value.teacher;
     this.newAppt.topic = form.value.topic;
     this.submitted = true;
-    
+
     this.saveAppointment(this.newAppt);
   }
 
@@ -144,33 +150,33 @@ export class AppointmentComponent implements OnInit {
   }
 
   //Re gets values for the week
-  toggle(){
+  toggle() {
     this.curWeek = !this.curWeek;
     this.nextWeek = !this.nextWeek;
   }
 
   //Assigns selected day
-  onSelected(day){
-    if(day==1){
+  onSelected(day) {
+    if (day == 1) {
       this.apptSelc.date = this.dateT;
       this.apptSelc.day = "Tuesday";
       this.apptSelc.lunch = "A";
       this.selected = true;
       //this.signupService.onSelectedTime(this.appointmentSelection);
     }
-    if(day==2){
+    if (day == 2) {
       this.apptSelc.date = this.dateT;
       this.apptSelc.day = "Tuesday";
       this.apptSelc.lunch = "B";
       this.selected = true;
     }
-    if(day==3){
+    if (day == 3) {
       this.apptSelc.date = this.dateW;
       this.apptSelc.day = "Wednesday";
       this.apptSelc.lunch = "A";
       this.selected = true;
     }
-    if(day==4){
+    if (day == 4) {
       this.apptSelc.date = this.dateW;
       this.apptSelc.day = "Wednesday";
       this.apptSelc.lunch = "B";
