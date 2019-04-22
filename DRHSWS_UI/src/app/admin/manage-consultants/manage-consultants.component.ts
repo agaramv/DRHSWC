@@ -40,7 +40,5 @@ export class ManageConsultantsComponent implements OnInit {
     this.reviews = this.consultantService.getAllReviews();
     this.appointments = this.signupService.getAllAppointments();
   }
-
-
-
+  
 }

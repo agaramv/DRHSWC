@@ -82,8 +82,9 @@
 <h3>Manage Appointments</h3>
 <button mat-raised-button color="primary" id="reserve">Reserve Date</button>
 <button mat-raised-button color="warn" id="disable">Disable Date</button><br><br>
+
 <mat-form-field class="example-full-width">
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+  <input matInput [matDatepickerFilter]="myFilter"[matDatepicker]="picker" placeholder="Choose a date">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker touchUi #picker></mat-datepicker>
 </mat-form-field>

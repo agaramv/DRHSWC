@@ -15,7 +15,7 @@ public interface ConsultantDao {
 		
 	//Create new consultant
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
-	
+
 	//Update consultant to I (Inactive) essentially deleting it
 	public int changeToInactive(Integer id);
 	
