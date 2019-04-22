@@ -1,19 +1,27 @@
-<!-- <ul class="nav navbar-nav navbar-right">
-  <li><a href="#">Sign Up</a></li>
-  <li><a href="#">Sign In</a></li>
-  <li><a href="#">About</a></li>
-  <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <span class="caret">More</span>
-      </a>
-      <ul class="dropdown-menu">
-          <li><a href="#">Start Learning</a></li>
-          <li><a href="#">View All Courses</a></li>
-          <li><a href="#">Chat with a CodeGuide</a></li>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a routerLink="/" class="navbar-brand">Recipe Book</a>
+      </div>
+  
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+          <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
         </ul>
-  </li>
-</ul> -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown" appDropdown>
+            <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a style="cursor: pointer;">Save Data</a></li>
+              <li><a style="cursor: pointer;">Fetch Data</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
   <div><a routerLink="/"><img alt="WC logo" /></a></div>
 
@@ -53,4 +61,4 @@
       </li>
     </ul>
   </div>
-</nav> 
+</nav>  -->

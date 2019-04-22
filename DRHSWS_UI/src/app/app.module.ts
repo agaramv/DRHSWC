@@ -24,6 +24,7 @@ import { AppointmentComponent } from './signup/appointment/appointment.component
 import { ReviewComponent } from './review/review.component';
 import { PendingComponent } from './review/pending/pending.component';
 import { PastComponent } from './review/past/past.component';
+import { DropdownDirective } from './dropdownDirective';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PastComponent } from './review/past/past.component';
     AdminComponent,
     ResourcesComponent,
     ConsultantComponent,
+    DropdownDirective,
     EntryComponent,
     AssignmentsComponent,
     ManageAppointmentsComponent,
