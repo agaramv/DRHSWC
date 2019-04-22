@@ -5,7 +5,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminComponent } from './admin/admin.component';
 import { ManageConsultantsComponent } from './admin/manage-consultants/manage-consultants.component';
-import { FormComponent } from './signup/form/form.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { EntryComponent } from './consultant/entry/entry.component';
@@ -18,7 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'signup', component: SignupComponent, children: [
-      { path: 'l', component: FormComponent },
+
     ]
   },
   {
