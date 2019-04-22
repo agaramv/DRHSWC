@@ -24,6 +24,12 @@ public interface AppointmentDao {
 	//Get upcoming appointments
 	public List<AppointmentEntity> getUpcomingAppointments(LocalDate apptDate);
 	
+	//Get all appointments with pending reviews
+	public List<AppointmentEntity> getPendingReviews();
+	
+	//Add review
+	public AppointmentEntity addReview(AppointmentEntity appointmentEntity);
+	
 	//Get count of appointment by date and Lunch type
 	public Integer apptCountByDateLunchType(LocalDate apptDate,String lunchType);
 

@@ -1,6 +1,7 @@
 package com.drhs.wc.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.drhs.wc.dao.AppointmentDao;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.AppointmentEntityKey;
-import com.drhs.wc.param.AppointmentResponse;
-import com.drhs.wc.param.AppointmentResponseAdd;
+import com.drhs.wc.param.AppointmentResponseSchedule;
+import com.drhs.wc.param.AppointmentResponseAdd_Update;
 import com.drhs.wc.param.AppointmentResponseAll;
 
 @Service
@@ -45,7 +46,11 @@ public class AppointmentServiceImpl implements AppointmentService{
 						appointment.getLastName(),
 						appointment.getGrade(),
 						appointment.getTeacher(),
-						appointment.getTopic()
+						appointment.getTopic(),
+						appointment.getConsultant_id(),
+						appointment.getReview(),
+						appointment.getReviewDate(),
+						appointment.getCreateTimestamp()
 						)
 				).collect(Collectors.toList());
 		
@@ -59,7 +64,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 	// 			Add Appointment
 	//***********************************
 		@Override
-		public AppointmentEntity addAppointments(AppointmentResponseAdd appointmentResponseAdd) {
+		public AppointmentEntity addAppointments(AppointmentResponseAdd_Update appointmentResponseAdd) {
 			//Built primary key from response
 			AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
 					appointmentResponseAdd.getApptDate(),
@@ -76,12 +81,43 @@ public class AppointmentServiceImpl implements AppointmentService{
 					appointmentResponseAdd.getLastName(),
 					appointmentResponseAdd.getGrade(),
 					appointmentResponseAdd.getTeacher(),
-					appointmentResponseAdd.getTopic()
+					appointmentResponseAdd.getTopic(),
+					null,
+					null,
+					null,
+					LocalDateTime.now()
 					);
 			
 			return appointmentDao.addAppointment(appointmentEntity);
 		}
 		
+		//***********************************
+		// 			Add Review
+		//***********************************
+			@Override
+			public AppointmentEntity addReview(AppointmentResponseAdd_Update appointmentResponseAdd) {
+				//Built primary key from response
+				AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
+						appointmentResponseAdd.getApptDate(),
+						appointmentResponseAdd.getLunchType(),
+						appointmentResponseAdd.getTimeSlot()
+						);
+				//Built entity using key and other response fields
+				AppointmentEntity appointmentEntity = new AppointmentEntity(
+						appointmentEntityKey,
+						appointmentResponseAdd.getFirstName(),
+						appointmentResponseAdd.getLastName(),
+						appointmentResponseAdd.getGrade(),
+						appointmentResponseAdd.getTeacher(),
+						appointmentResponseAdd.getTopic(),
+						appointmentResponseAdd.getConsultant_id(),
+						appointmentResponseAdd.getReview(),
+						LocalDateTime.now(),
+						appointmentResponseAdd.getCreateTimestamp()
+						);
+				
+				return appointmentDao.addAppointment(appointmentEntity);
+			}
 		
 	//**********************
 	// Get All Appointments
@@ -99,6 +135,21 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 	}
 	 
+	//**********************
+	// Get All Appointments with Pending Reviews
+	//**********************
+	
+	@Override
+	public List<AppointmentResponseAll> getPendingReviews() {
+		
+		
+		//retrieve data for all appointment
+		List<AppointmentEntity> appointmentyEntity = appointmentDao.getPendingReviews();
+		
+		//build a flat jason response object  (avoid nested due to composite key) 
+		return buildAppointmentReponse(appointmentyEntity);
+		
+	}
 	
 	//***********************************
 	// Get Appointments for a given date
@@ -155,10 +206,10 @@ public class AppointmentServiceImpl implements AppointmentService{
 	//*************************************************************
 	
 	@Override
-	public List<AppointmentResponse> getAppointmentDays(LocalDate currDate) {
+	public List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate) {
 		
 	
-		List<AppointmentResponse> appointmentResponse =  new ArrayList<AppointmentResponse>();
+		List<AppointmentResponseSchedule> appointmentResponse =  new ArrayList<AppointmentResponseSchedule>();
 				
 		int totalApptSlots = 10;
 		LocalDate sysDate;
@@ -233,14 +284,14 @@ public class AppointmentServiceImpl implements AppointmentService{
 		Month apptMonth    = dateTuesday.getMonth();
 		
 		//Add to List for response for A-lunch
-		appointmentResponse.add(new AppointmentResponse(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));	
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));	
 		
 		//Set Values for Tuesday B Lunch
 		lunchType   = "B";
 		apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
 		apptOpen       = totalApptSlots - apptFilled;
 		//Add to List for response for B-lunch
-		appointmentResponse.add(new AppointmentResponse(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));
 
 		
 		//************************	
@@ -255,7 +306,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		apptMonth     = dateWednesday.getMonth();
 		
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));
 		
 		//Set Values for Wednesday A Lunch
 		lunchType  = "B";
@@ -263,7 +314,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		apptOpen      = totalApptSlots - apptFilled;
 
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));	
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));	
 		
 		//******************************	
 		//***** NEXT WEEK TUESDAY ******
@@ -277,7 +328,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		apptMonth     = dateTuesdayNextweek.getMonth();
 		
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
 		
 		//Set Values for Tuesday B Lunch date Next Week
 		lunchType     = "B";
@@ -285,7 +336,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		apptOpen      = totalApptSlots - apptFilled;
 				
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
 
 		
 		//******************************	
@@ -299,7 +350,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		apptMonth     = dateWednesdayNextweek.getMonth();
 		
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
 		
 		//Set Values for Tuesday B Lunch date Next Week
 		lunchType     = "B";
@@ -307,7 +358,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		apptOpen      = totalApptSlots - apptFilled;
 				
 		//Add to List for response
-		appointmentResponse.add(new AppointmentResponse(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
 
 		/*//Display for debugging  
 		System.out.println(apptForWeek);
@@ -323,7 +374,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 	@Override
-	public List<AppointmentResponse> countByAppointment() {
+	public List<AppointmentResponseSchedule> countByAppointment() {
 		// TODO Auto-generated method stub
 		return null;
 	}

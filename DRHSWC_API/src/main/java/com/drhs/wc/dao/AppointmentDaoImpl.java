@@ -53,6 +53,16 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return appointmentRepository.getUpcomingAppointments(apptDate);
 	}
 
+	@Override
+	public List<AppointmentEntity> getPendingReviews() {
+		return appointmentRepository.getPendingReviews();
+	}
+
+	@Override
+	public AppointmentEntity addReview(AppointmentEntity appointmentEntity) {
+		return appointmentRepository.saveAndFlush(appointmentEntity);
+	}
+
 
 
 
