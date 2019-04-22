@@ -33,6 +33,10 @@ CREATE TABLE `appointment` (
   `student_grade` int(11) DEFAULT NULL,
   `student_teacher` varchar(30) DEFAULT NULL,
   `student_topic` varchar(20) DEFAULT NULL,
+  `consultant_id` int(2) DEFAULT NULL,
+  `review` varchar(500) DEFAULT NULL,
+  `review_date` datetime DEFAULT NULL,
+  `create_timestamp` datetime DEFAULT NULL,
   PRIMARY KEY (`appt_date`,`lunch_type`,`time_slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -43,7 +47,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
-INSERT INTO `appointment` VALUES ('2019-04-16','A',1,'Vidur','Agaram',11,'Norris','STEM'),('2019-04-16','A',2,'Thomas','Castillo',11,'Berry','RA Essay'),('2019-04-16','A',3,'Nandu','Agaram',12,'Berry','Ra'),('2019-04-16','A',4,'Test','test',11,'Norris','STEM'),('2019-04-16','B',1,'Chewie','Agaram',9,'Norris','STEM'),('2019-04-17','A',1,'Chewie','Agaram',9,'Skinner','CA'),('2019-04-17','A',2,'Krithi','Vudu',9,'Skinner','CA'),('2019-04-17','A',3,'Anishika','Vudu',9,'Skinner','CA'),('2019-04-17','A',4,'Kavitha','Vudu',9,'Skinner','CA'),('2019-04-23','A',1,'Vidur','Agaram',11,'Berry','RA'),('2019-04-23','A',2,'Ravi','Vudu',9,'Skinner','CA'),('2019-04-24','B',1,'Nandu','Agaram',12,'Berry','SA');
+INSERT INTO `appointment` VALUES ('2019-04-16','A',1,'Vidur','Agaram',11,'Norris','STEM',NULL,'test',NULL,NULL),('2019-04-16','A',2,'Thomas','Castillo',11,'Berry','RA Essay',NULL,'test',NULL,NULL),('2019-04-16','A',3,'Nandu','Agaram',12,'Berry','Ra',NULL,'test',NULL,NULL),('2019-04-16','A',4,'Test','test',11,'Norris','STEM',NULL,'test',NULL,NULL),('2019-04-16','B',1,'Chewie','Agaram',9,'Norris','STEM',NULL,'The stuff was good','2019-04-21 23:05:52',NULL),('2019-04-16','B',2,'Chewie','Agaram',9,'Norris','STEM',NULL,NULL,NULL,'2019-04-21 22:36:11'),('2019-04-16','B',3,'Chewie','Agaram',9,'Norris','STEM',NULL,'The stuff was good','2019-04-21 22:48:15',NULL),('2019-04-16','B',4,'Chewie','Agaram',9,'Norris','STEM',NULL,NULL,NULL,'2019-04-21 22:55:09'),('2019-04-16','B',5,'Chewie','Agaram',9,'Norris','STEM',NULL,NULL,NULL,'2019-04-21 23:01:43'),('2019-04-17','A',1,'Chewie','Agaram',9,'Skinner','CA',NULL,'',NULL,NULL),('2019-04-17','A',2,'Krithi','Vudu',9,'Skinner','CA',NULL,'test',NULL,NULL),('2019-04-17','A',3,'Anishika','Vudu',9,'Skinner','CA',NULL,'',NULL,NULL),('2019-04-17','A',4,'Kavitha','Vudu',9,'Skinner','CA',NULL,'test',NULL,NULL),('2019-04-23','A',1,'Vidur','Agaram',11,'Berry','RA',NULL,'test',NULL,NULL),('2019-04-23','A',2,'Ravi','Vudu',9,'Skinner','CA',NULL,'test',NULL,NULL),('2019-04-23','A',3,'Nandhitha','Agaram',10,'Berry','Hay ',NULL,'test',NULL,NULL),('2019-04-24','A',1,'Chews','Clues',12,'Skinner','RA',NULL,'',NULL,NULL),('2019-04-24','B',1,'Nandu','Agaram',12,'Berry','SA',NULL,'test',NULL,NULL),('2019-04-24','B',2,'Chews','Clues',11,'Skinner','RA',NULL,'test',NULL,NULL),('2019-04-30','A',1,'Nandhitha','Agaram',10,'Norris','SA',NULL,'test',NULL,NULL),('2019-05-01','A',1,'Nandhitha','Agaram',10,'Skinner','RA',NULL,'test',NULL,NULL);
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,6 +66,7 @@ CREATE TABLE `r_consultants` (
   `email` varchar(45) DEFAULT NULL,
   `email_second` varchar(45) DEFAULT NULL,
   `active` varchar(1) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
   `create_datatime` datetime DEFAULT NULL,
   `create_user` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`consultant_id`)
@@ -74,7 +79,7 @@ CREATE TABLE `r_consultants` (
 
 LOCK TABLES `r_consultants` WRITE;
 /*!40000 ALTER TABLE `r_consultants` DISABLE KEYS */;
-INSERT INTO `r_consultants` VALUES (1,'Alannah','Bell',12,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','A',NULL,NULL),(2,'Mia ','Brown',12,'hcps-brownmc5@henricostudents.org;','bcmiabrown@gmail.com','A',NULL,NULL),(3,'Gautam','Chiang',11,'hcps-chiangg1@henricostudents.org','gautamchiang@gmail.com','A',NULL,NULL),(4,'Zoe','Fields',12,'hcps-fieldsza@henricostudents.org','emutaht@gmail.com','A',NULL,NULL),(5,'Drew','Greene',11,'hcps-greeneac@henricostudents.org;','drewgr33ne12@gmail.com','A',NULL,NULL),(6,'Sarah','Hossain',10,'hcps-hossains@henricostudents.org','hossain.sarah1716@gmail.com','A',NULL,NULL),(7,'Sahil','Jaiswal',12,'hcps-jaiswalsd@henricostudents.org','sdjaiswal@outlook.com','A',NULL,NULL),(8,'Emma','Johnson',12,'hcps-johnsoec3@henricostudents.org','johnsoec3@gmail.com','A',NULL,NULL),(9,'Kasey','Kiefer',12,'hcps-kieferkl@henricostudents.org','kaseykiefer66@gmail.com','A',NULL,NULL),(10,'Jason','Leung',11,'hcps-leungjr2@henricostudents.org','leungjr2works@gmail.com','I',NULL,NULL),(11,'Alyssa','Manalo',10,'hcps-manaloaj@henricostudents.org','alyssa.manalo31@gmail.com','A',NULL,NULL),(12,'Mollie','Mero',10,'hcps-merome@henricostudents.org','crud132@gmail.com','A',NULL,NULL),(13,'Kali','McGough',12,'hcps-mcgoughkm@henricostudents.org','mcgoughkali@gmail.com','A',NULL,NULL),(14,'Sarita','Mithal',11,'hcps-mithals@henricostudents.org','saritamithal01@gmail.com','A',NULL,NULL),(15,'Ben','Nelson',11,'hcpsnilsonbb@henricostudents.org','bbntsa@gmail.com','I',NULL,NULL),(16,'Donovan','Pierce',11,'hcps-piercedm1@henricostudents.org','dmpierce@gmail.com','A',NULL,NULL),(17,'Vaishnavi','Ranganathan',11,'hcps-ranganatv@henricostudents.org','oneskyblue2@gmail.com','A',NULL,NULL),(18,'Jenna','Sliman',10,'hcps-slimanjn@henricostudents.org','jsliman948@gmail.com','A',NULL,NULL),(19,'Julia','Snow',11,'hcps-snowjs@henricostudents.org','jsnowhome@gmail.com','A',NULL,NULL),(20,'Olivia','Wilkinson',11,'hcps-wilkinsoj@henricostudents.org;','oliviawilk002@gmail.com','I',NULL,NULL),(22,'Bill','Gates',11,'hcps-chiangg1@henricostudents.org','billg@gmail.com','A',NULL,NULL);
+INSERT INTO `r_consultants` VALUES (1,'Alannah','Bell',12,'hcps-bellaj7@henricostudents.org','bellaj0801@gmail.com','A','$2a$10$2V4xDtPE5i1pN2KV.slXBOwHSnT8dLBD7m5WG0dYRY14sqsZdNtI.',NULL,NULL),(2,'Mia ','Brown',12,'hcps-brownmc5@henricostudents.org;','bcmiabrown@gmail.com','A','',NULL,NULL),(3,'Gautam','Chiang',11,'hcps-chiangg1@henricostudents.org','gautamchiang@gmail.com','A','pass3$2a$10$fsWFt/7HFNYLa0pP4ma7m.5Xd7dvgtUoS',NULL,NULL),(4,'Zoe','Fields',12,'hcps-fieldsza@henricostudents.org','emutaht@gmail.com','A','pass4$2a$10$fsWFt/7HFNYLa0pP4ma7m.5Xd7dvgtUoS',NULL,NULL),(5,'Drew','Greene',11,'hcps-greeneac@henricostudents.org;','drewgr33ne12@gmail.com','A',NULL,NULL,NULL),(6,'Sarah','Hossain',10,'hcps-hossains@henricostudents.org','hossain.sarah1716@gmail.com','A',NULL,NULL,NULL),(7,'Sahil','Jaiswal',12,'hcps-jaiswalsd@henricostudents.org','sdjaiswal@outlook.com','A',NULL,NULL,NULL),(8,'Emma','Johnson',12,'hcps-johnsoec3@henricostudents.org','johnsoec3@gmail.com','A',NULL,NULL,NULL),(9,'Kasey','Kiefer',12,'hcps-kieferkl@henricostudents.org','kaseykiefer66@gmail.com','A',NULL,NULL,NULL),(10,'Jason','Leung',11,'hcps-leungjr2@henricostudents.org','leungjr2works@gmail.com','I',NULL,NULL,NULL),(11,'Alyssa','Manalo',10,'hcps-manaloaj@henricostudents.org','alyssa.manalo31@gmail.com','A',NULL,NULL,NULL),(12,'Mollie','Mero',10,'hcps-merome@henricostudents.org','crud132@gmail.com','A',NULL,NULL,NULL),(13,'Kali','McGough',12,'hcps-mcgoughkm@henricostudents.org','mcgoughkali@gmail.com','A',NULL,NULL,NULL),(14,'Sarita','Mithal',11,'hcps-mithals@henricostudents.org','saritamithal01@gmail.com','A',NULL,NULL,NULL),(15,'Ben','Nelson',11,'hcpsnilsonbb@henricostudents.org','bbntsa@gmail.com','I',NULL,NULL,NULL),(16,'Donovan','Pierce',11,'hcps-piercedm1@henricostudents.org','dmpierce@gmail.com','A',NULL,NULL,NULL),(17,'Vaishnavi','Ranganathan',11,'hcps-ranganatv@henricostudents.org','oneskyblue2@gmail.com','A',NULL,NULL,NULL),(18,'Jenna','Sliman',10,'hcps-slimanjn@henricostudents.org','jsliman948@gmail.com','A',NULL,NULL,NULL),(19,'Julia','Snow',11,'hcps-snowjs@henricostudents.org','jsnowhome@gmail.com','A',NULL,NULL,NULL),(20,'Olivia','Wilkinson',11,'hcps-wilkinsoj@henricostudents.org;','oliviawilk002@gmail.com','I',NULL,NULL,NULL),(22,'Bill','Gates',11,'hcps-chiangg1@henricostudents.org','billg@gmail.com','A',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `r_consultants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-20 17:34:32
+-- Dump completed on 2019-04-21 23:07:48
