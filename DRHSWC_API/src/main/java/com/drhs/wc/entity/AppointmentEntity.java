@@ -28,6 +28,11 @@ public class AppointmentEntity {
 	@Column(name="student_topic")
 	private String topic;
 
+	@Column(name="consultant_id")
+	private Integer consultant_id;
+	
+	@Column(name="review")
+	private String review;
 		
 	/**
 	 * 
@@ -37,6 +42,8 @@ public class AppointmentEntity {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	/**
 	 * @param appointmentEntityKey
 	 * @param firstName
@@ -44,9 +51,11 @@ public class AppointmentEntity {
 	 * @param grade
 	 * @param teacher
 	 * @param topic
+	 * @param consultant_id
+	 * @param review
 	 */
 	public AppointmentEntity(AppointmentEntityKey appointmentEntityKey, String firstName, String lastName, int grade,
-			String teacher, String topic) {
+			String teacher, String topic, Integer consultant_id, String review) {
 		super();
 		this.appointmentEntityKey = appointmentEntityKey;
 		this.firstName = firstName;
@@ -54,7 +63,11 @@ public class AppointmentEntity {
 		this.grade = grade;
 		this.teacher = teacher;
 		this.topic = topic;
+		this.consultant_id = consultant_id;
+		this.review = review;
 	}
+
+
 
 	public AppointmentEntityKey getAppointmentEntityKey() {
 		return appointmentEntityKey;
@@ -103,5 +116,23 @@ public class AppointmentEntity {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
+
+	public Integer getConsultant_id() {
+		return consultant_id;
+	}
+
+	public void setConsultant_id(Integer consultant_id) {
+		this.consultant_id = consultant_id;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+	
+	
 
 }

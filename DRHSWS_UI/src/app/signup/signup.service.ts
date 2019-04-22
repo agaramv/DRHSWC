@@ -7,7 +7,7 @@ import { Appointment } from './appointment.model';
 })
 export class SignupService {
 
-  endpoint: string = "/api" || "http://localhost:8080";
+  endpoint: string = "/api"||"http://localhost:8080";
 
 
   constructor(private http: HttpClient) { }

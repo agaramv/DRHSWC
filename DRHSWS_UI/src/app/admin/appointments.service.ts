@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AppointmentsService {
-  endpoint:string = "http://localhost:8080";
+  endpoint:string = "/api"||"http://localhost:8080";
   constructor(private http: HttpClient) { }
 
   getPastAppoinments(){

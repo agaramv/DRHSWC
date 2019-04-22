@@ -15,8 +15,8 @@ import { Observable } from 'rxjs';
 export class ManageConsultantsComponent implements OnInit {
   displayedColumnsC: string[] = ['Action', 'Name', 'Grade', 'Email', 'Email Second'];
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
-  consultants: Consultant[] = this.consultantService.getLC();
-  reviews: ConsultantEntry[] = this.consultantService.getLR();
+  consultants: Consultant[];
+  reviews: ConsultantEntry[];
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -30,7 +30,7 @@ export class ManageConsultantsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.consultantService.getAllConsultants());
+    this.getAllConsultants();
   }
 
   //delete consultant
@@ -41,7 +41,9 @@ export class ManageConsultantsComponent implements OnInit {
   getAllConsultants(){
     this.consultantService.getAllConsultants()
       .subscribe((data: Consultant[])=>{
-        this.consultants = data;
+        console.log(data)
+        this.consultants = data
+        console.log(this.consultants)
       });
   }
 
