@@ -67,7 +67,7 @@ public class AppointmentController {
 	}
 	
 	//*************************************************
-	//Get appointment schedule to make appointments
+	//Get pending reviews
 	//*************************************************
 	@GetMapping("/appointment/review/pending")
 	public List<AppointmentResponseAll> getPendingReviews(){

@@ -10,16 +10,17 @@ import { ConsultantComponent } from './consultant/consultant.component';
 import { EntryComponent } from './consultant/entry/entry.component';
 import { AssignmentsComponent } from './consultant/assignments/assignments.component';
 import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-appointments.component';
+import { ReviewComponent } from './review/review.component';
+import { PendingComponent } from './review/pending/pending.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  {
-    path: 'signup', component: SignupComponent, children: [
-
-    ]
-  },
+  { path: 'signup', component: SignupComponent },
+  { path: 'review', component: ReviewComponent, children: [
+    { path: 'pending', component: PendingComponent}
+  ]},
   {
     path: 'consultant', children: [
       { path: '', redirectTo: 'entry', pathMatch: 'full' },

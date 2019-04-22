@@ -43,7 +43,11 @@ export class AppointmentComponent implements OnInit {
     lastName: '',
     grade: 0,
     teacher: '',
-    topic: ''
+    topic: '',
+    consultant_id: null,
+    review: null,
+    reviewDate: null,
+    createTimestamp: null
   };
 
   constructor(private signupService: SignupService, private http: HttpClient) { }
