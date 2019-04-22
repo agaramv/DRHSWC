@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.param.AppointmentResponseAll;
 import com.drhs.wc.entity.AppointmentEntityKey;
+import com.drhs.wc.entity.ReviewsEntity;
 
 
 @Repository 
@@ -31,5 +32,13 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
 	//get upcoming appointments
 	@Query(value = "select * from appointment where appt_date >=:apptDate",nativeQuery = true)
 	List<AppointmentEntity> getUpcomingAppointments(@Param("apptDate") LocalDate apptDate);
+	
+	//Get All Appointments with pending reviews
+	@Query(value = "SELECT * FROM appointment WHERE review IS NULL OR review = ''",nativeQuery = true)
+	List<AppointmentEntity> getPendingReviews();
+	
+	//Get date range Appointments with pending reviews
+	@Query(value = "SELECT * FROM appointment WHERE appt_date BETWEEN :apptDateLow AND :apptDateHigh",nativeQuery = true)
+	List<AppointmentEntity> getAllReviewsByDateRange(@Param("apptDate") LocalDate apptDateLow, @Param("apptDate") LocalDate apptDateHigh);
 	
 }

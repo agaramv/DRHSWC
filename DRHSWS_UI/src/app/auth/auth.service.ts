@@ -11,7 +11,7 @@ export class AuthService {
     // return this.http.post<any>('http://localhost:8081/login', { username, password })
 
     let data = { username: username, password: password }
-
+    console.log("in login")
     return this.http.post<any>('/api/login',
       new HttpParams()
         .set('username', username)

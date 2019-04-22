@@ -1,6 +1,7 @@
 package com.drhs.wc.param;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AppointmentResponseAll {
 	
@@ -13,6 +14,10 @@ public class AppointmentResponseAll {
 	private int grade;
 	private String teacher;
 	private String topic;
+	private Integer consultant_id;
+	private String review;
+	private LocalDateTime reviewDate;
+	private LocalDateTime createTimestamp;
 	/**
 	 * 
 	 */
@@ -20,6 +25,10 @@ public class AppointmentResponseAll {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+
 	/**
 	 * @param apptDate
 	 * @param lunchType
@@ -29,9 +38,14 @@ public class AppointmentResponseAll {
 	 * @param grade
 	 * @param teacher
 	 * @param topic
+	 * @param consultant_id
+	 * @param review
+	 * @param reviewDate
+	 * @param createTimestamp
 	 */
 	public AppointmentResponseAll(LocalDate apptDate, String lunchType, Integer timeSlot, String firstName,
-			String lastName, int grade, String teacher, String topic) {
+			String lastName, int grade, String teacher, String topic, Integer consultant_id, String review,
+			LocalDateTime reviewDate, LocalDateTime createTimestamp) {
 		super();
 		this.apptDate = apptDate;
 		this.lunchType = lunchType;
@@ -41,7 +55,15 @@ public class AppointmentResponseAll {
 		this.grade = grade;
 		this.teacher = teacher;
 		this.topic = topic;
+		this.consultant_id = consultant_id;
+		this.review = review;
+		this.reviewDate = reviewDate;
+		this.createTimestamp = createTimestamp;
 	}
+
+
+
+
 	public LocalDate getApptDate() {
 		return apptDate;
 	}
@@ -91,5 +113,37 @@ public class AppointmentResponseAll {
 		this.topic = topic;
 	}
 	
+	public Integer getConsultant_id() {
+		return consultant_id;
+	}
 
+	public void setConsultant_id(Integer consultant_id) {
+		this.consultant_id = consultant_id;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public LocalDateTime getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(LocalDateTime reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+
+	public LocalDateTime getCreateTimestamp() {
+		return createTimestamp;
+	}
+
+	public void setCreateTimestamp(LocalDateTime createTimestamp) {
+		this.createTimestamp = createTimestamp;
+	}
+
+	
 }

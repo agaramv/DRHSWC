@@ -3,7 +3,7 @@ package com.drhs.wc.param;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class AppointmentResponse {
+public class AppointmentResponseSchedule {
 
 	
 	private LocalDate apptDate;
@@ -16,7 +16,7 @@ public class AppointmentResponse {
 	/**
 	 * 
 	 */
-	public AppointmentResponse() {
+	public AppointmentResponseSchedule() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -29,7 +29,7 @@ public class AppointmentResponse {
 	 * @param apptOpen
 	 * @param apptMonth
 	 */
-	public AppointmentResponse(LocalDate apptDate, String lunchType, int apptFilled, int apptOpen, Month apptMonth) {
+	public AppointmentResponseSchedule(LocalDate apptDate, String lunchType, int apptFilled, int apptOpen, Month apptMonth) {
 		super();
 		this.apptDate = apptDate;
 		this.lunchType = lunchType;
