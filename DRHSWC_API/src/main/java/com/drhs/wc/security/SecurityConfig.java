@@ -25,11 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
 
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-//		builder.inMemoryAuthentication().withUser("user").password("{noop}user").roles("USER").and().withUser("admin")
-//				.password("{noop}admin").roles("ADMIN");
-//	}
+
 
 	  @Autowired
 	  private DataSource dataSource;
@@ -42,8 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            + " from r_consultants where email=?")
 	        .authoritiesByUsernameQuery("select email as username, 'CONSULTANT'" + 
 	        		" from r_consultants where email=?")
-////	        .authoritiesByUsernameQuery("select username, authority "
-//	            + "from authorities where username=?");
 	        .passwordEncoder(new BCryptPasswordEncoder());
 	  }
 

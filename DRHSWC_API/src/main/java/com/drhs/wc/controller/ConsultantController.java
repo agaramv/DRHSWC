@@ -35,7 +35,7 @@ public class ConsultantController {
 	// Add New Consultant
 	***************************/
 	
-	@PostMapping("/consultant/new")
+	@PostMapping("/consultant/add")
 	public ConsultantEntity addNewConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
 		ConsultantEntity ce = consultantService.addNewConsultant(consultantEntity);
 		return ce; 

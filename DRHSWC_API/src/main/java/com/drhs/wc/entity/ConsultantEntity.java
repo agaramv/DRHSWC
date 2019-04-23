@@ -30,13 +30,28 @@ public class ConsultantEntity {
 	
 	@Column(name="active")
 	private String active_inactive;
+	
+	@Column(name="password")
+	private String consultantPassword;
 
 	public ConsultantEntity() {
 		super();
 	}
 
-	public ConsultantEntity(int consultant_id, String firstName, String lastName, int grade, String email,
-			String emailSec, String active_inactive) {
+
+
+	/**
+	 * @param consultant_id
+	 * @param firstName
+	 * @param lastName
+	 * @param grade
+	 * @param email
+	 * @param emailSec
+	 * @param active_inactive
+	 * @param consultantPassword
+	 */
+	public ConsultantEntity(Integer consultant_id, String firstName, String lastName, Integer grade, String email,
+			String emailSec, String active_inactive, String consultantPassword) {
 		super();
 		this.consultant_id = consultant_id;
 		this.firstName = firstName;
@@ -45,63 +60,103 @@ public class ConsultantEntity {
 		this.email = email;
 		this.emailSec = emailSec;
 		this.active_inactive = active_inactive;
+		this.consultantPassword = consultantPassword;
 	}
 
-	public int getConsultant_id() {
+
+
+	public Integer getConsultant_id() {
 		return consultant_id;
 	}
+
+
+
+	public void setConsultant_id(Integer consultant_id) {
+		this.consultant_id = consultant_id;
+	}
+
+
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
 
-	public int getGrade() {
-		return grade;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getEmailSec() {
-		return emailSec;
-	}
-	
-	public String getActive_inactive() {
-		return active_inactive;
-	}
-
-	public void setActive_inactive(String active_inactive) {
-		this.active_inactive = active_inactive;
-	}
-
-	public void setConsultant_id(int consultant_id) {
-		this.consultant_id = consultant_id;
-	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public void setGrade(int grade) {
+
+
+	public Integer getGrade() {
+		return grade;
+	}
+
+
+
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+
+
+	public String getEmailSec() {
+		return emailSec;
+	}
+
+
+
 	public void setEmailSec(String emailSec) {
 		this.emailSec = emailSec;
 	}
-	
+
+
+
+	public String getActive_inactive() {
+		return active_inactive;
+	}
+
+
+
+	public void setActive_inactive(String active_inactive) {
+		this.active_inactive = active_inactive;
+	}
+
+
+
+	public String getConsultantPassword() {
+		return consultantPassword;
+	}
+
+
+
+	public void setConsultantPassword(String consultantPassword) {
+		this.consultantPassword = consultantPassword;
+	}
 	
 }
