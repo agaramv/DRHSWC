@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { SignupService } from 'src/app/signup/signup.service';
 import { Appointment } from 'src/app/signup/appointment.model';
 import { AppointmentUpcPst } from 'src/app/models/appointmentUpcPst.model';
-import { AppointmentsService } from '../appointments.service';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material';
+import { AppointmentsService } from 'src/app/appointments.service';
 
 @Component({
   selector: 'app-manage-appointments',
@@ -12,19 +14,19 @@ import { AppointmentsService } from '../appointments.service';
 })
 export class ManageAppointmentsComponent implements OnInit {
   displayedColumnsA: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
-  displayedColumnsAP: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
-  displayedColumnsAU: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
   appointments: Appointment[];
-  apptPast: AppointmentUpcPst[];
-  apptUpcoming: AppointmentUpcPst[];
+  date = new FormControl(new Date());
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 3 && day !== 4 && day !== 5 && day !== 6;
+  }
 
   constructor(private signupService: SignupService, private apptService: AppointmentsService) { }
 
   ngOnInit() {
     //this.appointments = this.signupService.getAllAppointments();
-    this.getPastAppointments();
-    this.getUpcomingAppointments();
-    //console.log(this.apptPast.firstName)
+    console.log(this.date)
   }
 
   //get all appointments
@@ -32,24 +34,6 @@ export class ManageAppointmentsComponent implements OnInit {
     this.signupService.getAllAppointments()
       .subscribe((data: Appointment[]) =>{
         this.appointments = data;
-      })
-  }
-  //get past two weeks appointments
-  getPastAppointments(){
-    this.apptService.getPastAppoinments()
-      .subscribe((data: AppointmentUpcPst[])=>{
-        //console.log(data.appointmentEntityKey);
-        this.apptPast = data;
-        
-      })
-  }
-
-  //get upcoming appointments
-  getUpcomingAppointments(){
-    this.apptService.getUpcomingAppointments()
-      .subscribe((data: AppointmentUpcPst[])=>{
-        console.log(data)
-        this.apptUpcoming = data;
       })
   }
 

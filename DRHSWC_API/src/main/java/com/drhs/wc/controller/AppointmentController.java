@@ -88,10 +88,15 @@ public class AppointmentController {
 		return appointmentService.getAppointmentDays(apptDate);
 	}
 	
+	//********************
+	//Get appointment range
 	//*******************
-	// Save Appointment
-	//*******************
-	
+	@GetMapping("/appointment/range/{apptDateF}/{apptDateT}")
+	public List<AppointmentResponseAll> getAppointmentsByDateRange(@PathVariable("apptDateF") String argDateF, @PathVariable("apptDateT") String argDateT){
+		LocalDate apptDateF = LocalDate.parse(argDateF);
+		LocalDate apptDateT = LocalDate.parse(argDateT);
+		return appointmentService.getAppointmentsByDateRange(apptDateF, apptDateT);
+	}
 	
 	//***********************
 	// Get past appointments

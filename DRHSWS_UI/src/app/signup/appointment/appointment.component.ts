@@ -23,22 +23,28 @@ export class AppointmentComponent implements OnInit {
   slotsWN = [];
   dateTN: string;
   dateWN: string;
-
   //Displayed Vars
   slotsT = [];
   slotsW = [];
   dateT: string;
   dateW: string;
+  keyWordT = '';
+  keyWordW = '';
+  keyWordBT = false;
+  keyWordBTNorm = true;
+  keyWordBW = false;
+  keyWordBWNorm = true;
   //All other Vars
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
   apptSch;
   submitted: boolean = this.signupService.onSelectedTime();
   selected: boolean = false;
+  
   curWeek: boolean = true;
   nextWeek: boolean = false;
   newAppt: Appointment= {
     apptDate: '',
-    lunchType: 'a',
+    lunchType: '',
     firstName: '',
     lastName: '',
     grade: 0,
@@ -59,10 +65,35 @@ export class AppointmentComponent implements OnInit {
 
 
   setValues(){
-    this.dateT = this.apptSch[0].apptDate;
-    this.dateW = this.apptSch[2].apptDate;
-    this.slotsT+=this.apptSch[0].lunchType;
-    this.slotsW+=this.apptSch[0].lunchType;
+    this.dateT = this.dateTC;
+    this.dateW = this.dateWC;
+    //Tuesday
+    console.log(this.slotsTC);
+    if(this.slotsTC[0] == -1){
+      console.log(this.slotsTC);
+      this.keyWordT = 'RESERVED';
+      this.keyWordBT = true;
+      this.keyWordBTNorm = false;
+
+    }
+    else if(this.slotsTC[0] == -2){
+      this.keyWordT = 'DISABLED';
+      this.keyWordBT = true;
+      this.keyWordBTNorm = false;
+    }
+    else{this.slotsT = this.slotsTC}
+    //Wednesday
+    if(this.slotsTC[1] == -1){
+      this.keyWordW = 'RESERVED';
+      this.keyWordBW = true;
+      this.keyWordBWNorm = false;
+    }
+    else if(this.slotsTC[1] == -2){
+      this.keyWordW = 'DISABLED';
+      this.keyWordBW = true;
+      this.keyWordBWNorm = false;
+    }
+    else{this.slotsW = this.slotsWC}
   }
   //Get Request all of the current appointments
   getCurrentCalendar() {
@@ -73,10 +104,7 @@ export class AppointmentComponent implements OnInit {
         this.setValuesCur();
         this.setValuesNext();
         //Sets default Current Weeks Values
-        this.dateT = this.dateTC;
-        this.dateW = this.dateWC;
-        this.slotsT = this.slotsTC;
-        this.slotsW = this.slotsWC;
+        this.setValues();
         console.log(this.dateTC)
     });
   }
@@ -112,8 +140,30 @@ export class AppointmentComponent implements OnInit {
   onClickCurrent(){
     this.dateT = this.dateTC;
     this.dateW = this.dateWC;
-    this.slotsT = this.slotsTC;
-    this.slotsW = this.slotsWC;
+    //Tuesday
+    if(this.slotsTC[0] == -1){
+      this.keyWordT = 'RESERVED';
+      this.keyWordBT = true;
+      this.keyWordBTNorm = false;
+    }
+    else if(this.slotsTC[0] == -2){
+      this.keyWordT = 'DISABLED';
+      this.keyWordBT = true;
+      this.keyWordBTNorm = false;
+    }
+    else{this.slotsT = this.slotsTC}
+    //Wednesday
+    if(this.slotsWN[1] == -1){
+      this.keyWordW = 'RESERVED';
+      this.keyWordBW = true;
+      this.keyWordBWNorm = false;
+    }
+    else if(this.slotsWN[1] == -2){
+      this.keyWordW = 'DISABLED';
+      this.keyWordBW = true;
+      this.keyWordBWNorm = false;
+    }
+    else{this.slotsW = this.slotsWC}
     this.toggle()
   }
 
@@ -121,8 +171,30 @@ export class AppointmentComponent implements OnInit {
   onClickNext(){
     this.dateT = this.dateTN;
     this.dateW = this.dateWN;
-    this.slotsT = this.slotsTN;
-    this.slotsW = this.slotsWN;
+    //Tuesday
+    if(this.slotsTN[0] == -1){
+      this.keyWordT = 'RESERVED';
+      this.keyWordBT = true;
+      this.keyWordBTNorm = false;
+    }
+    else if(this.slotsTN[0] == -2){
+      this.keyWordT = 'DISABLED';
+      this.keyWordBT = true;
+      this.keyWordBTNorm = false;
+    }
+    else{this.slotsT = this.slotsTC}
+    //Wednesday
+    if(this.slotsWN[1] == -1){
+      this.keyWordW = 'RESERVED';
+      this.keyWordBW = true;
+      this.keyWordBWNorm = false;
+    }
+    else if(this.slotsWN[1] == -2){
+      this.keyWordW = 'DISABLED';
+      this.keyWordBW = true;
+      this.keyWordBWNorm = false;
+    }
+    else{this.slotsW = this.slotsWC}
     this.toggle();
   }
 

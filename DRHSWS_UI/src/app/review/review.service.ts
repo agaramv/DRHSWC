@@ -22,7 +22,7 @@ export class ReviewService {
 
   //gets past reviews per consultant
   getPastReviews(){
-
+    
   }
 
   //gets all past reviews

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Appointment } from 'src/app/signup/appointment.model';
 
 @Component({
   selector: 'app-past',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./past.component.scss']
 })
 export class PastComponent implements OnInit {
+  reviewsPast: Appointment[];
+  displayedColumns = ['Date', 'Lunch', 'Student', 'Grade', 'Teacher', 'Review'];
 
   constructor() { }
 

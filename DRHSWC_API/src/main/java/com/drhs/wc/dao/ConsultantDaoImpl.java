@@ -37,6 +37,7 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	@Override
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity) {
 		ConsultantEntity addEntity = consultantRepo.saveAndFlush(consultantEntity);
+		System.out.println(addEntity.getFirstName());
 		return addEntity;
 	}
 

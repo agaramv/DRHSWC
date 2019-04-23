@@ -15,4 +15,9 @@ export class AppointmentsService {
   getUpcomingAppointments(){
     return this.http.get<any>(this.endpoint+'/appointment/upcoming');
   }
+
+  getAppointmentsByDateRange(from, to){
+    return this.http.get<any>(this.endpoint+'/appointment/range/'+from+'/'+to);
+  }
+
 }

@@ -1,6 +1,6 @@
 <br>
-<h3>Past Reviews</h3>
-<label>Filter Range</label>
+<h3>Past Appointments</h3>
+<label>Appointment Date Range</label>
 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-inline">
   <div class="form-group">
     <input id="from" type="text" class="form-control mb-2 mr-sm-2" name="from" ngModel>
@@ -11,41 +11,44 @@
   </div>
 
   <div class="form-group">
-    <button id="sumbit" type="submit" class="btn btn-primary mb-2 mr-sm-2">Filter</button>
+    <button id="sumbit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Filter</button>
   </div>
 </form>
-<table mat-table [dataSource]="reviewsPast" class="mat-elevation-z8" width="100%">
+<div class="styles mat-elevation-z8">
+<table mat-table [dataSource]="apptPast"  width="100%">
+
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{ reviewsPast.apptDate}} </td>
+    <td mat-cell *matCellDef="let apptPast"> {{ apptPast.apptDate}} </td>
   </ng-container>
  
   <ng-container matColumnDef="Lunch">
     <th mat-header-cell *matHeaderCellDef> Lunch </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.lunchType}} </td>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.lunchType}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Student">
     <th mat-header-cell *matHeaderCellDef> Student </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.firstName}} {{reviewsPast.lastName}}  </td>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.firstName}} {{apptPast.lastName}}  </td>
   </ng-container>
 
   <ng-container matColumnDef="Grade">
     <th mat-header-cell *matHeaderCellDef> Grade </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.grade}}  </td>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.grade}}  </td>
   </ng-container>
 
   <ng-container matColumnDef="Teacher">
     <th mat-header-cell *matHeaderCellDef> Teacher </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.teacher}}  </td>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.teacher}}  </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="Topic">
+    <th mat-header-cell *matHeaderCellDef> Review </th>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.topic}}  </td>
   </ng-container>
 
-  <ng-container matColumnDef="Review">
-      <th mat-header-cell *matHeaderCellDef> Review </th>
-      <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.review}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsAP"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsAP;"></tr>
 </table>
+</div>
 <br>

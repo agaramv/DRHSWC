@@ -14,17 +14,26 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="row" id="">
+      <div class="row" *ngIf="keyWordBTNorm">
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(1)" [disabled]="">A Lunch 
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(1)">A Lunch 
             <span class="badge badge-light">{{slotsT[0]}}</span>
           </button>
         </div>
         <mat-divider [vertical]=true></mat-divider>
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(2)" [disabled]="">B Lunch 
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(2)">B Lunch 
             <span class="badge badge-light">{{slotsT[1]}}</span>
           </button>    
+        </div>
+      </div>
+      <div class="row" *ngIf="keyWordBT">
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [disabled]="true">{{keyWordT}}</button>
+        </div>
+        <mat-divider [vertical]=true></mat-divider>
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [disabled]="true">{{keyWordT}}</button>    
         </div>
       </div>
     </mat-card-content>
@@ -35,13 +44,26 @@
       <mat-card-title><h5>{{dateW}}</h5></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="row">
+      <div class="row" *ngIf="keyWordBWNorm">
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(3)" [disabled]="">A Lunch <span class="badge badge-light">{{slotsW[0]}}</span></button>
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(3)">A Lunch 
+            <span class="badge badge-light">{{slotsW[0]}}</span>
+          </button>
         </div>
         <mat-divider [vertical]=true></mat-divider>
         <div class="col">
-          <button type="button" class="btn btn-primary lunch" (click)="onSelected(4)" [disabled]="">B Lunch <span class="badge badge-light">{{slotsW[1]}}</span></button>    
+          <button type="button" class="btn btn-primary lunch" (click)="onSelected(4)">B Lunch 
+            <span class="badge badge-light">{{slotsW[1]}}</span>
+          </button>    
+        </div>
+      </div>
+      <div class="row" *ngIf="keyWordBW">
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [disabled]="true">{{keyWordW}}</button>
+        </div>
+        <mat-divider [vertical]=true></mat-divider>
+        <div class="col">
+          <button type="button" class="btn btn-primary lunch" [disabled]="true">{{keyWordW}}</button>    
         </div>
       </div>
     </mat-card-content>

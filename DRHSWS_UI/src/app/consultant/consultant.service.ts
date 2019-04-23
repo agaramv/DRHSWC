@@ -9,15 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class ConsultantService {
   //consultants: Consultant[];
   endpoint = "/api"||"http://localhost:8080";
-  consultants: Consultant[] = [
-    {consultant_id: 1, first: 'Vidur', last: 'Agaram', grade: 9, email:'stuff@gmail.com', emailSec:'stuff@gmail.com', active_inactive: 'a'},
-    {consultant_id: 2, first: 'Thomas', last: 'Castillo', grade: 10, email:'stuff@gmail.com', emailSec:'stuff@gmail.com', active_inactive: 'a'}
-  ];
-
-  reviews: any[] = [
-    {consultant: 'Vidur Agaram', student: 'Vidur Agaram', topic:'stuff@gmail.com', teacher:'stusdfasdaf@gmail.com', review: 'sdfada'},
-    {consultant: 'Vidur Agaram', student: 'Vidur Agaram', topic:'stuff@gmail.com', teacher:'stuff@gmail.com', review: 'a'}
-  ];
 
   constructor(private http: HttpClient) { }
 
@@ -25,15 +16,22 @@ export class ConsultantService {
     return this.http.get<any>(this.endpoint+'/reviews/all');
   }
 
-  getLC(){
-    return this.consultants;
-  }
-
-  getLR(){
-    return this.reviews;
-  }
-
   getAllConsultants(){
     return this.http.get<any>(this.endpoint+'/consultant/all');
+  }
+
+  deleteConsultant(index){
+    return this.http.delete<any>(this.endpoint+'/consultant/delete/'+index);
+  }
+
+  addNewConsultant(id, newConsultant){
+    newConsultant.consultant_id = id;
+    console.log(newConsultant)
+    //return 8;
+    return this.http.post<any>(this.endpoint+"/consultant/new", newConsultant);
+  }
+
+  getConsultantById(index){
+    return this.http.get<any>(this.endpoint+'/consultant')
   }
 }
