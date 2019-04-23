@@ -15,20 +15,22 @@ import { PendingComponent } from './review/pending/pending.component';
 import { UpcomingComponent } from './signup/upcoming/upcoming.component';
 import { AppointmentComponent } from './signup/appointment/appointment.component';
 import { PastApptComponent } from './signup/past-appt/past-appt.component';
+import { PastComponent } from './review/past/past.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'appointment', component: SignupComponent, children:[
-    { path: '', redirectTo: '/new', pathMatch: 'full' },
+    { path: '', redirectTo: 'new', pathMatch: 'full' },
     { path: 'new', component: AppointmentComponent },
     { path: 'past', component: PastApptComponent },
     { path: 'upcoming', component: UpcomingComponent },
   ]},
   { path: 'review', component: ReviewComponent, children: [
     { path: '', redirectTo: '/pending', pathMatch: 'full' },
-    { path: 'pending', component: PendingComponent}
+    { path: 'pending', component: PendingComponent},
+    { path: 'past', component: PastComponent}
   ]},
   { path: 'consultant', children: [
       { path: '', redirectTo: 'entry', pathMatch: 'full' },
@@ -37,7 +39,7 @@ const routes: Routes = [
     ]},
   {
     path: 'admin', children: [
-      { path: 'consultant', component: ManageConsultantsComponent },
+      { path: 'consultants', component: ManageConsultantsComponent },
    //   { path: 'settings' },
     ]
   },

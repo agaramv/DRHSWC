@@ -8,13 +8,13 @@
         <a class="nav-link" routerLink="/home">Home</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" role="button" routerLink="/appointment" data-toggle="dropdown" id="navbarDropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdown">
           Appointments
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="/new">New Appointment</a>
-          <a class="dropdown-item" routerLink="/upcoming">Upcoming Appointments</a>
-          <a class="dropdown-item" routerLink="/past">Past Appointments</a>
+          <a class="dropdown-item" routerLink="/appointment/new">New Appointment</a>
+          <a class="dropdown-item" routerLink="/appointment/upcoming">Upcoming Appointments</a>
+          <a class="dropdown-item" routerLink="/appointment/past">Past Appointments</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -22,8 +22,8 @@
           Reviews
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="/pending">Pending Reviews</a>
-          <a class="dropdown-item" routerLink="/past">Past Reviews</a>
+          <a class="dropdown-item" routerLink="/review/pending">Pending Reviews</a>
+          <a class="dropdown-item" routerLink="/review/past">Past Reviews</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -31,8 +31,8 @@
           Admin
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="/consultants">Manage Consultants</a>
-          <a class="dropdown-item" routerLink="/Settings">Settings</a>
+          <a class="dropdown-item" routerLink="/admin/consultants">Manage Consultants</a>
+          <a class="dropdown-item" routerLink="/admin/settings">Settings</a>
         </div>
       </li>
       <li class="nav-item">
