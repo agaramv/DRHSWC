@@ -25,6 +25,8 @@ import { ReviewComponent } from './review/review.component';
 import { PendingComponent } from './review/pending/pending.component';
 import { PastComponent } from './review/past/past.component';
 import { DropdownDirective } from './dropdownDirective';
+import { UpcomingComponent } from './signup/upcoming/upcoming.component';
+import { PastApptComponent } from './signup/past-appt/past-appt.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { DropdownDirective } from './dropdownDirective';
     AppointmentComponent,
     ReviewComponent,
     PendingComponent,
-    PastComponent
+    PastComponent,
+    UpcomingComponent,
+    PastApptComponent
   ],
   imports: [
     BrowserModule,
