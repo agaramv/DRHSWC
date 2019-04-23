@@ -32,9 +32,9 @@ export class PendingComponent implements OnInit{
 
   ngOnInit() {
     this.getPendingReviews();
-    if(this.submitted=true){
-      this.getPendingReviews();
-    }
+    // if(this.submitted=true){
+    //   this.getPendingReviews();
+    // }
   }
 
     //Captures the form data
@@ -65,7 +65,7 @@ export class PendingComponent implements OnInit{
     //add review
     addNewReview(newReview){
       this.reviewService.addReview(newReview).subscribe((data)=>{
-        console.log('Review Added');
+        this.getPendingReviews()
       });
     }
 

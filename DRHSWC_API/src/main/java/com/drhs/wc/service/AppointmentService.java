@@ -19,6 +19,9 @@ public interface AppointmentService {
 	//Get appointments by date
 	List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate);
 	
+	//Get appointments by date range
+	List<AppointmentResponseAll> getAppointmentsByDateRange(LocalDate apptDateF,LocalDate apptDateT);
+	
 	//Get Past appointments
 	List<AppointmentResponseAll> getPastAppointments(LocalDate apptDate);
 	

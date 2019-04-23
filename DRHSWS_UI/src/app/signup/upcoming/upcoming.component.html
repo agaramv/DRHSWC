@@ -1,6 +1,7 @@
 <br>
 <h3>Upcoming Appointments</h3>
-<table mat-table [dataSource]="apptUpcoming" class="mat-elevation-z8" width="100%">
+<div class="styles mat-elevation-z8">
+<table mat-table [dataSource]="apptUpcoming" width="100%">
 
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -9,7 +10,7 @@
  
   <ng-container matColumnDef="Lunch">
     <th mat-header-cell *matHeaderCellDef> Lunch </th>
-    <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.lunchType}} </td>
+    <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.lunchType}}-Lunch </td>
   </ng-container>
 
   <ng-container matColumnDef="Student">
@@ -28,11 +29,12 @@
   </ng-container>
   
   <ng-container matColumnDef="Topic">
-    <th mat-header-cell *matHeaderCellDef> Review </th>
+    <th mat-header-cell *matHeaderCellDef> Topic </th>
     <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.topic}}  </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumnsAU"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumnsAU;"></tr>
 </table>
+</div>
 <br>

@@ -1,6 +1,7 @@
 
 <br>
 <h3>Consultant Reviews</h3>
+<div>
 <table mat-table [dataSource]="reviews" class="mat-elevation-z8" width="100%">
 
   <ng-container matColumnDef="Action" >
@@ -44,18 +45,52 @@
 <br>
 <h3>Consultant</h3>
 <!-- Show list of consultant. Add and delete buttons on top. -->
-<button mat-raised-button (click)="add()" color="primary"> Add New</button>
-<br><br>
-<table mat-table [dataSource]="consultants" class="mat-elevation-z8" width="100%">
+<button mat-raised-button (click)="add()" color="primary"> Add New</button><br>
+<div *ngIf="new">
+  <br>
+</div>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="new" class="form-inline" id="addForm">
+  <div class="form-group">
+    <!-- <label>Consultant First Name: </label> -->
+    <input id="firstName" type="text" class="form-control mb-2 mr-sm-2" name="firstName" placeholder="Enter First Name" ngModel>
+  </div>
+          
+  <div class="form-group">
+    <!-- <label >Consultant Last Name: </label> -->
+    <input id="lastName" type="text" class="form-control mb-2 mr-sm-2" name="lastName" placeholder="Enter Last Name" ngModel>
+  </div>	
   
-  <ng-container matColumnDef="Action" >
+  <div class="form-group">
+      <!-- <label >Consultant Last Name: </label> -->
+    <input id="grade" type="text" class="form-control mb-2 mr-sm-2" name="grade" placeholder="Enter Grade" ngModel>
+  </div>
+          
+  <div class="form-group">
+    <!-- <label>Consultant Email:</label>  -->
+    <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="emailC" placeholder="Enter Email" ngModel>
+  </div>
+
+  <div class="form-group">
+    <!-- <label>Consultant Email:</label>  -->
+    <input id="emailSec" type="email" class="form-control mb-2 mr-sm-2" name="emailSec" placeholder="Enter Second Email" ngModel>
+  </div>
+
+  <div class="form-group">
+    <button id="sumbit" type="submit" mat-raised-button color="primary">Submit</button>
+  </div>
+</form>
+<br>
+<div class="styles mat-elevation-z8">
+<table mat-table [dataSource]="consultants" >
+  
+  <ng-container matColumnDef="Action">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let consultants; let i = index" id="actions"> 
       <button id="edit" mat-icon-button color="primary">
         <mat-icon>edit</mat-icon>
       </button>
       <button id="delete" mat-icon-button color="warn" (click)="delete(i)">
-        <mat-icon>delete</mat-icon> {{i}}
+        <mat-icon>delete</mat-icon>
       </button>
     </td>
   </ng-container>
@@ -76,11 +111,12 @@
   </ng-container>
 
   <ng-container matColumnDef="Email Second">
-    <th mat-header-cell *matHeaderCellDef> Email Sec </th>
+    <th mat-header-cell *matHeaderCellDef> Secondary Email </th>
     <td mat-cell *matCellDef="let consultants"> {{consultants.emailSec}} </td>
   </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumnsC"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumnsC;"></tr>
 </table>
+</div>
 <br>

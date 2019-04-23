@@ -7,7 +7,7 @@ import { Appointment } from 'src/app/signup/appointment.model';
   styleUrls: ['./past.component.scss']
 })
 export class PastComponent implements OnInit {
-  reviewsPending: Appointment[];
+  reviewsPast: Appointment[];
   displayedColumns = ['Date', 'Lunch', 'Student', 'Grade', 'Teacher', 'Review'];
 
   constructor() { }

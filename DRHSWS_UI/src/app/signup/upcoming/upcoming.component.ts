@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentsService } from 'src/app/admin/appointments.service';
 import { AppointmentUpcPst } from 'src/app/models/appointmentUpcPst.model';
+import { AppointmentsService } from 'src/app/appointments.service';
 
 @Component({
   selector: 'app-upcoming',

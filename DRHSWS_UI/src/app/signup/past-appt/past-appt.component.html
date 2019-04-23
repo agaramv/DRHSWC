@@ -1,6 +1,21 @@
 <br>
 <h3>Past Appointments</h3>
-<table mat-table [dataSource]="apptPast" class="mat-elevation-z8" width="100%">
+<label>Appointment Date Range</label>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-inline">
+  <div class="form-group">
+    <input id="from" type="text" class="form-control mb-2 mr-sm-2" name="from" ngModel>
+  </div>		
+  <label class="mb-2 mr-sm-2">To</label>
+  <div class="form-group">
+    <input id="to" type=”text” class="form-control mb-2 mr-sm-2" name="to" ngModel>
+  </div>
+
+  <div class="form-group">
+    <button id="sumbit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Filter</button>
+  </div>
+</form>
+<div class="styles mat-elevation-z8">
+<table mat-table [dataSource]="apptPast"  width="100%">
 
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -35,4 +50,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumnsAP"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumnsAP;"></tr>
 </table>
+</div>
 <br>

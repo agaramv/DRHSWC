@@ -16,7 +16,8 @@ export class AppointmentsService {
     return this.http.get<any>(this.endpoint+'/appointment/upcoming');
   }
 
-  deleteConsultant(index){
-    return this.http.delete<any>(this.endpoint+'/consultant/'+index);
+  getAppointmentsByDateRange(from, to){
+    return this.http.get<any>(this.endpoint+'/appointment/range/'+from+'/'+to);
   }
+
 }

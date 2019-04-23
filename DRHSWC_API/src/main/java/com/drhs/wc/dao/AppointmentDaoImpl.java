@@ -1,3 +1,4 @@
+
 package com.drhs.wc.dao;
 
 import java.time.LocalDate;
@@ -61,6 +62,12 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	@Override
 	public AppointmentEntity addReview(AppointmentEntity appointmentEntity) {
 		return appointmentRepository.saveAndFlush(appointmentEntity);
+	}
+
+	@Override
+	public List<AppointmentEntity> getAppointmentsByDateRange(LocalDate apptDateF, LocalDate apptDateT) {
+		// TODO Auto-generated method stub
+		return appointmentRepository.getAppointmentsByDateRange(apptDateF, apptDateT);
 	}
 
 

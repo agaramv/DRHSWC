@@ -18,6 +18,9 @@ public interface AppointmentDao {
 	//Get appointments by date
 	public List<AppointmentEntity> getAppointmentsByDate(LocalDate apptDate); 
 	
+	//Get appointments by range
+	public List<AppointmentEntity> getAppointmentsByDateRange(LocalDate apptDateF, LocalDate apptDateT);
+	
 	//Get past appointments
 	public List<AppointmentEntity> getPastAppointments(LocalDate apptDate);
 	

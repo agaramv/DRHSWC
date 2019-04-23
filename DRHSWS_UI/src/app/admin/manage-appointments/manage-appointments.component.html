@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <h3>Appointments</h3>
 <table mat-table [dataSource]="appointments" class="mat-elevation-z8" width="100%">
 
@@ -34,17 +34,26 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumnsA"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumnsA;"></tr>
-</table>
+</table> -->
 
 <br>
 <h3>Manage Appointments</h3>
-<button mat-raised-button color="primary" id="reserve">Reserve Date</button>
-<button mat-raised-button color="warn" id="disable">Disable Date</button><br><br>
-<mat-form-field class="example-full-width">
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker touchUi #picker></mat-datepicker>
-</mat-form-field>
+  <button mat-raised-button color="primary" id="reserve">Reserve Date</button>
+  <button mat-raised-button color="warn" id="disable">Disable Date</button><br><br>
+  <label>Appointment Date Range</label>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <input id="date" type="text" class="form-control mb-2 mr-sm-2" name="date" ngModel>
+    </div>		
+  
+    <div class="form-group">
+      <button id="sumbit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Disable Date</button>
+    </div>
+    <div class="form-group">
+      <button id="sumbit" type="submit" class="btn btn-outline-danger mb-2 mr-sm-2">Reserve Date</button>
+    </div>
+  </form>
+
 <br>
 
 

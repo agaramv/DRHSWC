@@ -27,6 +27,7 @@ import { PastComponent } from './review/past/past.component';
 import { DropdownDirective } from './dropdownDirective';
 import { UpcomingComponent } from './signup/upcoming/upcoming.component';
 import { PastApptComponent } from './signup/past-appt/past-appt.component';
+import { SettingsComponent } from './admin/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PastApptComponent } from './signup/past-appt/past-appt.component';
     PendingComponent,
     PastComponent,
     UpcomingComponent,
-    PastApptComponent
+    PastApptComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

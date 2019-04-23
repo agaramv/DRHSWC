@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, NgForm } from '@angular/forms';
 import { Consultant } from 'src/app/consultant/consultant.model';
 import { ConsultantService } from 'src/app/consultant/consultant.service';
 import { ConsultantEntry } from 'src/app/consultant/entry/ConsultantEntry.model';
@@ -17,7 +17,17 @@ export class ManageConsultantsComponent implements OnInit {
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
   reviews: ConsultantEntry[];
+  newConsultant: Consultant = {
+    consultant_id: 0,
+    firstName: '',
+    lastName: '',
+    grade: 0,
+    email: '',
+    emailSec: '',
+    active_inactive: ''
+  };
   id = 0;
+  new = false;
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -30,16 +40,54 @@ export class ManageConsultantsComponent implements OnInit {
     //this.getAllReviews();
   }
 
+  onSubmit(form: NgForm){
+    console.log(form.value.firstName)
+    this.newConsultant.firstName = form.value.firstName;
+    console.log(this.newConsultant.firstName)
+    this.newConsultant.lastName = form.value.lastName;
+    this.newConsultant.grade = Number(form.value.grade);
+    this.newConsultant.email = form.value.emailC;
+    this.newConsultant.emailSec = form.value.emailSec;
+    this.newConsultant.active_inactive = 'A';
+    console.log('new')
+    this.new = false;
+    this.addNewConsultant()
+  }
+
+  addNewConsultant(){
+    this.consultantService.getAllConsultants().subscribe((data: Consultant[])=>{
+      //this.newConsultant.consultant_id = data[data.length-1].consultant_id+1;
+      console.log(data[data.length-1].consultant_id+1)
+      this.consultantService.addNewConsultant(data[data.length-1].consultant_id+1, this.newConsultant).subscribe((data)=>{
+        console.log("New Consultant Added"+data[data.length-1].consultant_id)
+        console.log(data.length-1)
+      })
+    })
+  }
+
+  setValues(){
+    
+  }
+
   ngOnInit() {
     this.getAllConsultants();
   }
 
   //delete consultant
   delete(index){
-    this.id = index+1;
-    
+    this.id = index;
+    this.consultantService.getAllConsultants().subscribe((data: Consultant[])=>{
+      console.log(data[this.id].consultant_id)
+      this.id = data[this.id].consultant_id
+      this.consultantService.deleteConsultant(this.id.toString()).subscribe((data)=>{
+        console.log("Deleted consultant"+data)
+      }); 
+    })
   }
-  //
+  //add new consultant
+  add(){
+    this.new = true;
+  }
   
   //Get all consultants
   getAllConsultants(){

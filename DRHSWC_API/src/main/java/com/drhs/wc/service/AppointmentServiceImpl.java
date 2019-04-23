@@ -469,6 +469,14 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 
+	@Override
+	public List<AppointmentResponseAll> getAppointmentsByDateRange(LocalDate apptDateF, LocalDate apptDateT) {
+		List<AppointmentEntity> appointmentyEntity = appointmentDao.getAppointmentsByDateRange(apptDateF, apptDateT);
+		
+		return buildAppointmentReponse(appointmentyEntity);
+	}
+
+
 
 
 

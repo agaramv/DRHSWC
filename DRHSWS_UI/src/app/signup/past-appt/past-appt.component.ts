@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentsService } from 'src/app/admin/appointments.service';
 import { AppointmentUpcPst } from 'src/app/models/appointmentUpcPst.model';
+import { NgForm } from '@angular/forms';
+import { filter } from 'rxjs/operators';
+import { AppointmentsService } from 'src/app/appointments.service';
 
 @Component({
   selector: 'app-past-appt',
@@ -10,11 +12,29 @@ import { AppointmentUpcPst } from 'src/app/models/appointmentUpcPst.model';
 export class PastApptComponent implements OnInit {
   displayedColumnsAP: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
   apptPast: AppointmentUpcPst[];
+  filter = {
+    from: '',
+    to: ''
+  }
 
   constructor(private apptService: AppointmentsService) { }
 
   ngOnInit() {
     this.getPastAppointments();
+  }
+
+  onSubmit(form: NgForm){
+    this.filter.from = form.value.from;
+    this.filter.to = form.value.to;
+    console.log(filter);
+    this.getAppointmentDateRange();
+  }
+
+  getAppointmentDateRange(){
+    this.apptService.getAppointmentsByDateRange(this.filter.from, this.filter.to)
+      .subscribe((data: AppointmentUpcPst[])=>{
+        this.apptPast = data;
+      })
   }
 
   //get past two weeks appointments
