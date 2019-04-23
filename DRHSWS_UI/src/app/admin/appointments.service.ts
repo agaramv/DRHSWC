@@ -15,4 +15,8 @@ export class AppointmentsService {
   getUpcomingAppointments(){
     return this.http.get<any>(this.endpoint+'/appointment/upcoming');
   }
+
+  deleteConsultant(index){
+    return this.http.delete<any>(this.endpoint+'/consultant/'+index);
+  }
 }

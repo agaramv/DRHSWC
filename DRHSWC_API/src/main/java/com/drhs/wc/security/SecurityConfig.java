@@ -53,6 +53,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.authorizeRequests().antMatchers("/appointment/**").permitAll();
 		http.authorizeRequests().antMatchers("/consultant/**").permitAll();
+		/* *
+		 * http.authorizeRequests().antMatchers("/appointment/add").permitAll();
+		 * http.authorizeRequests().antMatchers("/appointment/schedule/**").permitAll();
+		 * http.authorizeRequests().antMatchers("/appointment/past").authenticated();
+		 * http.authorizeRequests().antMatchers("/appointment/upcoming").authenticated();
+		 * http.authorizeRequests().antMatchers("/appointment/all").authenticated();
+		 * http.authorizeRequests().antMatchers("/appointment/review/**").authenticated();
+		 * http.authorizeRequests().antMatchers("/consultant/**").authenticated();
+		 * */
 		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
 		http.formLogin().successHandler(authenticationSuccessHandler);
 		http.formLogin().failureHandler(authenticationFailureHandler);

@@ -54,7 +54,7 @@
       <button id="edit" mat-icon-button color="primary">
         <mat-icon>edit</mat-icon>
       </button>
-      <button id="delete" mat-icon-button color="warn">
+      <button id="delete" mat-icon-button color="warn" (click)="delete(i)">
         <mat-icon>delete</mat-icon> {{i}}
       </button>
     </td>

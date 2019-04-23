@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drhs.wc.dao.AppointmentDao;
+import com.drhs.wc.dao.AppointmentDateConfigDao;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.AppointmentEntityKey;
 import com.drhs.wc.param.AppointmentResponseSchedule;
@@ -22,6 +23,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 
 	@Autowired
 	private AppointmentDao appointmentDao;
+	
+//	@Autowired
+//	private AppointmentDateConfigDao appointmentDateConfigDao;
 
 	
 	//**********************************
@@ -278,8 +282,23 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//Set Values for Tuesday A Lunch
 //		String apptForWeek = "CURRENTWEEK";
 		String lunchType   = "A";
-		Integer apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
-		Integer apptOpen       = totalApptSlots - apptFilled;
+	    //Check if the date is reserved date, if the date exists in r_appt_date_config
+		//If Yes set appointnment open to -1
+		//Of No then get count of current appointments
+		Integer apptOpen = 0;
+		Integer apptFilled = 0;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+	//	}
 		String apptDayName = dateTuesday.getDayOfWeek().name();
 		Month apptMonth    = dateTuesday.getMonth();
 		
@@ -288,8 +307,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		//Set Values for Tuesday B Lunch
 		lunchType   = "B";
-		apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
-		apptOpen       = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 		//Add to List for response for B-lunch
 		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));
 
@@ -300,18 +329,38 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		//Set Values for Wednesday A Lunch
 		lunchType  = "A";
-		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
-		apptOpen      = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 		apptDayName   = dateWednesday.getDayOfWeek().name();
 		apptMonth     = dateWednesday.getMonth();
 		
 		//Add to List for response
 		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));
 		
-		//Set Values for Wednesday A Lunch
+		//Set Values for Wednesday B Lunch
 		lunchType  = "B";
-		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
-		apptOpen      = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 
 		//Add to List for response
 		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));	
@@ -322,8 +371,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		//Set Values for Tuesday A Lunch date Next Week
 		lunchType     = "A";
-		apptFilled    = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek, lunchType);
-		apptOpen      = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 		apptDayName   = dateTuesdayNextweek.getDayOfWeek().name();
 		apptMonth     = dateTuesdayNextweek.getMonth();
 		
@@ -332,8 +391,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		//Set Values for Tuesday B Lunch date Next Week
 		lunchType     = "B";
-		apptFilled    = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek, lunchType);
-		apptOpen      = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 				
 		//Add to List for response
 		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
@@ -344,8 +413,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//******************************
 		//Set Values for Tuesday A Lunch date Next Week
 		lunchType     = "A";
-		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek, lunchType);
-		apptOpen      = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 		apptDayName   = dateWednesdayNextweek.getDayOfWeek().name();
 		apptMonth     = dateWednesdayNextweek.getMonth();
 		
@@ -354,8 +433,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		//Set Values for Tuesday B Lunch date Next Week
 		lunchType     = "B";
-		apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek, lunchType);
-		apptOpen      = totalApptSlots - apptFilled;
+//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "RESERVED"){
+//			apptOpen = -1;
+//			apptFilled = -1;
+//		}
+//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "DISABLED"){
+//			apptOpen = -2;
+//			apptFilled = -2;
+//		}
+//		else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+//		}
 				
 		//Add to List for response
 		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	

@@ -17,6 +17,7 @@ export class ManageConsultantsComponent implements OnInit {
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
   reviews: ConsultantEntry[];
+  id = 0;
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -34,7 +35,10 @@ export class ManageConsultantsComponent implements OnInit {
   }
 
   //delete consultant
-
+  delete(index){
+    this.id = index+1;
+    
+  }
   //
   
   //Get all consultants

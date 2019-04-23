@@ -37,12 +37,10 @@ const routes: Routes = [
       { path: 'entry', component: EntryComponent },
       { path: 'assignments', component: AssignmentsComponent },
     ]},
-  {
-    path: 'admin', children: [
+  {path: 'admin', children: [
       { path: 'consultants', component: ManageConsultantsComponent },
    //   { path: 'settings' },
-    ]
-  },
+  ]},
   {
     path: 'manage', children: [
       { path: '', redirectTo: '/manage/a', pathMatch: 'full' },
