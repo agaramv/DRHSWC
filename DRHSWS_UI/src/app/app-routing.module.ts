@@ -41,8 +41,37 @@ const routes: Routes = [
     ]
   },
   { path: 'resource', component: ResourcesComponent }
-
 ];
+
+// const routes: Routes = [
+//   { path: '', redirectTo: '/home', pathMatch: 'full' },
+//   { path: 'home', component: HomeComponent },
+//   { path: 'login', component: LoginComponent },
+//   { path: 'appointment', component: SignupComponent },
+//   { path: 'review', component: ReviewComponent, children: [
+//     { path: 'pending', component: PendingComponent}
+//   ]},
+//   {
+//     path: 'consultant', children: [
+//       { path: '', redirectTo: 'entry', pathMatch: 'full' },
+//       { path: 'entry', component: EntryComponent },
+//       { path: 'assignments', component: AssignmentsComponent },
+//     ]
+//   },
+//   {
+//     path: 'admin', children: [
+//       { path: '', component: ManageConsultantsComponent },
+//     ]
+//   },
+//   {
+//     path: 'manage', children: [
+//       { path: '', redirectTo: '/manage/a', pathMatch: 'full' },
+//       { path: 'c', component: ManageConsultantsComponent },
+//       { path: 'a', component: ManageAppointmentsComponent },
+//     ]
+//   },
+//   { path: 'resource', component: ResourcesComponent }
+// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
