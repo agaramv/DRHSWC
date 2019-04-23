@@ -4,12 +4,12 @@
 
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let apptUpcoming"> {{ apptUpcoming.appointmentEntityKey.apptDate}} </td>
+    <td mat-cell *matCellDef="let apptUpcoming"> {{ apptUpcoming.apptDate}} </td>
   </ng-container>
  
   <ng-container matColumnDef="Lunch">
     <th mat-header-cell *matHeaderCellDef> Lunch </th>
-    <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.appointmentEntityKey.lunchType}} </td>
+    <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.lunchType}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Student">
@@ -41,12 +41,12 @@
 
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let apptPast"> {{ apptPast.appointmentEntityKey.apptDate}} </td>
+    <td mat-cell *matCellDef="let apptPast"> {{ apptPast.apptDate}} </td>
   </ng-container>
  
   <ng-container matColumnDef="Lunch">
     <th mat-header-cell *matHeaderCellDef> Lunch </th>
-    <td mat-cell *matCellDef="let apptPast"> {{apptPast.appointmentEntityKey.lunchType}} </td>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.lunchType}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Student">

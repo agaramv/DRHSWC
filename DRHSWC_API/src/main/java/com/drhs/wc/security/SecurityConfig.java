@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            + " from r_consultants where email=?")
 	        .authoritiesByUsernameQuery("select email as username, 'CONSULTANT'" + 
 	        		" from r_consultants where email=?")
-//	        .authoritiesByUsernameQuery("select username, authority "
+////	        .authoritiesByUsernameQuery("select username, authority "
 //	            + "from authorities where username=?");
 	        .passwordEncoder(new BCryptPasswordEncoder());
 	  }
@@ -51,17 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.cors();
-		http.authorizeRequests().antMatchers("/appointment/**").authenticated();
+		http.authorizeRequests().antMatchers("/appointment/**").permitAll();
 		http.authorizeRequests().antMatchers("/consultant/**").permitAll();
 		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
 		http.formLogin().successHandler(authenticationSuccessHandler);
 		http.formLogin().failureHandler(authenticationFailureHandler);
-//		http.logout().logoutUrl("//logout").logoutSuccessUrl("/");
-//		http.logout().logoutUrl("/logout").logoutSuccessUrl("/login")
-//		.deleteCookies("auth_code", "JSESSIONID").invalidateHttpSession(true));
-//		http.logout() // This is missing and is important
-//        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//        .logoutSuccessUrl("/login");
 		http.logout().permitAll();
 		http.logout().logoutSuccessHandler((LogoutSuccessHandler) (new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
 

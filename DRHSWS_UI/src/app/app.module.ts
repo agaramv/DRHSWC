@@ -15,14 +15,16 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ManageConsultantsComponent } from './admin/manage-consultants/manage-consultants.component';
 import { AdminComponent } from './admin/admin.component';
-import { CalendarComponent } from './signup/calendar/calendar.component';
-import { FormComponent } from './signup/form/form.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { EntryComponent } from './consultant/entry/entry.component';
 import { AssignmentsComponent } from './consultant/assignments/assignments.component';
 import { ManageAppointmentsComponent } from './admin/manage-appointments/manage-appointments.component';
 import { AppointmentComponent } from './signup/appointment/appointment.component';
+import { ReviewComponent } from './review/review.component';
+import { PendingComponent } from './review/pending/pending.component';
+import { PastComponent } from './review/past/past.component';
+import { DropdownDirective } from './dropdownDirective';
 
 @NgModule({
   declarations: [
@@ -33,14 +35,16 @@ import { AppointmentComponent } from './signup/appointment/appointment.component
     SignupComponent,
     ManageConsultantsComponent,
     AdminComponent,
-    CalendarComponent,
-    FormComponent,
     ResourcesComponent,
     ConsultantComponent,
+    DropdownDirective,
     EntryComponent,
     AssignmentsComponent,
     ManageAppointmentsComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    ReviewComponent,
+    PendingComponent,
+    PastComponent
   ],
   imports: [
     BrowserModule,

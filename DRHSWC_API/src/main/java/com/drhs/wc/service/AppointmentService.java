@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.drhs.wc.entity.AppointmentEntity;
-import com.drhs.wc.param.AppointmentResponse;
-import com.drhs.wc.param.AppointmentResponseAdd;
+import com.drhs.wc.param.AppointmentResponseSchedule;
+import com.drhs.wc.param.AppointmentResponseAdd_Update;
 import com.drhs.wc.param.AppointmentResponseAll;
 
 public interface AppointmentService {
@@ -14,7 +14,7 @@ public interface AppointmentService {
 	List<AppointmentResponseAll> getAllAppointments();
 	
 	//Add appointments
-	AppointmentEntity addAppointments(AppointmentResponseAdd appointmentResponseAdd);
+	AppointmentEntity addAppointments(AppointmentResponseAdd_Update appointmentResponseAdd);
 	
 	//Get appointments by date
 	List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate);
@@ -25,10 +25,16 @@ public interface AppointmentService {
 	//Get upcoming appointments
 	List<AppointmentResponseAll> getUpcomingAppointments(LocalDate apptDate);
 	
+	//Get review
+	AppointmentEntity addReview(AppointmentResponseAdd_Update appointmentResponseAdd);
+	
+	//Get all appointments with pending reviews
+	List<AppointmentResponseAll> getPendingReviews();
+	
 	//Get count by appointment
-	List<AppointmentResponse> countByAppointment();
+	List<AppointmentResponseSchedule> countByAppointment();
 	
 	//Appointment schedule - Landing page for students.
-	List<AppointmentResponse> getAppointmentDays(LocalDate currDate);
+	List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate);
 
 }

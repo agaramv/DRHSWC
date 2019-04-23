@@ -19,6 +19,7 @@ public class DrhswcApplication {
 
 	public static void main(String[] args) {
 
+		System.out.print("This: ");
 		System.out.println(new BCryptPasswordEncoder().encode("password1"));
 
 		SpringApplication.run(DrhswcApplication.class, args);

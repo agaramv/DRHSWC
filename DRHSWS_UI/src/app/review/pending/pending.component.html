@@ -1,0 +1,98 @@
+<!-- <table mat-table
+       [dataSource]="reviewsPending" multiTemplateDataRows
+       class="mat-elevation-z8">
+       <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let reviewsPending"> {{ reviewsPending.apptDate}} </td>
+        </ng-container>
+       
+        <ng-container matColumnDef="Lunch">
+          <th mat-header-cell *matHeaderCellDef> Lunch </th>
+          <td mat-cell *matCellDef="let reviewsPending"> {{reviewsPending.lunchType}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Student">
+          <th mat-header-cell *matHeaderCellDef> Student </th>
+          <td mat-cell *matCellDef="let reviewsPending"> {{reviewsPending.firstName}} {{reviewsPending.lastName}}  </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Grade">
+          <th mat-header-cell *matHeaderCellDef> Grade </th>
+          <td mat-cell *matCellDef="let reviewsPending"> {{reviewsPending.grade}}  </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Review">
+            <th mat-header-cell *matHeaderCellDef> Write Review </th>
+            <td mat-cell *matCellDef="let reviewsPending; let i = index">
+              <button id="edit" type="button" class="btn btn-outline-primary" (click)="onClick(i)">Write Review {{i}}</button>
+            </td>
+        </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let reviewsPending" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail" 
+        [@detailExpand]="reviewsPending == expandedElement ? 'expanded' : 'collapsed'">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div class="form-group">
+            <textarea class="form-control" cols="9" rows="3" name="review" ngModel></textarea>
+          </div>
+          <button id="edit" type="submit" class="btn btn-outline-primary" 
+            (click)="expandedElement = expandedElement === reviewsPending ? null : element" >Write Review {{i}}
+          </button>
+        </form>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let reviewsPending; columns: columnsToDisplay"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === reviewsPending"
+      (click)="expandedElement = expandedElement === reviewsPending ? null : reviewsPending">
+  </tr> 
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; let i = index" class="example-detail-row"></tr>
+</table> -->
+<br>
+<h3>Pending Reviews</h3>
+<div *ngIf="write">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <textarea class="form-control" cols="9" rows="3" name="review" ngModel></textarea>
+    </div>
+    <button id="edit" type="submit" class="btn btn-outline-primary">Write Review {{i}}</button>
+      </form>
+</div>
+<br>
+<table mat-table [dataSource]="reviewsPending" class="mat-elevation-z8" width="100%">
+
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let reviewsPending"> {{ reviewsPending.apptDate}} </td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="Lunch">
+    <th mat-header-cell *matHeaderCellDef> Lunch </th>
+    <td mat-cell *matCellDef="let reviewsPending"> {{reviewsPending.lunchType}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Student">
+    <th mat-header-cell *matHeaderCellDef> Student </th>
+    <td mat-cell *matCellDef="let reviewsPending"> {{reviewsPending.firstName}} {{reviewsPending.lastName}}  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Grade">
+    <th mat-header-cell *matHeaderCellDef> Grade </th>
+    <td mat-cell *matCellDef="let reviewsPending"> {{reviewsPending.grade}}  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Review">
+      <th mat-header-cell *matHeaderCellDef> Write Review </th>
+      <td mat-cell *matCellDef="let reviewsPending; let i = index">
+        <button id="edit" type="button" class="btn btn-outline-primary" (click)="onClick(i);write=true">Write Review {{i}}</button>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>

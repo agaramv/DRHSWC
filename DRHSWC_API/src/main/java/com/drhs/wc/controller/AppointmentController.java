@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drhs.wc.entity.AppointmentEntity;
-import com.drhs.wc.param.AppointmentResponse;
-import com.drhs.wc.param.AppointmentResponseAdd;
+import com.drhs.wc.param.AppointmentResponseSchedule;
+import com.drhs.wc.param.AppointmentResponseAdd_Update;
 import com.drhs.wc.param.AppointmentResponseAll;
 import com.drhs.wc.service.AppointmentService;
 
@@ -43,18 +44,36 @@ public class AppointmentController {
 	// Add appointment
 	//*******************
 	@PostMapping("/appointment/add")
-	public AppointmentEntity addAppointment(@RequestBody AppointmentResponseAdd appointmentResponseAdd){
+	public AppointmentEntity addAppointment(@RequestBody AppointmentResponseAdd_Update appointmentResponseAdd){
 		return appointmentService.addAppointments(appointmentResponseAdd);
+	}
+	
+	//********************
+	// Add review
+	//*******************
+	@PutMapping("/appointment/review/add")
+	public AppointmentEntity addReview(@RequestBody AppointmentResponseAdd_Update appointmentResponseUpdate){
+		return appointmentService.addReview(appointmentResponseUpdate);
 	}
 	
 	//*************************************************
 	//Get appointment schedule to make appointments
 	//*************************************************
 	@GetMapping("/appointment/schedule")
-	public List<AppointmentResponse> getAppointments(){
+	public List<AppointmentResponseSchedule> getAppointments(){
 		
 		//Pass null appointment date to use System date
 		return appointmentService.getAppointmentDays(null);
+	}
+	
+	//*************************************************
+	//Get pending reviews
+	//*************************************************
+	@GetMapping("/appointment/review/pending")
+	public List<AppointmentResponseAll> getPendingReviews(){
+		
+		//Pass null appointment date to use System date
+		return appointmentService.getPendingReviews();
 	}
 	
 	//****************************************************
@@ -63,7 +82,7 @@ public class AppointmentController {
 	// *****  THIS IS INTENDED FOR TESTING PURPOSES ******
 	//****************************************************
 	@GetMapping("/appointment/schedule/{apptDate}")
-	public List<AppointmentResponse> getAppointmentsByDate(@PathVariable("apptDate") String argDate){
+	public List<AppointmentResponseSchedule> getAppointmentsByDate(@PathVariable("apptDate") String argDate){
 		//Pass the parameter date to get schedule for desired date
 		LocalDate apptDate = LocalDate.parse(argDate);
 		return appointmentService.getAppointmentDays(apptDate);

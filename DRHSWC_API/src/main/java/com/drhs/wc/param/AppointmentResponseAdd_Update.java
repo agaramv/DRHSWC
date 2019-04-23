@@ -1,59 +1,37 @@
-package com.drhs.wc.entity;
+package com.drhs.wc.param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+public class AppointmentResponseAdd_Update {
 
-@Entity
-@Table(name="appointment")
-public class AppointmentEntity {
 	
-	//PK appt_date, lunch_type and time_slot
-	@EmbeddedId
-	AppointmentEntityKey appointmentEntityKey;
-	
-	@Column(name="student_first_name")
+	private LocalDate apptDate;
+	private String lunchType;
+	private Integer timeSlot;
 	private String firstName;
-	
-	@Column(name="student_last_name")
 	private String lastName;
-	
-	@Column(name="student_grade")
-	private int grade;
-	
-	@Column(name="student_teacher")
+	private Integer grade;
 	private String teacher;
-	
-	@Column(name="student_topic")
 	private String topic;
-
-	@Column(name="consultant_id")
 	private Integer consultant_id;
-	
-	@Column(name="review")
 	private String review;
-		
-	@Column(name="review_date")
 	private LocalDateTime reviewDate;
-	
-	@Column(name="create_timestamp")
 	private LocalDateTime createTimestamp;
-	
+
 	/**
 	 * 
 	 */
-	public AppointmentEntity() {
+	public AppointmentResponseAdd_Update() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-
 	/**
-	 * @param appointmentEntityKey
+	 * @param apptDate
+	 * @param lunchType
 	 * @param firstName
 	 * @param lastName
 	 * @param grade
@@ -64,11 +42,13 @@ public class AppointmentEntity {
 	 * @param reviewDate
 	 * @param createTimestamp
 	 */
-	public AppointmentEntity(AppointmentEntityKey appointmentEntityKey, String firstName, String lastName, int grade,
-			String teacher, String topic, Integer consultant_id, String review, LocalDateTime reviewDate,
+	public AppointmentResponseAdd_Update(LocalDate apptDate, String lunchType, Integer timeSlot,  String firstName, String lastName,
+			Integer grade, String teacher, String topic, Integer consultant_id, String review, LocalDateTime reviewDate,
 			LocalDateTime createTimestamp) {
 		super();
-		this.appointmentEntityKey = appointmentEntityKey;
+		this.apptDate = apptDate;
+		this.lunchType = lunchType;
+		this.timeSlot = timeSlot;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
@@ -85,14 +65,32 @@ public class AppointmentEntity {
 
 
 
-
-	public AppointmentEntityKey getAppointmentEntityKey() {
-		return appointmentEntityKey;
+	public LocalDate getApptDate() {
+		return apptDate;
 	}
 
-	public void setAppointmentEntityKey(AppointmentEntityKey appointmentEntityKey) {
-		this.appointmentEntityKey = appointmentEntityKey;
+	public void setApptDate(LocalDate apptDate) {
+		this.apptDate = apptDate;
 	}
+
+	public String getLunchType() {
+		return lunchType;
+	}
+
+	public void setLunchType(String lunchType) {
+		this.lunchType = lunchType;
+	}
+	
+
+	public Integer getTimeSlot() {
+		return timeSlot;
+	}
+
+
+	public void setTimeSlot(Integer timeSlot) {
+		this.timeSlot = timeSlot;
+	}
+
 
 	public String getFirstName() {
 		return firstName;
@@ -110,11 +108,11 @@ public class AppointmentEntity {
 		this.lastName = lastName;
 	}
 
-	public int getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
 
@@ -148,11 +146,8 @@ public class AppointmentEntity {
 
 	public void setReview(String review) {
 		this.review = review;
-	}
-
-	public LocalDateTime getReviewDate() {
-		return reviewDate;
-	}
+	}	
+	
 
 	public void setReviewDate(LocalDateTime reviewDate) {
 		this.reviewDate = reviewDate;
@@ -165,5 +160,11 @@ public class AppointmentEntity {
 	public void setCreateTimestamp(LocalDateTime createTimestamp) {
 		this.createTimestamp = createTimestamp;
 	}
-	
+
+
+	public LocalDateTime getReviewDate() {
+		return reviewDate;
+	}
+
+
 }
