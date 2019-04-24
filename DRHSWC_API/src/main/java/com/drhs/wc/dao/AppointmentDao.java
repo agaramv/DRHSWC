@@ -36,6 +36,9 @@ public interface AppointmentDao {
 	//Get count of appointment by date and Lunch type
 	public Integer apptCountByDateLunchType(LocalDate apptDate,String lunchType);
 
+	//Delete blocked date 
+	//public void deleteBlockedapptDate(LocalDate blockedapptDate);
+
 	
 	//
 }
