@@ -67,4 +67,9 @@ public class ConsultantDaoImpl implements ConsultantDao{
 		return consultantEntity;
 	}
 
+	@Override
+	public void changePassword(String password, String email) {
+		consultantRepo.changePassword(password, email);
+	}
+
 }
