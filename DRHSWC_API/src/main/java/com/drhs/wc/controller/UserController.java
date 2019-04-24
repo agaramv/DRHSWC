@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drhs.wc.entity.ConsultantEntity;
+import com.drhs.wc.entity.UserEntity;
 import com.drhs.wc.service.AppointmentService;
-import com.drhs.wc.service.ConsultantService;
+import com.drhs.wc.service.UserService;
 
 /**
  * @author VidurAgaram
@@ -27,18 +27,18 @@ import com.drhs.wc.service.ConsultantService;
  */
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-public class ConsultantController {
+public class UserController {
 
 	@Autowired
-	ConsultantService consultantService;
+	UserService consultantService;
 
 	/* *************************
 	// Add New Consultant
 	***************************/
 	
 	@PostMapping("/consultant/add")
-	public ConsultantEntity addNewConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
-		ConsultantEntity ce = consultantService.addNewConsultant(consultantEntity);
+	public UserEntity addNewConsultant(@Valid @RequestBody UserEntity consultantEntity){
+		UserEntity ce = consultantService.addNewConsultant(consultantEntity);
 		return ce; 
 	}
 	
@@ -46,7 +46,7 @@ public class ConsultantController {
 	//**  Get all Consultants
 	//*************************
 	@GetMapping("/consultant/all")
-	public List<ConsultantEntity> getAllConsultants(){
+	public List<UserEntity> getAllConsultants(){
 		return consultantService.getAllConsultants();
 	}
 	//***************************
@@ -54,16 +54,16 @@ public class ConsultantController {
 	//***************************
 	
 	@GetMapping("/consultant/{id}")
-	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
+	public Optional<UserEntity> getConsultantById(@PathVariable Integer id){
 		return consultantService.getConsultantById(id);
 	}
 	
 	//***************************
-	//** Get Consultant by Email 
+	//** Get User by Email 
 	//***************************
 	
-	@GetMapping("/consultant/email/{email}")
-	public ConsultantEntity getConsultantByEmail(@PathVariable String email){
+	@GetMapping("/user/email/{email}")
+	public UserEntity getUserByEmail(@PathVariable String email){
 		return consultantService.findUserByEmail(email);
 	}
 	
@@ -80,7 +80,7 @@ public class ConsultantController {
 	 * Update consultants by ID
 	 ***************************/
 	@PutMapping("/consultant/update")
-	public void updateConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
+	public void updateConsultant(@Valid @RequestBody UserEntity consultantEntity){
 		consultantService.updateConsultant(consultantEntity); 
 	}
 	
@@ -89,7 +89,7 @@ public class ConsultantController {
 	 * Update consultants by ID
 	 ***************************/
 	@PatchMapping("/consultant/patch")
-	public void patchConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
+	public void patchConsultant(@Valid @RequestBody UserEntity consultantEntity){
 		consultantService.updateConsultant(consultantEntity); 
 	}
 	

@@ -14,6 +14,6 @@ export class AdminService {
   }
 
   changePassword(password, email){
-    return this.http.get<any>(this.endpoint+'/consultant/'+password+'/'+email);
+    return this.http.put<any>(this.endpoint+'/consultant/'+password+'/'+email, '');
   }
 }
