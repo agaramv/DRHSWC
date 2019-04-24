@@ -58,6 +58,8 @@ export class ManageAppointmentsComponent implements OnInit {
     this.reserved.appt_date = form.value.date;
     this.reserved.description = form.value.comment;
     console.log(this.reserved)
+    this.addDate = this.reserved;
+    this.addReservedDisabledDate(this.addDate)
   }
 
   //Disable day; This will reserve the day, but with specific creditionals, which show it is disabled
@@ -65,5 +67,7 @@ export class ManageAppointmentsComponent implements OnInit {
     this.disabled.appt_date = form.value.date;
     this.disabled.description = form.value.comment;
     console.log(this.disabled)
+    this.addDate = this.disabled;
+    this.addReservedDisabledDate(this.addDate)
   }
 }
