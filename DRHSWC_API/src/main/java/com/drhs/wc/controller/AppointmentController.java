@@ -111,7 +111,7 @@ public class AppointmentController {
 	// Get upcoming appointments
 	//***********************
 	@PostMapping("/appointment/block")
-	public AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentDateConfigEntity){
+	public AppointmentDateConfigEntity blockAppointments(@RequestBody AppointmentDateConfigEntity appointmentDateConfigEntity){
 		return appointmentService.blockAppointments(appointmentDateConfigEntity);
 	}
 	
