@@ -75,7 +75,8 @@ public class ConsultantServiceImpl implements ConsultantService{
 	}
 
 	@Override
-	public void changePassword(String password, String email) {
-		consultantDao.changePassword(password, email);
+	@Transactional
+	public int changePassword(String password, String email) {
+		return consultantDao.changePassword(password, email);
 	}
 }

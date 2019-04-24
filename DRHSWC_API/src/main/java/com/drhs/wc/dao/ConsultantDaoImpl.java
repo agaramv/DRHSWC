@@ -68,8 +68,8 @@ public class ConsultantDaoImpl implements ConsultantDao{
 	}
 
 	@Override
-	public void changePassword(String password, String email) {
-		consultantRepo.changePassword(password, email);
+	public int changePassword(String password, String email) {
+		return consultantRepo.changePassword(password, email);
 	}
 
 }

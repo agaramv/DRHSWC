@@ -15,13 +15,13 @@ public interface ConsultantRepository extends JpaRepository<ConsultantEntity, In
     /* set consultant inactive */
 	@Modifying()
 	@Query(value="Update r_consultants Set active='I' Where consultant_id=:id", nativeQuery=true)
-	int changeToInactive(@Param("id") Integer id);
+	Integer changeToInactive(@Param("id") Integer id);
 
 	ConsultantEntity findByEmail(String email);
 	
 	@Modifying()
-	@Query(value="Update r_consultants Set password=:password where email=:email", nativeQuery=true)
-	void changePassword(@Param("password") String password, @Param("email") String email);
+	@Query(value="Update r_consultants Set password=:password Where email=:email", nativeQuery=true)
+	Integer changePassword(@Param("password") String password, @Param("email") String email);
 	
 	/*@Query(value="Delete From r_consultants Where consultant_id=21", nativeQuery=true)
 	ConsultantEntity deleteConsultant(@Param("id") int id);

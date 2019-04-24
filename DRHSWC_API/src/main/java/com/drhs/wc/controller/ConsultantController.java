@@ -71,9 +71,9 @@ public class ConsultantController {
 	//** Change Password 
 	//***************************
 	
-	@PutMapping("/consultant/{password}/{email}")
-	public void changePassword(@PathVariable String password, @PathVariable String email){
-	  consultantService.changePassword(new BCryptPasswordEncoder().encode(password), email);
+	@PutMapping("/consultant/change/{password}/{email}")
+	public int changePassword(@PathVariable String password, @PathVariable String email){
+	  return consultantService.changePassword(new BCryptPasswordEncoder().encode(password), email);
 	}
 	
 	/* *************************

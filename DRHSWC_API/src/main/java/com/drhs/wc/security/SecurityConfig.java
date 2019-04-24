@@ -38,9 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            + " from r_consultants where email=?")
 	        .authoritiesByUsernameQuery("select email as username, 'CONSULTANT'" + 
 	        		" from r_consultants where email=?")
-	        .passwordEncoder(new BCryptPasswordEncoder());
+	        .passwordEncoder(new BCryptPasswordEncoder()); 
 	  }
-
+//join to access
+	  
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
@@ -61,6 +62,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().failureHandler(authenticationFailureHandler);
 		http.logout().permitAll();
 		http.logout().logoutSuccessHandler((LogoutSuccessHandler) (new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
-
 	}
 }

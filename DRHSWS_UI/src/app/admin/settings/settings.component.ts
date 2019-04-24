@@ -26,18 +26,12 @@ export class SettingsComponent implements OnInit {
   onSubmit(form: NgForm){
     this.change.email = form.value.email;
     this.change.password = form.value.password;
+    this.changePassword(this.change.password, this.change.email);
   }
 
-  onSubmitG(form: NgForm){
-    this.email = form.value.email;
-    this.getPassword(this.email)
-    this.get = true;
-  }
-
-  getPassword(email){
-    this.adminService.getPassword(email).subscribe((data)=>{
-      console.log(data)
-      this.passwordG = data.consultantPassword;
+  changePassword(password, email){
+    this.adminService.changePassword(password, email).subscribe((data)=>{
+      console.log("changed")
     })
   }
 
