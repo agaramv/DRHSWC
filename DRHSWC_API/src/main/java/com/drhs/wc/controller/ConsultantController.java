@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,24 @@ public class ConsultantController {
 	@GetMapping("/consultant/{id}")
 	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
 		return consultantService.getConsultantById(id);
+	}
+	
+	//***************************
+	//** Get Consultant by Email 
+	//***************************
+	
+	@GetMapping("/consultant/email/{email}")
+	public ConsultantEntity getConsultantByEmail(@PathVariable String email){
+		return consultantService.findUserByEmail(email);
+	}
+	
+	//***************************
+	//** Change Password 
+	//***************************
+	
+	@PutMapping("/consultant/{password}/{email}")
+	public void changePassword(@PathVariable String password, @PathVariable String email){
+	  consultantService.changePassword(new BCryptPasswordEncoder().encode(password), email);
 	}
 	
 	/* *************************

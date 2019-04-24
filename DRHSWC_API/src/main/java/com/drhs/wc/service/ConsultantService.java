@@ -13,6 +13,9 @@ public interface ConsultantService {
 	//Get consultant by ID
 	public Optional<ConsultantEntity> getConsultantById(Integer id);
 	
+	//change password
+	public void changePassword(String password, String email);
+	
 	//Add new consultant 
 	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity);
 	

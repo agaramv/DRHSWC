@@ -73,4 +73,9 @@ public class ConsultantServiceImpl implements ConsultantService{
 		// TODO Auto-generated method stub
 		return consultantDao.getConsultantByEmail(email);
 	}
+
+	@Override
+	public void changePassword(String password, String email) {
+		consultantDao.changePassword(password, email);
+	}
 }
