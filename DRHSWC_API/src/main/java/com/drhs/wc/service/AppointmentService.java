@@ -3,6 +3,7 @@ package com.drhs.wc.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.drhs.wc.entity.AppointmentDateConfigEntity;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.param.AppointmentResponseSchedule;
 import com.drhs.wc.param.AppointmentResponseAdd_Update;
@@ -40,4 +41,9 @@ public interface AppointmentService {
 	//Appointment schedule - Landing page for students.
 	List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate);
 
+	 //get all blocked appointments
+	List<AppointmentDateConfigEntity> getAllBlockedAppointments();
+	
+	//Block appointment date
+	AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentConfig);
 }

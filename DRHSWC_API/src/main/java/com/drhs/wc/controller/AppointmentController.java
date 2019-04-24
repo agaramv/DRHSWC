@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.drhs.wc.entity.AppointmentDateConfigEntity;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.param.AppointmentResponseSchedule;
 import com.drhs.wc.param.AppointmentResponseAdd_Update;
@@ -109,30 +110,40 @@ public class AppointmentController {
 	//***********************
 	// Get upcoming appointments
 	//***********************
-	@GetMapping("/appointment/upcoming")
-	public List<AppointmentResponseAll> getUpcomingAppointments(){
-		return appointmentService.getUpcomingAppointments(null);
+	@PostMapping("/appointment/block")
+	public AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentDateConfigEntity){
+		return appointmentService.blockAppointments(appointmentDateConfigEntity);
 	}
 	
-//	@GetMapping("/appointment/upcoming/{apptDate}")
-//	public List<AppointmentEntity> getUpcomingAppointments(@PathVariable("apptDate") String date){
-//		LocalDate apptDate = LocalDate.parse(date);
-//		return appointmentService.getUpcomingAppointments(apptDate);
-//	}
+	@GetMapping("/appointment/blocked/all")
+	public List<AppointmentDateConfigEntity> getAllBlockedAppointments(){
+		return appointmentService.getAllBlockedAppointments();
+	}
 	
+
+	//****************************
+	//Get all appointment by date
+	//****************************
+	@GetMapping("/appointment/date/{apptDate}")
+			public List<AppointmentResponseAll> getAppointmentsBydate(@PathVariable("apptDate") String argDate){
+				
+			    LocalDate apptDate = LocalDate.parse(argDate);
+				return appointmentService.getAppointmentsByDate(apptDate); 
+			}
+		
+		//*********************************
+		//Get all appointment by date range
+		//*********************************
+		@GetMapping("/appointment/daterange/{apptDate}")
+			public List<AppointmentResponseAll> getAppointmentsBydaterange(@PathVariable("apptDate") String argDate){
+				
+			    LocalDate apptDate = LocalDate.parse(argDate);
+				//return appointmentService.getAppointmentsByDate(apptDateFrom, apptDateTo); 
+			    return null;
+			}
 	//***********************
 	// Delete Appointment
 	//***********************
-	
-	
-	
-	
-	
-	//**********************
-	// Update Appointment
-	//**********************
-	
-	
 	
 	
 	
@@ -141,33 +152,10 @@ public class AppointmentController {
 	//****************************************
 	
 	
-	
-	
-	
-	
 	//********************************
 	//Get all appointment by last name
 	//********************************
 	
 	
-	//****************************
-	//Get all appointment by date
-	//****************************
-	@GetMapping("/appointment/date/{apptDate}")
-		public List<AppointmentResponseAll> getAppointmentsBydate(@PathVariable("apptDate") String argDate){
-			
-		    LocalDate apptDate = LocalDate.parse(argDate);
-			return appointmentService.getAppointmentsByDate(apptDate); 
-		}
 	
-	//*********************************
-	//Get all appointment by date range
-	//*********************************
-	@GetMapping("/appointment/daterange/{apptDate}")
-		public List<AppointmentResponseAll> getAppointmentsBydaterange(@PathVariable("apptDate") String argDate){
-			
-		    LocalDate apptDate = LocalDate.parse(argDate);
-			//return appointmentService.getAppointmentsByDate(apptDateFrom, apptDateTo); 
-		    return null;
-		}
 }

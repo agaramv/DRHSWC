@@ -29,6 +29,8 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Autowired
 	private CommonDAO commonDao;
 	
+	@Autowired
+	CommonDAO apptDateconfigDAO;
 	
 	//**********************************
 	// Build Appointment Response object
@@ -215,6 +217,26 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//build a flat jason response object 
 	  	return buildAppointmentReponse(appointmentEntity);
 	}
+	
+	
+	//***********************************
+	// Block Appointment dates 
+	//***********************************
+	@Override
+	public AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentConfig) {
+			
+			return apptDateconfigDAO.blockAppointmentDate(appointmentConfig);
+	}
+		
+	//***********************************
+	// Get all blocked  appointments 
+	//***********************************
+	@Override
+	public List<AppointmentDateConfigEntity> getAllBlockedAppointments() {
+		
+		return apptDateconfigDAO.getAllBlockedAppointmentDate();
+	}
+
 	
 	//*************************************************************
 	//Landing Page
