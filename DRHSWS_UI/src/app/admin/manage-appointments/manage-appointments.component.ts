@@ -13,7 +13,7 @@ import { AppointmentsService } from 'src/app/appointments.service';
   styleUrls: ['./manage-appointments.component.scss']
 })
 export class ManageAppointmentsComponent implements OnInit {
-  displayedColumns: string[] = ['Date', 'Type', 'Comments'];
+  displayedColumns: string[] = ['Actions','Date', 'Type', 'Comments'];
   dates: any[];
   reserved = {
     appt_date: '',
@@ -30,6 +30,7 @@ export class ManageAppointmentsComponent implements OnInit {
     dateType: '',
     description: ''
   }
+  delDate = '';
 
   constructor(private apptService: AppointmentsService) { }
 
@@ -37,7 +38,7 @@ export class ManageAppointmentsComponent implements OnInit {
 
   }
 
-  //get all appointments
+  //get all dates
   getReservedDisabledDates(){
     return this.apptService.getReservedDisabledDates()
       .subscribe((data) =>{
@@ -45,13 +46,24 @@ export class ManageAppointmentsComponent implements OnInit {
       })
   }
 
-  //get all appointments
+  //add date
   addReservedDisabledDate(addDate){
     return this.apptService.addReservedDisabledDate(addDate)
       .subscribe((data) =>{
         console.log("Block Date")
       })
   }
+
+  //delete date
+  delete(index){
+    this.apptService.getReservedDisabledDates().subscribe((data)=>{
+      console.log(data[index].consultant_id)
+      this.delDate = data[index].consultant_id
+      this.apptService.deleteReservedDisabledDate(this.delDate).subscribe((data)=>{
+        console.log("Deleted date"+data)
+      }); 
+    })
+  }  
 
   //reserve day
   onSubmitR(form: NgForm){

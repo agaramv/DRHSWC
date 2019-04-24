@@ -78,6 +78,14 @@
 <h5>All Reserved or Disabled Dates</h5>
 <div class="styles mat-elevation-z8">
   <table mat-table [dataSource]="dates" width="100%">
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let consultants; let i = index" id="actions"> 
+        <button id="delete" mat-icon-button color="warn" (click)="delete(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
     <ng-container matColumnDef="Date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
       <td mat-cell *matCellDef="let dates"> {{dates.date}} </td>

@@ -134,6 +134,7 @@ export class ManageConsultantsComponent implements OnInit {
       }); 
     })
   }
+  
   //add new consultant
   add(){
     this.new = true;
