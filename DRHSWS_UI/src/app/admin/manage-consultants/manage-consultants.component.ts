@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
-import { Consultant } from 'src/app/consultant/consultant.model';
-import { ConsultantService } from 'src/app/consultant/consultant.service';
-import { ConsultantEntry } from 'src/app/consultant/entry/ConsultantEntry.model';
+import { ConsultantEntry } from 'src/app/models/ConsultantEntry.model';
 //import { Appointment } from 'src/app/appointment.model';
 import { SignupService } from 'src/app/signup/signup.service';
 import { Observable } from 'rxjs';
+import { Consultant } from 'src/app/models/consultant.model';
+import { ConsultantService } from 'src/app/consultant.service';
 
 @Component({
   selector: 'app-manage-consultants',
@@ -17,7 +17,8 @@ export class ManageConsultantsComponent implements OnInit {
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
   reviews: ConsultantEntry[];
-  newConsultant: Consultant = {
+  newConsultant: Consultant
+   = {
     consultant_id: 0,
     firstName: '',
     lastName: '',
@@ -28,6 +29,8 @@ export class ManageConsultantsComponent implements OnInit {
   };
   id = 0;
   new = false;
+  edit = false;
+  norm = true;
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -65,8 +68,16 @@ export class ManageConsultantsComponent implements OnInit {
     })
   }
 
-  setValues(){
-    
+  onUpdate(index){
+    this.edit = true;
+    this.norm = false;
+    //
+    //getConsultantById
+  }
+
+  toggleEdit(){
+    this.edit = false;
+    this.norm = true;
   }
 
   ngOnInit() {
