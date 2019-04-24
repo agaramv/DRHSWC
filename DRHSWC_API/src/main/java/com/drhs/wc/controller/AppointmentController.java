@@ -110,6 +110,11 @@ public class AppointmentController {
 	//***********************
 	// Get upcoming appointments
 	//***********************
+	@GetMapping("/appointment/upcoming")
+	public List<AppointmentResponseAll> getUpcomingAppointments(){
+		return appointmentService.getUpcomingAppointments(null);
+	}
+	
 	@PostMapping("/appointment/block")
 	public AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentDateConfigEntity){
 		return appointmentService.blockAppointments(appointmentDateConfigEntity);
