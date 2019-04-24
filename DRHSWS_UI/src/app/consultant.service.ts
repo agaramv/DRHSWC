@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Consultant } from './consultant.model';
-import { ConsultantEntry } from './entry/ConsultantEntry.model';
+import { Consultant } from './models/consultant.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -24,6 +23,10 @@ export class ConsultantService {
     return this.http.delete<any>(this.endpoint+'/consultant/delete/'+index);
   }
 
+  updateConsultant(updatedConsultant){
+    return this.http.put<any>(this.endpoint+'/consultant/update', updatedConsultant);
+  }
+
   addNewConsultant(id, newConsultant){
     newConsultant.consultant_id = id;
     console.log(newConsultant)
@@ -32,6 +35,6 @@ export class ConsultantService {
   }
 
   getConsultantById(index){
-    return this.http.get<any>(this.endpoint+'/consultant')
+    return this.http.get<any>(this.endpoint+'/consultant/'+index)
   }
 }

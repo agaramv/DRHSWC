@@ -37,23 +37,74 @@
 </table> -->
 
 <br>
-<h3>Manage Appointments</h3>
-  <button mat-raised-button color="primary" id="reserve">Reserve Date</button>
-  <button mat-raised-button color="warn" id="disable">Disable Date</button><br><br>
-  <label>Appointment Date Range</label>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="form-group">
-      <input id="date" type="text" class="form-control mb-2 mr-sm-2" name="date" ngModel>
-    </div>		
-  
-    <div class="form-group">
-      <button id="sumbit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Disable Date</button>
-    </div>
-    <div class="form-group">
-      <button id="sumbit" type="submit" class="btn btn-outline-danger mb-2 mr-sm-2">Reserve Date</button>
-    </div>
-  </form>
+<h3>Block Dates</h3>
+<div class="row">
+  <div class="col-6">
+    <h5>Reserve Date</h5>
+    <form (ngSubmit)="onSubmitR(fR)" #fR="ngForm">
+      
+      <div class="form-group">
+        <label>Appointment Date</label>
+        <input id="dateR" type="text" class="form-control mb-2 mr-sm-2" name="date" ngModel>
+      </div>		
+      <div class="form-group">
+        <label>Comment/Reason</label>
+        <input id="comR" type="text" class="form-control mb-2 mr-sm-2" name="comment" ngModel>
+      </div>
+        
+      <div class="form-group">
+        <button id="submit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Reserve Date</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-6">
+    <h5>Disable Date</h5>
+    <form (ngSubmit)="onSubmitD(fD)" #fD="ngForm">
+      <div class="form-group">
+        <label>Appointment Date</label>
+        <input id="dateD" type="text" class="form-control mb-2 mr-sm-2" name="date" ngModel>
+      </div>
+      <div class="form-group">
+        <label>Comment/Reason</label>
+        <input id="comD" type="text" class="form-control mb-2 mr-sm-2" name="comment" ngModel>
+      </div>		
+      
+      <div class="form-group">
+        <button id="submit" type="submit" class="btn btn-outline-danger mb-2 mr-sm-2">Disable Date</button>
+      </div>
+    </form>
+  </div>
+</div>
+<h5>All Reserved or Disabled Dates</h5>
+<div class="styles mat-elevation-z8">
+  <table mat-table [dataSource]="dates" width="100%">
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let consultants; let i = index" id="actions"> 
+        <button id="delete" mat-icon-button color="warn" (click)="delete(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let dates"> {{dates.date}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="Type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let dates"> {{dates.dateType}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="Comments">
+      <th mat-header-cell *matHeaderCellDef> Comments </th>
+      <td mat-cell *matCellDef="let dates"> {{dates.description}} </td>
+    </ng-container>
 
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
 <br>
 
 

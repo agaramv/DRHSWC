@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
-import { Consultant } from 'src/app/consultant/consultant.model';
-import { ConsultantService } from 'src/app/consultant/consultant.service';
-import { ConsultantEntry } from 'src/app/consultant/entry/ConsultantEntry.model';
+import { ConsultantEntry } from 'src/app/models/ConsultantEntry.model';
 //import { Appointment } from 'src/app/appointment.model';
 import { SignupService } from 'src/app/signup/signup.service';
 import { Observable } from 'rxjs';
+import { Consultant } from 'src/app/models/consultant.model';
+import { ConsultantService } from 'src/app/consultant.service';
 
 @Component({
   selector: 'app-manage-consultants',
@@ -26,8 +26,20 @@ export class ManageConsultantsComponent implements OnInit {
     emailSec: '',
     active_inactive: ''
   };
+  editConsultant: Consultant = {
+    consultant_id: 0,
+    firstName: '',
+    lastName: '',
+    grade: 0,
+    email: '',
+    emailSec: '',
+    active_inactive: ''
+  };
   id = 0;
+  idE = 0;
   new = false;
+  edit = false;
+  norm = true;
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -40,6 +52,18 @@ export class ManageConsultantsComponent implements OnInit {
     //this.getAllReviews();
   }
 
+  onSubmitEdit(form: NgForm){
+    console.log("edit form")
+    console.log(this.editConsultant.firstName)
+    if(form.value.firstName!=""){this.editConsultant.firstName = form.value.firstName}
+    if(form.value.lastName!=""){this.editConsultant.lastName = form.value.lastName}
+    if(form.value.grade!=0){this.editConsultant.grade = Number(form.value.grade)}
+    if(form.value.email!=""){this.editConsultant.email = form.value.email}
+    if(form.value.emailSec!=""){this.editConsultant.emailSec = form.value.emailSec}
+    this.editConsultant.active_inactive = 'A';
+    this.updateConsultant(this.editConsultant);
+  }
+
   onSubmit(form: NgForm){
     console.log(form.value.firstName)
     this.newConsultant.firstName = form.value.firstName;
@@ -49,7 +73,6 @@ export class ManageConsultantsComponent implements OnInit {
     this.newConsultant.email = form.value.emailC;
     this.newConsultant.emailSec = form.value.emailSec;
     this.newConsultant.active_inactive = 'A';
-    console.log('new')
     this.new = false;
     this.addNewConsultant()
   }
@@ -65,8 +88,35 @@ export class ManageConsultantsComponent implements OnInit {
     })
   }
 
-  setValues(){
-    
+  updateConsultant(updateConsultant){
+    this.consultantService.updateConsultant(updateConsultant).subscribe((data)=>{
+      console.log("updated")
+      this.getAllConsultants();
+    })
+  }
+
+  onUpdate(index){
+    //console.log("edit")
+    this.edit = true;
+    this.norm = false;
+    this.consultantService.getAllConsultants().subscribe((data: Consultant[])=>{
+      //console.log(data[data.length-1].consultant_id+1)
+      this.idE = data[index].consultant_id;
+      this.consultantService.getConsultantById(this.idE).subscribe((data: Consultant)=>{
+        this.editConsultant = data;
+        console.log(data)
+      })
+    })
+  }
+
+  toggleEdit(){
+    this.new = false;
+    this.edit = !this.edit;
+  }
+
+  toggleAdd(){
+    this.edit = false;
+    this.new = !this.new;
   }
 
   ngOnInit() {
@@ -84,6 +134,7 @@ export class ManageConsultantsComponent implements OnInit {
       }); 
     })
   }
+  
   //add new consultant
   add(){
     this.new = true;
