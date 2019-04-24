@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drhs.wc.dao.AppointmentDao;
-import com.drhs.wc.dao.AppointmentReserveDateDao;
+import com.drhs.wc.dao.CommonDAO;
 import com.drhs.wc.entity.AppointmentDateConfigEntity;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.AppointmentEntityKey;
@@ -27,7 +27,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 	
 
 	@Autowired
-	private AppointmentReserveDateDao appointmentReserveDtDao;
+	private CommonDAO commonDao;
 	
 	
 	//**********************************
@@ -71,14 +71,23 @@ public class AppointmentServiceImpl implements AppointmentService{
 	//***********************************
 		@Override
 		public AppointmentEntity addAppointments(AppointmentResponseAdd_Update appointmentResponseAdd) {
+			
+			//Get the maximum time slot from r_appl_config table where code equals TS
+			Integer maxApptTimeSlot = commonDao.getMaxTimeSlot();
+			Integer newTimeSlot = appointmentDao.apptCountByDateLunchType(
+										appointmentResponseAdd.getApptDate(), 
+										appointmentResponseAdd.getLunchType()
+										)+1;
+			
+			 if (newTimeSlot > maxApptTimeSlot) {
+			      throw new ArithmeticException("We are sorry, no appointments available for this time slot"); 
+			 }
+			
 			//Built primary key from response
 			AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
 					appointmentResponseAdd.getApptDate(),
 					appointmentResponseAdd.getLunchType(),
-					appointmentDao.apptCountByDateLunchType(
-							appointmentResponseAdd.getApptDate(), 
-							appointmentResponseAdd.getLunchType()
-							)+1
+					newTimeSlot
 					);
 			//Built entity using key and other response fields
 			AppointmentEntity appointmentEntity = new AppointmentEntity(
@@ -102,6 +111,8 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//***********************************
 			@Override
 			public AppointmentEntity addReview(AppointmentResponseAdd_Update appointmentResponseAdd) {
+				
+				
 				//Built primary key from response
 				AppointmentEntityKey appointmentEntityKey = new AppointmentEntityKey(
 						appointmentResponseAdd.getApptDate(),
@@ -215,8 +226,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 	public List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate) {
 		
 		List<AppointmentResponseSchedule> appointmentResponse =  new ArrayList<AppointmentResponseSchedule>();
-				
-		int totalApptSlots = 10;
+		
+		//Get the maximum time slot from r_appl_config table where code equals TS
+		int totalApptSlots = commonDao.getMaxTimeSlot();
 		LocalDate sysDate;
 		
 		//Get System date 
@@ -280,176 +292,183 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//*****  TUESDAY ********
 		//************************
 		
-		//Set Values for Tuesday A Lunch;
+		//Set Values for *** Tuesday A-Lunch ***
 		String lunchType   = "A";
-		Integer apptOpen = 0;
 		Integer apptFilled = 0;
-		apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
-		apptOpen       = totalApptSlots - apptFilled;
-		
-		AppointmentDateConfigEntity apptDtConfigEntity = new AppointmentDateConfigEntity();
-				
-		apptDtConfigEntity = appointmentReserveDtDao.getAppointmentByDate(dateTuesday);
-		
-		//Override if 
-		if(apptDtConfigEntity.getDateType() == "RESERVED"){
+		Integer apptOpen   = 0;
+
+		//Check date type If the date is reserved or disabled then set open slot to -1 or -2 else derive open slot 
+		String dateType    = commonDao.getDateType(dateTuesday);
+		if("RESERVED" .equals(dateType) ){
 			apptOpen = -1;
-			apptFilled = -1;
-		}
-		else if(apptDtConfigEntity.getDateType() == "DISABLED"){
+			
+		}  else if("DISABLED" .equals(dateType) ){
 			apptOpen = -2;
-			apptFilled = -2;
+			
+		} else {
+			apptFilled = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
+			apptOpen   = totalApptSlots - apptFilled;
 		}
 		
-		String apptDayName = dateTuesday.getDayOfWeek().name();
-		Month apptMonth    = dateTuesday.getMonth();
+		//Add to List for response for Tuesday A-lunch
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen,dateTuesday.getMonth()));	
 		
-		//Add to List for response for A-lunch
-		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));	
 		
-		//Set Values for Tuesday B Lunch
-		lunchType   = "B";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
+		//next Set Values for *** Tuesday B-Lunch ***
+		lunchType  = "B";
+		apptFilled = 0;
+		apptOpen   = 0;
+		
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+			
+		}  else if("DISABLED" .equals(dateType) ){
+			apptOpen = -2;
+			
+		} else {
 			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
 			apptOpen       = totalApptSlots - apptFilled;
-//		}
-		//Add to List for response for B-lunch
-		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen,apptMonth));
-
+		}
+		
+		//Add to response list for Tuesday B-lunch
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesday,lunchType,apptFilled,apptOpen, dateTuesday.getMonth()));
+		
 		
 		//************************	
 		//***** WEDNESDAY ********
 		//************************
 		
-		//Set Values for Wednesday A Lunch
+		//Set Values for *** Wednesday A-Lunch ***
 		lunchType  = "A";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
+		apptFilled = 0;
+		apptOpen   = 0;
+		
+		//Check date type If the date is reserved or disabled then set open slot to -1 or -2 else derive open slot 
+		dateType    = commonDao.getDateType(dateWednesday);
+		
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+			
+		}  else if("DISABLED" .equals(dateType) ){
+			apptOpen = -2;
+			
+		} else {
 			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
 			apptOpen       = totalApptSlots - apptFilled;
-//		}
-		apptDayName   = dateWednesday.getDayOfWeek().name();
-		apptMonth     = dateWednesday.getMonth();
+		}
 		
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));
+		//Add to response list for ***** Wednesday A-Lunch *****
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,dateWednesday.getMonth()));
 		
-		//Set Values for Wednesday B Lunch
+		
+		//Set Values for ***** Wednesday B-Lunch *****
 		lunchType  = "B";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesday).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
+		apptFilled = 0;
+		apptOpen   = 0;
+		
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+			
+		}  else if("DISABLED" .equals(dateType) ){
+			apptOpen = -2;
+			
+		} else {
 			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesday,lunchType);
 			apptOpen       = totalApptSlots - apptFilled;
-//		}
-
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,apptMonth));	
+		}
+		
+		//Add to response list for ***** Wednesday B-Lunch *****
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesday,lunchType,apptFilled,apptOpen,dateWednesday.getMonth()));
 		
 		//******************************	
 		//***** NEXT WEEK TUESDAY ******
 		//******************************
 		
-		//Set Values for Tuesday A Lunch date Next Week
+		//Set Values for *** Tuesday A-Lunch *** date Next Week
 		lunchType     = "A";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
-			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek,lunchType);
-			apptOpen       = totalApptSlots - apptFilled;
-//		}
-		apptDayName   = dateTuesdayNextweek.getDayOfWeek().name();
-		apptMonth     = dateTuesdayNextweek.getMonth();
+		apptFilled = 0;
+		apptOpen   = 0;
 		
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
-		
-		//Set Values for Tuesday B Lunch date Next Week
-		lunchType     = "B";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesdayNextweek).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
-			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek,lunchType);
-			apptOpen       = totalApptSlots - apptFilled;
-//		}
+		//Check date type If the date is reserved or disabled then set open slot to -1 or -2 else derive open slot 
+		dateType    = commonDao.getDateType(dateTuesdayNextweek);
 				
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+					
+		}  else if("DISABLED" .equals(dateType) ){
+			apptOpen = -2;
+					
+		} else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+		}
+		
+		//Add to response list for *** TUESDAY A-LUNCH ***
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,dateTuesdayNextweek.getMonth()));	
+		
+		//Set Values for *** Tuesday B-Lunch *** date Next Week
+		lunchType  = "B";
+		apptFilled = 0;
+		apptOpen   = 0;
+		
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+					
+		}  else if("DISABLED" .equals(dateType) ){
+			apptOpen = -2;
+					
+		} else {
+			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesdayNextweek,lunchType);
+			apptOpen       = totalApptSlots - apptFilled;
+		}
+		
+		//Add to response list for *** TUESDAY A-LUNCH ***
+		appointmentResponse.add(new AppointmentResponseSchedule(dateTuesdayNextweek,lunchType,apptFilled,apptOpen,dateTuesdayNextweek.getMonth()));	
 
 		
 		//******************************	
 		//***** NEXT WEEK WEDNESDAY ******
 		//******************************
-		//Set Values for Tuesday A Lunch date Next Week
-		lunchType     = "A";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
-			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek,lunchType);
-			apptOpen       = totalApptSlots - apptFilled;
-//		}
-		apptDayName   = dateWednesdayNextweek.getDayOfWeek().name();
-		apptMonth     = dateWednesdayNextweek.getMonth();
+		//Set Values for *** Wednesday A-Lunch *** date Next Week
+		lunchType  = "A";
+		apptFilled = 0;
+		apptOpen   = 0;
 		
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
-		
-		//Set Values for Tuesday B Lunch date Next Week
-		lunchType     = "B";
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateWednesdayNextweek).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
-			apptFilled     = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek,lunchType);
-			apptOpen       = totalApptSlots - apptFilled;
-//		}
+		//Check date type, if the date is reserved or disabled then set open slot to -1 or -2 else derive open slot 
+		dateType    = commonDao.getDateType(dateWednesdayNextweek);
 				
-		//Add to List for response
-		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,apptMonth));	
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+					
+		}  else if("DISABLED" .equals(dateType) ){
+					apptOpen = -2;
+					
+		} else {
+			apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek,lunchType);
+			apptOpen      = totalApptSlots - apptFilled;
+		}	
+		
+		//Add to response list *** Wednesday A-Lunch *** 
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,dateWednesdayNextweek.getMonth()));	
+		
+		//Set Values for *** Wednesday B-Lunch *** date Next Week
+		lunchType  = "B";
+		apptFilled = 0;
+		apptOpen   = 0;
+		
+		if("RESERVED" .equals(dateType) ){
+			apptOpen = -1;
+					
+		}  else if("DISABLED" .equals(dateType) ){
+			apptOpen = -2;
+					
+		} else {
+			apptFilled    = appointmentDao.apptCountByDateLunchType(dateWednesdayNextweek,lunchType);
+			apptOpen      = totalApptSlots - apptFilled;
+		}	
+		
+		//Add to response list Wednesday B-Lunch **** 
+		appointmentResponse.add(new AppointmentResponseSchedule(dateWednesdayNextweek,lunchType,apptFilled,apptOpen,dateWednesdayNextweek.getMonth()));	
 
 		/*//Display for debugging  
 		System.out.println(apptForWeek);
