@@ -23,6 +23,7 @@ export class AppointmentComponent implements OnInit {
   slotsWN = [];
   dateTN: string;
   dateWN: string;
+  //email: string;
   //Displayed Vars
   slotsT = [];
   slotsW = [];
@@ -49,6 +50,7 @@ export class AppointmentComponent implements OnInit {
     lastName: '',
     grade: 0,
     teacher: '',
+    //email: '',
     topic: '',
     consultant_id: null,
     review: null,
