@@ -23,6 +23,10 @@ export class ConsultantService {
     return this.http.delete<any>(this.endpoint+'/consultant/delete/'+index);
   }
 
+  updateConsultant(updatedConsultant){
+    return this.http.put<any>(this.endpoint+'/consultant/update', updatedConsultant);
+  }
+
   addNewConsultant(id, newConsultant){
     newConsultant.consultant_id = id;
     console.log(newConsultant)

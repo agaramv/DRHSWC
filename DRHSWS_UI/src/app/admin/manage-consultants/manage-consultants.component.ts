@@ -53,14 +53,15 @@ export class ManageConsultantsComponent implements OnInit {
   }
 
   onSubmitEdit(form: NgForm){
-    console.log(form.value.firstName)
-    this.editConsultant.firstName = form.value.firstName;
-    this.editConsultant.lastName = form.value.lastName;
-    this.editConsultant.grade = Number(form.value.grade);
-    this.editConsultant.email = form.value.emailC;
-    this.editConsultant.emailSec = form.value.emailSec;
+    console.log("edit form")
+    console.log(this.editConsultant.firstName)
+    if(form.value.firstName!=""){this.editConsultant.firstName = form.value.firstName}
+    if(form.value.lastName!=""){this.editConsultant.lastName = form.value.lastName}
+    if(form.value.grade!=0){this.editConsultant.grade = Number(form.value.grade)}
+    if(form.value.email!=""){this.editConsultant.email = form.value.email}
+    if(form.value.emailSec!=""){this.editConsultant.emailSec = form.value.emailSec}
     this.editConsultant.active_inactive = 'A';
-    this.toggleEdit()
+    this.updateConsultant(this.editConsultant);
   }
 
   onSubmit(form: NgForm){
@@ -87,31 +88,35 @@ export class ManageConsultantsComponent implements OnInit {
     })
   }
 
-  getConsultantById(id){
-    
+  updateConsultant(updateConsultant){
+    this.consultantService.updateConsultant(updateConsultant).subscribe((data)=>{
+      console.log("updated")
+      this.getAllConsultants();
+    })
   }
 
   onUpdate(index){
-    console.log("edit")
+    //console.log("edit")
     this.edit = true;
     this.norm = false;
     this.consultantService.getAllConsultants().subscribe((data: Consultant[])=>{
-      console.log(data[data.length-1].consultant_id+1)
+      //console.log(data[data.length-1].consultant_id+1)
       this.idE = data[index].consultant_id;
       this.consultantService.getConsultantById(this.idE).subscribe((data: Consultant)=>{
         this.editConsultant = data;
+        console.log(data)
       })
     })
   }
 
   toggleEdit(){
-    this.edit = false;
     this.new = false;
+    this.edit = !this.edit;
   }
 
   toggleAdd(){
     this.edit = false;
-    this.new = false;
+    this.new = !this.new;
   }
 
   ngOnInit() {

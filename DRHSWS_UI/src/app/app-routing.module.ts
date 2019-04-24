@@ -32,22 +32,11 @@ const routes: Routes = [
     { path: 'pending', component: PendingComponent},
     { path: 'past', component: PastComponent}
   ]},
-  { path: 'consultant', children: [
-      { path: '', redirectTo: 'entry', pathMatch: 'full' },
-      { path: 'entry', component: EntryComponent },
-      { path: 'assignments', component: AssignmentsComponent },
-    ]},
   {path: 'admin', children: [
       { path: 'consultants', component: ManageConsultantsComponent },
-   //   { path: 'settings' },
+      { path: 'dates', component: ManageAppointmentsComponent },
+  //   { path: 'settings' },
   ]},
-  {
-    path: 'manage', children: [
-      { path: '', redirectTo: '/manage/a', pathMatch: 'full' },
-      { path: 'c', component: ManageConsultantsComponent },
-      { path: 'a', component: ManageAppointmentsComponent },
-    ]
-  },
   { path: 'resource', component: ResourcesComponent }
 ];
 

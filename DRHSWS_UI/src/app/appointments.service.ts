@@ -20,4 +20,12 @@ export class AppointmentsService {
     return this.http.get<any>(this.endpoint+'/appointment/range/'+from+'/'+to);
   }
 
+  getReservedDisabledDates(){
+    return this.http.get<any>(this.endpoint+'/appointment/block/all');
+  }
+
+  addReservedDisabledDate(newDate){
+    return this.http.post<any>(this.endpoint+'/appointment/block/add', newDate);
+  }
+
 }

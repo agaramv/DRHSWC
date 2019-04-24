@@ -1,4 +1,4 @@
-
+<!-- 
 <br>
 <h3>Consultant Reviews</h3>
 <div>
@@ -39,7 +39,7 @@
   
   <tr mat-header-row *matHeaderRowDef="displayedColumnsR"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumnsR;"></tr>
-</table>
+</table> -->
 
 <!-- Manipulating Consultants -->
 <br>
@@ -62,7 +62,7 @@
     </div>      
     <div class="col-6">   
       <div class="form-group">
-        <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="emailC" value="{{editConsultant.email}}" ngModel>
+        <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="email" value="{{editConsultant.email}}" ngModel>
       </div>
       
       <div class="form-group">
@@ -82,7 +82,7 @@
   <br>
 </div>
 <!-- Show list of consultant. Add and delete buttons on top. -->
-<button (click)="add()" class="btn btn-outline-primary"> Add New</button><br>
+<button (click)="toggleAdd();add()" class="btn btn-outline-primary"> Add New</button><br>
 <div *ngIf="new">
   <br>
 </div>
@@ -127,7 +127,7 @@
   <ng-container matColumnDef="Action">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let consultants; let i = index" id="actions"> 
-      <button id="edit" mat-icon-button color="primary" (click)="onUpdate(i)">
+      <button id="edit" mat-icon-button color="primary" (click)="toggleEdit();onUpdate(i)">
         <mat-icon>edit</mat-icon>
       </button>
       <button id="delete" mat-icon-button color="warn" (click)="delete(i)">
