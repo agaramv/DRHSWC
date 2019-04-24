@@ -31,6 +31,6 @@ export class ConsultantService {
   }
 
   getConsultantById(index){
-    return this.http.get<any>(this.endpoint+'/consultant')
+    return this.http.get<any>(this.endpoint+'/consultant/'+index)
   }
 }

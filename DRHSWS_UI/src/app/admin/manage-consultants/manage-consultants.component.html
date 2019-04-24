@@ -45,66 +45,84 @@
 <br>
 <h3>Consultant</h3>
 <div *ngIf="edit">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="new" class="form-inline" id="editForm">
-    <button id="save" mat-icon-button color="primary" type="submit"> 
-      <mat-icon>done</mat-icon>
-    </button>
-    <button id="cancel" mat-icon-button color="warn" (click)="toggleEdit()">
-      <mat-icon>clear</mat-icon>
-    </button>
-    <div class="form-group">
-      <input id="firstName" type="text" class="form-control mb-2 mr-sm-2" name="firstName" placeholder="Enter First Name" ngModel>
-    </div>              
-    <div class="form-group">
-      <input id="lastName" type="text" class="form-control mb-2 mr-sm-2" name="lastName" placeholder="Enter Last Name" ngModel>
-    </div>	
+  <h5>Edit Consultant </h5>
+  <form (ngSubmit)="onSubmitEdit(f)" #f="ngForm" id="editForm">
+    <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <input id="firstName" type="text" class="form-control mb-2 mr-sm-2" name="firstName" value="{{editConsultant.firstName}}" ngModel>
+      </div>              
+      <div class="form-group">
+        <input id="lastName" type="text" class="form-control mb-2 mr-sm-2" name="lastName" value="{{editConsultant.lastName}}" ngModel>
+      </div>	
+        
+      <div class="form-group">
+        <input id="grade" type="text" class="form-control mb-2 mr-sm-2" name="grade" value="{{editConsultant.grade}}" ngModel>
+      </div>
+    </div>      
+    <div class="col-6">   
+      <div class="form-group">
+        <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="emailC" value="{{editConsultant.email}}" ngModel>
+      </div>
       
-    <div class="form-group">
-      <input id="grade" type="text" class="form-control mb-2 mr-sm-2" name="grade" placeholder="Enter Grade" ngModel>
+      <div class="form-group">
+        <input id="emailSec" type="email" class="form-control mb-2 mr-sm-2" name="emailSec" value="{{editConsultant.emailSec}}" ngModel>
+      </div>
+    </div> 
     </div>
-              
+  <div class="form-inline">
     <div class="form-group">
-      <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="emailC" placeholder="Enter Email" ngModel>
+      <button id="sumbit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Submit</button>
     </div>
-    
     <div class="form-group">
-      <input id="emailSec" type="email" class="form-control mb-2 mr-sm-2" name="emailSec" placeholder="Enter Second Email" ngModel>
+      <button id="cancel" class="btn btn-outline-danger mb-2 mr-sm-2" (click)="toggleEdit()">Cancel</button>
     </div>
-    
-    </form>
+  </div>
+  </form>
+  <br>
 </div>
 <!-- Show list of consultant. Add and delete buttons on top. -->
-<button mat-raised-button (click)="add()" color="primary"> Add New</button><br>
+<button (click)="add()" class="btn btn-outline-primary"> Add New</button><br>
 <div *ngIf="new">
   <br>
 </div>
-<form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="new" class="form-inline" id="addForm">
-  <div class="form-group">
-    <input id="firstName" type="text" class="form-control mb-2 mr-sm-2" name="firstName" placeholder="Enter First Name" ngModel>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="new" id="addForm">
+  <h5>Add New Consultant</h5>
+  <div class="row">
+  <div class="col-6">
+    <div class="form-group">
+      <input id="firstName" type="text" class="form-control mb-2 mr-sm-2" name="firstName" placeholder="Enter First Name" ngModel>
+    </div>
+            
+    <div class="form-group">
+      <input id="lastName" type="text" class="form-control mb-2 mr-sm-2" name="lastName" placeholder="Enter Last Name" ngModel>
+    </div>	
+    
+    <div class="form-group">
+      <input id="grade" type="text" class="form-control mb-2 mr-sm-2" name="grade" placeholder="Enter Grade" ngModel>
+    </div>
   </div>
-          
-  <div class="form-group">
-    <input id="lastName" type="text" class="form-control mb-2 mr-sm-2" name="lastName" placeholder="Enter Last Name" ngModel>
-  </div>	
-  
-  <div class="form-group">
-    <input id="grade" type="text" class="form-control mb-2 mr-sm-2" name="grade" placeholder="Enter Grade" ngModel>
-  </div>
-          
-  <div class="form-group">
-    <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="emailC" placeholder="Enter Email" ngModel>
-  </div>
+  <div class="col-6">  
+    <div class="form-group">
+      <input id="emailC" type="email" class="form-control mb-2 mr-sm-2" name="emailC" placeholder="Enter Email" ngModel>
+    </div>
 
+    <div class="form-group">
+      <input id="emailSec" type="email" class="form-control mb-2 mr-sm-2" name="emailSec" placeholder="Enter Second Email" ngModel>
+    </div>
+  </div> 
+</div>
+<div class="form-inline">
   <div class="form-group">
-    <input id="emailSec" type="email" class="form-control mb-2 mr-sm-2" name="emailSec" placeholder="Enter Second Email" ngModel>
+    <button id="sumbit" type="submit" class="far btn btn-outline-primary mb-2 mr-sm-2">Submit</button>
   </div>
-
   <div class="form-group">
-    <button id="sumbit" type="submit" mat-raised-button color="primary">Submit</button>
+    <button id="cancel" class="btn btn-outline-danger mb-2 mr-sm-2">Cancel</button>
   </div>
+</div>
 </form>
 <br>
-<div class="styles mat-elevation-z8" *ngIf="norm">
+<div class="styles mat-elevation-z8">
 <table mat-table [dataSource]="consultants" >  
   <ng-container matColumnDef="Action">
     <th mat-header-cell *matHeaderCellDef> Actions </th>

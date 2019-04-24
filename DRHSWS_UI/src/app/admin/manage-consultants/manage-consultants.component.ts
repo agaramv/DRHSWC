@@ -17,8 +17,16 @@ export class ManageConsultantsComponent implements OnInit {
   displayedColumnsR: string[] = ['Action', 'Name', 'Student','Topic','Teacher', 'Review'];
   consultants: Consultant[];
   reviews: ConsultantEntry[];
-  newConsultant: Consultant
-   = {
+  newConsultant: Consultant = {
+    consultant_id: 0,
+    firstName: '',
+    lastName: '',
+    grade: 0,
+    email: '',
+    emailSec: '',
+    active_inactive: ''
+  };
+  editConsultant: Consultant = {
     consultant_id: 0,
     firstName: '',
     lastName: '',
@@ -28,6 +36,7 @@ export class ManageConsultantsComponent implements OnInit {
     active_inactive: ''
   };
   id = 0;
+  idE = 0;
   new = false;
   edit = false;
   norm = true;
@@ -43,6 +52,17 @@ export class ManageConsultantsComponent implements OnInit {
     //this.getAllReviews();
   }
 
+  onSubmitEdit(form: NgForm){
+    console.log(form.value.firstName)
+    this.editConsultant.firstName = form.value.firstName;
+    this.editConsultant.lastName = form.value.lastName;
+    this.editConsultant.grade = Number(form.value.grade);
+    this.editConsultant.email = form.value.emailC;
+    this.editConsultant.emailSec = form.value.emailSec;
+    this.editConsultant.active_inactive = 'A';
+    this.toggleEdit()
+  }
+
   onSubmit(form: NgForm){
     console.log(form.value.firstName)
     this.newConsultant.firstName = form.value.firstName;
@@ -52,7 +72,6 @@ export class ManageConsultantsComponent implements OnInit {
     this.newConsultant.email = form.value.emailC;
     this.newConsultant.emailSec = form.value.emailSec;
     this.newConsultant.active_inactive = 'A';
-    console.log('new')
     this.new = false;
     this.addNewConsultant()
   }
@@ -68,16 +87,31 @@ export class ManageConsultantsComponent implements OnInit {
     })
   }
 
+  getConsultantById(id){
+    
+  }
+
   onUpdate(index){
+    console.log("edit")
     this.edit = true;
     this.norm = false;
-    //
-    //getConsultantById
+    this.consultantService.getAllConsultants().subscribe((data: Consultant[])=>{
+      console.log(data[data.length-1].consultant_id+1)
+      this.idE = data[index].consultant_id;
+      this.consultantService.getConsultantById(this.idE).subscribe((data: Consultant)=>{
+        this.editConsultant = data;
+      })
+    })
   }
 
   toggleEdit(){
     this.edit = false;
-    this.norm = true;
+    this.new = false;
+  }
+
+  toggleAdd(){
+    this.edit = false;
+    this.new = false;
   }
 
   ngOnInit() {
