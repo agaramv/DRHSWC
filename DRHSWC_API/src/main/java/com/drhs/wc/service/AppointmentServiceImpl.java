@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drhs.wc.dao.AppointmentDao;
-import com.drhs.wc.dao.AppointmentDateConfigDao;
+import com.drhs.wc.dao.AppointmentReserveDateDao;
+import com.drhs.wc.entity.AppointmentDateConfigEntity;
 import com.drhs.wc.entity.AppointmentEntity;
 import com.drhs.wc.entity.AppointmentEntityKey;
 import com.drhs.wc.param.AppointmentResponseSchedule;
@@ -24,9 +25,10 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Autowired
 	private AppointmentDao appointmentDao;
 	
-//	@Autowired
-//	private AppointmentDateConfigDao appointmentDateConfigDao;
 
+	@Autowired
+	private AppointmentReserveDateDao appointmentReserveDtDao;
+	
 	
 	//**********************************
 	// Build Appointment Response object
@@ -212,7 +214,6 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Override
 	public List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate) {
 		
-	
 		List<AppointmentResponseSchedule> appointmentResponse =  new ArrayList<AppointmentResponseSchedule>();
 				
 		int totalApptSlots = 10;
@@ -279,26 +280,27 @@ public class AppointmentServiceImpl implements AppointmentService{
 		//*****  TUESDAY ********
 		//************************
 		
-		//Set Values for Tuesday A Lunch
-//		String apptForWeek = "CURRENTWEEK";
+		//Set Values for Tuesday A Lunch;
 		String lunchType   = "A";
-	    //Check if the date is reserved date, if the date exists in r_appt_date_config
-		//If Yes set appointnment open to -1
-		//Of No then get count of current appointments
 		Integer apptOpen = 0;
 		Integer apptFilled = 0;
-//		if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "RESERVED"){
-//			apptOpen = -1;
-//			apptFilled = -1;
-//		}
-//		else if(appointmentDateConfigDao.getAppointmentByDate(dateTuesday).getDateType() == "DISABLED"){
-//			apptOpen = -2;
-//			apptFilled = -2;
-//		}
-//		else {
-			apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
-			apptOpen       = totalApptSlots - apptFilled;
-	//	}
+		apptFilled     = appointmentDao.apptCountByDateLunchType(dateTuesday,lunchType);
+		apptOpen       = totalApptSlots - apptFilled;
+		
+		AppointmentDateConfigEntity apptDtConfigEntity = new AppointmentDateConfigEntity();
+				
+		apptDtConfigEntity = appointmentReserveDtDao.getAppointmentByDate(dateTuesday);
+		
+		//Override if 
+		if(apptDtConfigEntity.getDateType() == "RESERVED"){
+			apptOpen = -1;
+			apptFilled = -1;
+		}
+		else if(apptDtConfigEntity.getDateType() == "DISABLED"){
+			apptOpen = -2;
+			apptFilled = -2;
+		}
+		
 		String apptDayName = dateTuesday.getDayOfWeek().name();
 		Month apptMonth    = dateTuesday.getMonth();
 		

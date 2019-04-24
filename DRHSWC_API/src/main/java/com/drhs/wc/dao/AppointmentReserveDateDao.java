@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.drhs.wc.entity.AppointmentDateConfigEntity;
 
-public interface AppointmentDateConfigDao {
+public interface AppointmentReserveDateDao {
 
 	//Check if date is reserved/disabled
 	public AppointmentDateConfigEntity getAppointmentByDate(LocalDate apptDate);
