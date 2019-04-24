@@ -30,7 +30,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 	private CommonDAO commonDao;
 	
 	@Autowired
-	CommonDAO apptDateconfigDAO;
+	private CommonDAO apptDateconfigDAO;
 	
 	//**********************************
 	// Build Appointment Response object
