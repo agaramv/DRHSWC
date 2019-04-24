@@ -70,6 +70,12 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		return appointmentRepository.getAppointmentsByDateRange(apptDateF, apptDateT);
 	}
 
+	/*@Override
+	public void deleteBlockedapptDate(LocalDate blockedapptDate) {
+		return appointmentRepository.deleteById(blockedapptDate);
+		
+	}*/
+
 
 
 
