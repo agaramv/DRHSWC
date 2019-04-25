@@ -28,7 +28,7 @@ export class SignupService {
   }
 
   saveAppointment(newAppt) {
-    //console.log(apptDate, lunchType, firstName, lastName, grade, teacher, topic)
+    console.log('The Appointment'+newAppt)
     return this.http.post<any>(this.endpoint + '/appointment/add', newAppt);
   }
 

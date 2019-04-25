@@ -21,12 +21,8 @@ export class ReviewService {
   }
 
   //gets past reviews per consultant
-  getPastReviews(){
-    
+  emailReview(newReview){
+    return this.http.post<any>(this.endpoint+'/sendemail',{})
   }
 
-  //gets all past reviews
-  getAllReviews(){
-
-  }
 }

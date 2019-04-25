@@ -48,8 +48,10 @@ export class AppointmentComponent implements OnInit {
     firstName: '',
     lastName: '',
     grade: 0,
+    email: '',
     teacher: '',
     topic: '',
+    fileLink: '',
     consultant_id: null,
     review: null,
     reviewDate: null,
@@ -206,12 +208,16 @@ export class AppointmentComponent implements OnInit {
 
   //Captures the form data
   onSubmit(form: NgForm) {
+    console.log('This:' + form.value.link)
     this.newAppt.firstName = form.value.firstName;
     this.newAppt.lastName = form.value.lastName;
     this.newAppt.grade = Number(form.value.grade);
+    this.newAppt.email = form.value.email;
     this.newAppt.teacher = form.value.teacher;
     this.newAppt.topic = form.value.topic;
+    this.newAppt.fileLink = form.value.fileLink;
     this.submitted = true;
+    console.log(this.newAppt)
 
     this.saveAppointment(this.newAppt);
   }

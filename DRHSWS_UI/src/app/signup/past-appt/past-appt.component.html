@@ -1,6 +1,7 @@
 <br>
 <h3>Past Appointments</h3>
 <label>Appointment Date Range</label>
+<h6 class="font-weight-light font-italic">Format: YYYY-MM-DD</h6>
 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-inline">
   <div class="form-group">
     <input id="from" type="text" class="form-control mb-2 mr-sm-2" name="from" ngModel>
@@ -43,8 +44,13 @@
   </ng-container>
   
   <ng-container matColumnDef="Topic">
-    <th mat-header-cell *matHeaderCellDef> Review </th>
+    <th mat-header-cell *matHeaderCellDef> Topic </th>
     <td mat-cell *matCellDef="let apptPast"> {{apptPast.topic}}  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="File Link">
+    <th mat-header-cell *matHeaderCellDef> File Link </th>
+    <td mat-cell *matCellDef="let apptPast"> {{apptPast.link}}  </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumnsAP"></tr>

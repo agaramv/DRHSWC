@@ -1,9 +1,11 @@
 <br>
 <h3>Past Reviews</h3>
 <label>Date Filter Range</label>
+<h6 class="font-weight-light font-italic">Format: YYYY-MM-DD</h6>
 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-inline">
   <div class="form-group">
     <input id="from" type="text" class="form-control mb-2 mr-sm-2" name="from" ngModel>
+    <p class="font-italic">Format: YYYY-MM-DD</p>
   </div>		
   <label class="mb-2 mr-sm-2">To</label>
   <div class="form-group">

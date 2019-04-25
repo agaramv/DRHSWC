@@ -55,12 +55,14 @@
 <br>
 <h3>Pending Reviews</h3>
 <div *ngIf="write">
+  <h5>Write Review:</h5>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="form-group">
       <textarea class="form-control" cols="9" rows="3" name="review" placeholder="Write Review" ngModel></textarea>
     </div>
-    <button id="edit" type="submit" class="btn btn-outline-primary">Write Review</button>
-      </form>
+    <button id="edit" type="submit" class="btn btn-outline-primary mb-2 mr-sm-2">Submit</button>
+    <button id="cancel" class="btn btn-outline-danger mb-2 mr-sm-2" (click)="write=false">Cancel</button>
+  </form>
 </div>
 <br>
 <table mat-table [dataSource]="reviewsPending" class="mat-elevation-z8" width="100%">

@@ -99,6 +99,10 @@
           </select>
         </div>
         <div class="form-group">
+          <label for="email">Email</label>
+          <input ngModel name="email" type="email" class="form-control" id="email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
           <label for="topic">Topic of Assignment</label>
           <input ngModel name="topic" type="text" class="form-control" id="topic" placeholder="Enter Topic" required>
         </div>
@@ -106,6 +110,12 @@
           <label for="teacher">Teacher</label>
           <input ngModel name="teacher" type="text" class="form-control" id="teacher" placeholder="Enter Teacher"
             required>
+        </div>
+        <div class="form-group">
+          <label for="fileLink">File Link</label>
+          <input ngModel name="fileLink" type="text" class="form-control mb-2 mr-sm-2" id="fileLink" placeholder="Enter File Link">
+          <label class="font-weight-light font-italic">This is a Google Drive Shareable Link</label> <br>
+          <label class="font-weight-light font-italic">Make sure it is open to everyone</label>
         </div>
         <button type="submit" class="btn btn-primary">Sign-up</button>
       </form>
