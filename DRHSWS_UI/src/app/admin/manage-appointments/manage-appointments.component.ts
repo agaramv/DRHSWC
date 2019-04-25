@@ -35,13 +35,14 @@ export class ManageAppointmentsComponent implements OnInit {
   constructor(private apptService: AppointmentsService) { }
 
   ngOnInit() {
-
+    this.getReservedDisabledDates();
   }
 
   //get all dates
   getReservedDisabledDates(){
     return this.apptService.getReservedDisabledDates()
       .subscribe((data) =>{
+        console.log(data)
         this.dates = data;
       })
   }

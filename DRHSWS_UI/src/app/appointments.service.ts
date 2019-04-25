@@ -21,11 +21,11 @@ export class AppointmentsService {
   }
 
   getReservedDisabledDates(){
-    return this.http.get<any>(this.endpoint+'/appointment/block/all');
+    return this.http.get<any>(this.endpoint+'/appointment/blocked/all');
   }
 
   addReservedDisabledDate(newDate){
-    return this.http.post<any>(this.endpoint+'/appointment/block/add', newDate);
+    return this.http.post<any>(this.endpoint+'/appointment/block', newDate);
   }
 
   deleteReservedDisabledDate(date){
