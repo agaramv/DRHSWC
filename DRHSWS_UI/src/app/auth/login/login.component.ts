@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.buildForm();
     this.loginForm.patchValue({
-      username: 'hcps-bellaj7@henricostudents.org',
+      username: 'berry@gmail.com',
       //   password: 's'
     });
   }
@@ -53,13 +53,22 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/signup'], { replaceUrl: true })
+          this.router.navigate(['/appointment'], { replaceUrl: true })
+          this.getUserByEmail(this.formvalues.username.value)
         },
         error => {
           this.errorText = 'Incorrect Email or Password';
           this.loading = false;
         }
       )
+    
+  }
+
+  getUserByEmail(email){
+    this.authService.getUserByEmail(email).subscribe((data)=>{
+      console.log(data)
+      this.authService.setUser(data)
+    })
   }
 
 }

@@ -35,9 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	    auth.jdbcAuthentication().dataSource(dataSource)
 	        .usersByUsernameQuery("select email, password, 'true' as enabled"
-	            + " from r_consultants where email=?")
+	            + " from r_user_info where email=?")
 	        .authoritiesByUsernameQuery("select email as username, 'CONSULTANT'" + 
-	        		" from r_consultants where email=?")
+	        		" from r_user_info where email=?")
 	        .passwordEncoder(new BCryptPasswordEncoder());
 	  }
 
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.cors();
-		http.authorizeRequests().antMatchers("/appointment/**").permitAll();
+		http.authorizeRequests().antMatchers("/appointment/**").authenticated();
 		http.authorizeRequests().antMatchers("/consultant/**").permitAll();
 		/* *
 		 * http.authorizeRequests().antMatchers("/appointment/add").permitAll();

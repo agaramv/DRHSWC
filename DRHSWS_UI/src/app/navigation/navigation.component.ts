@@ -7,7 +7,10 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-
+  student = true;
+  user = '';
+  consultant = false;
+  admin = false;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -16,4 +19,9 @@ export class NavigationComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+  assessUser(){
+    
+  }
+
 }

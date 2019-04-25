@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  endpoint:string = "/api"||"http://localhost:8080";
+  userType: string = '';
+
   constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string) {
@@ -30,5 +33,14 @@ export class AuthService {
     this.http.get('/api/logout').subscribe(data => {
       this.router.navigate(['/login'])
     });
+  }
+
+  getUserByEmail(email){
+    return this.http.get<any>(this.endpoint+'/user/email/'+email);
+  }
+
+  setUser(user){
+    this.userType = user.type;
+    console.log(this.userType)
   }
 }
