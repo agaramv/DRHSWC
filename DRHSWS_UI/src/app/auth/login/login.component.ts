@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   errorText = '';
   loading = false;
   submitted = false;
-  userType='';
 
   constructor(
     private router: Router,
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.buildForm();
     this.loginForm.patchValue({
-      username: 'berry@gmail.com',
+      username: 'hcps-bellaj7@henricostudents.org',
       //   password: 's'
     });
   }
@@ -54,40 +53,13 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.userType = this.getUser()
-          console.log(this.userType)
-          this.assessUser()
-          // this.router.navigate(['/appointment'], { replaceUrl: true })
-          this.getUserByEmail(this.formvalues.username.value)
+          this.router.navigate(['/signup'], { replaceUrl: true })
         },
         error => {
           this.errorText = 'Incorrect Email or Password';
           this.loading = false;
         }
       )
-    
   }
 
-  getUserByEmail(email){
-    this.authService.getUserByEmail(email).subscribe((data)=>{
-      console.log(data)
-      this.authService.setUser(data.type)
-    })
-  }
-
-  getUser(){
-    return this.authService.userType;
-  }
-
-  assessUser(){
-    if(this.userType =="C"){
-      this.router.navigate(['/review/pending'], { replaceUrl: true })
-    }
-    else if(this.userType =='A'){
-      this.router.navigate(['/review/past'], { replaceUrl: true })
-    }
-    else{
-      this.router.navigate(['/appointment'], { replaceUrl: true })
-    }
-  }
 }

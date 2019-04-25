@@ -134,7 +134,6 @@ public class AppointmentController {
 	//*****************************
 	// Block New Appointment Dates
 	//******************************
-	
 	@PostMapping("/appointment/block")
 	public AppointmentDateConfigEntity blockAppointments(@RequestBody AppointmentDateConfigEntity appointmentDateConfigEntity){
 		return appointmentService.blockAppointments(appointmentDateConfigEntity);

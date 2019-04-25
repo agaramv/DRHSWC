@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.drhs.wc.dao.UserDao;
-import com.drhs.wc.entity.UserEntity;
+import com.drhs.wc.dao.ConsultantDao;
+import com.drhs.wc.entity.ConsultantEntity;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class ConsultantServiceImpl implements ConsultantService{
 
 	@Autowired
-	UserDao consultantDao;
+	ConsultantDao consultantDao;
 	
 	@Autowired
 	EntityManager entityManager;
@@ -23,14 +23,14 @@ public class UserServiceImpl implements UserService{
 	//Get all Consultants
 	
 	@Override
-	public List<UserEntity> getAllConsultants() {
+	public List<ConsultantEntity> getAllConsultants() {
 		return consultantDao.getAllConsultants();
 	}
 
 	//Get Consultants by ID
 	
 	@Override
-	public Optional<UserEntity> getConsultantById(Integer id) {
+	public Optional<ConsultantEntity> getConsultantById(Integer id) {
 		//String k = String.valueOf(id);
 		return consultantDao.getConsultantById(id);
 	}
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
 	//Add new consultants
 	
 	@Override
-	public UserEntity addNewConsultant(UserEntity consultantEntity) {
+	public ConsultantEntity addNewConsultant(ConsultantEntity consultantEntity) {
 		
 		//set default Password to DRHSwc01
 		consultantEntity.setConsultantPassword(new BCryptPasswordEncoder().encode("DRHSwc01")); 
@@ -63,20 +63,14 @@ public class UserServiceImpl implements UserService{
 
 	//Update Consultant
 	@Override
-	public UserEntity updateConsultant(UserEntity consultantEntity) {
+	public ConsultantEntity updateConsultant(ConsultantEntity consultantEntity) {
 		return consultantDao.updateConsultant(consultantEntity);
 	
 	}
 
 	@Override
-	public UserEntity findUserByEmail(String email) {
+	public ConsultantEntity findUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return consultantDao.getConsultantByEmail(email);
-	}
-
-	@Override
-	@Transactional
-	public int changePassword(String password, String email) {
-		return consultantDao.changePassword(password, email);
 	}
 }

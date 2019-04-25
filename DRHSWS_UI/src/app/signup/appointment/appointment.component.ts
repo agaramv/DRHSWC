@@ -23,6 +23,7 @@ export class AppointmentComponent implements OnInit {
   slotsWN = [];
   dateTN: string;
   dateWN: string;
+  //email: string;
   //Displayed Vars
   slotsT = [];
   slotsW = [];
@@ -49,6 +50,7 @@ export class AppointmentComponent implements OnInit {
     lastName: '',
     grade: 0,
     teacher: '',
+    //email: '',
     topic: '',
     consultant_id: null,
     review: null,
@@ -172,7 +174,7 @@ export class AppointmentComponent implements OnInit {
     this.dateT = this.dateTN;
     this.dateW = this.dateWN;
     //Tuesday
-    if(this.slotsTN[0] = -1){
+    if(this.slotsTN[0] == -1){
       this.keyWordT = 'RESERVED';
       this.keyWordBT = true;
       this.keyWordBTNorm = false;

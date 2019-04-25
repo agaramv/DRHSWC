@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +16,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drhs.wc.entity.UserEntity;
+import com.drhs.wc.entity.ConsultantEntity;
 import com.drhs.wc.service.AppointmentService;
-import com.drhs.wc.service.UserService;
+import com.drhs.wc.service.ConsultantService;
 
 /**
  * @author VidurAgaram
@@ -27,18 +26,18 @@ import com.drhs.wc.service.UserService;
  */
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-public class UserController {
+public class ConsultantController {
 
 	@Autowired
-	UserService consultantService;
+	ConsultantService consultantService;
 
 	/* *************************
 	// Add New Consultant
 	***************************/
 	
-	@PostMapping("/user/add")
-	public UserEntity addNewConsultant(@Valid @RequestBody UserEntity consultantEntity){
-		UserEntity ce = consultantService.addNewConsultant(consultantEntity);
+	@PostMapping("/consultant/add")
+	public ConsultantEntity addNewConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
+		ConsultantEntity ce = consultantService.addNewConsultant(consultantEntity);
 		return ce; 
 	}
 	
@@ -46,7 +45,7 @@ public class UserController {
 	//**  Get all Consultants
 	//*************************
 	@GetMapping("/consultant/all")
-	public List<UserEntity> getAllConsultants(){
+	public List<ConsultantEntity> getAllConsultants(){
 		return consultantService.getAllConsultants();
 	}
 	//***************************
@@ -54,33 +53,15 @@ public class UserController {
 	//***************************
 	
 	@GetMapping("/consultant/{id}")
-	public Optional<UserEntity> getConsultantById(@PathVariable Integer id){
+	public Optional<ConsultantEntity> getConsultantById(@PathVariable Integer id){
 		return consultantService.getConsultantById(id);
-	}
-	
-	//***************************
-	//** Get User by Email 
-	//***************************
-	
-	@GetMapping("/user/email/{email}")
-	public UserEntity getUserByEmail(@PathVariable String email){
-		return consultantService.findUserByEmail(email);
-	}
-	
-	//***************************
-	//** Change Password 
-	//***************************
-	
-	@PutMapping("/consultant/{password}/{email}")
-	public void changePassword(@PathVariable String password, @PathVariable String email){
-	  consultantService.changePassword(new BCryptPasswordEncoder().encode(password), email);
 	}
 	
 	/* *************************
 	 * Update consultants by ID
 	 ***************************/
 	@PutMapping("/consultant/update")
-	public void updateConsultant(@Valid @RequestBody UserEntity consultantEntity){
+	public void updateConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
 		consultantService.updateConsultant(consultantEntity); 
 	}
 	
@@ -88,7 +69,7 @@ public class UserController {
 	 * Update consultants by ID
 	 ***************************/
 	@PatchMapping("/consultant/patch")
-	public void patchConsultant(@Valid @RequestBody UserEntity consultantEntity){
+	public void patchConsultant(@Valid @RequestBody ConsultantEntity consultantEntity){
 		consultantService.updateConsultant(consultantEntity); 
 	}
 	
