@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drhs.wc.entity.AppointmentEntity;
-import com.drhs.wc.entity.ConsultantEntity;
+import com.drhs.wc.entity.UserEntity;
 import com.drhs.wc.param.AppointmentResponseAll;
 import com.drhs.wc.repository.AppointmentRepository;
 

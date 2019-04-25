@@ -16,6 +16,7 @@ import { UpcomingComponent } from './signup/upcoming/upcoming.component';
 import { AppointmentComponent } from './signup/appointment/appointment.component';
 import { PastApptComponent } from './signup/past-appt/past-appt.component';
 import { PastComponent } from './review/past/past.component';
+import { SettingsComponent } from './admin/settings/settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -35,7 +36,7 @@ const routes: Routes = [
   {path: 'admin', children: [
       { path: 'consultants', component: ManageConsultantsComponent },
       { path: 'dates', component: ManageAppointmentsComponent },
-  //   { path: 'settings' },
+      { path: 'settings', component: SettingsComponent},
   ]},
   { path: 'resource', component: ResourcesComponent }
 ];
