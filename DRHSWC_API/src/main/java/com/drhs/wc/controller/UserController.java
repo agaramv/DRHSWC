@@ -84,7 +84,6 @@ public class UserController {
 		consultantService.updateConsultant(consultantEntity); 
 	}
 	
-	
 	/* *************************
 	 * Update consultants by ID
 	 ***************************/
