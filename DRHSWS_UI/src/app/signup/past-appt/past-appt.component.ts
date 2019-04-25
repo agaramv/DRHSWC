@@ -10,7 +10,7 @@ import { AppointmentsService } from 'src/app/appointments.service';
   styleUrls: ['./past-appt.component.scss']
 })
 export class PastApptComponent implements OnInit {
-  displayedColumnsAP: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic'];
+  displayedColumnsAP: string[] = ['Date', 'Lunch', 'Student', 'Grade','Teacher', 'Topic','File Link'];
   apptPast: AppointmentUpcPst[];
   filter = {
     from: '',

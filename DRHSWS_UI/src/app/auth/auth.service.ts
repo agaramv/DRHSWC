@@ -44,7 +44,6 @@ export class AuthService {
   }
 
   getUser(){
-    console.log(this.userType)
     return this.userType;
   }
 }

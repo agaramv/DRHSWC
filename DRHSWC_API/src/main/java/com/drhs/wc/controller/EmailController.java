@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drhs.wc.param.EmailResponse;
-import com.drhs.wc.service.ConsultantService;
 import com.drhs.wc.service.EmailService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")

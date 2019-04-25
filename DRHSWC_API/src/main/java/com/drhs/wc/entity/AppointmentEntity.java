@@ -24,7 +24,7 @@ public class AppointmentEntity {
 	@Column(name="student_grade")
 	private int grade;
 	
-	@Column(name="email")
+	@Column(name="student_email")
 	private String email;
 	
 	@Column(name="student_teacher")

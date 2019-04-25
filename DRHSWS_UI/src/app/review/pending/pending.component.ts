@@ -66,7 +66,13 @@ export class PendingComponent implements OnInit{
     addNewReview(newReview){
       this.reviewService.addReview(newReview).subscribe((data)=>{
         this.getPendingReviews()
+        this.sendEmail(newReview)
       });
     }
 
+    sendEmail(newReview){
+      this.reviewService.emailReview(newReview).subscribe((data)=>{
+        console.log('Emailed')
+      })
+    }
 }
