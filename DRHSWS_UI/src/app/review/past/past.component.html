@@ -30,16 +30,6 @@
     <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.firstName}} {{reviewsPast.lastName}}  </td>
   </ng-container>
 
-  <ng-container matColumnDef="Grade">
-    <th mat-header-cell *matHeaderCellDef> Grade </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.grade}}  </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Teacher">
-    <th mat-header-cell *matHeaderCellDef> Teacher </th>
-    <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.teacher}}  </td>
-  </ng-container>
-
   <ng-container matColumnDef="Review">
       <th mat-header-cell *matHeaderCellDef> Review </th>
       <td mat-cell *matCellDef="let reviewsPast"> {{reviewsPast.review}} </td>
