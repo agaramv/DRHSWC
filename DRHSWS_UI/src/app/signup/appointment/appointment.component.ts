@@ -174,7 +174,7 @@ export class AppointmentComponent implements OnInit {
     this.dateT = this.dateTN;
     this.dateW = this.dateWN;
     //Tuesday
-    if(this.slotsTN[0] = -1){
+    if(this.slotsTN[0] == -1){
       this.keyWordT = 'RESERVED';
       this.keyWordBT = true;
       this.keyWordBTNorm = false;

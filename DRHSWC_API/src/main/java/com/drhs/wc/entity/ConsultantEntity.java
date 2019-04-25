@@ -6,15 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="r_user_info")
-public class UserEntity {
+@Table(name="r_consultants")
+public class ConsultantEntity {
 	
 	@Id
 	@Column(name="consultant_id")
 	private Integer consultant_id;
-	
-	@Column(name="type")
-	private String type;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -37,16 +34,26 @@ public class UserEntity {
 	@Column(name="password")
 	private String consultantPassword;
 
-	public UserEntity() {
+	public ConsultantEntity() {
 		super();
 	}
 
 
-	public UserEntity(Integer consultant_id, String type, String firstName, String lastName, Integer grade,
-			String email, String emailSec, String active_inactive, String consultantPassword) {
+
+	/**
+	 * @param consultant_id
+	 * @param firstName
+	 * @param lastName
+	 * @param grade
+	 * @param email
+	 * @param emailSec
+	 * @param active_inactive
+	 * @param consultantPassword
+	 */
+	public ConsultantEntity(Integer consultant_id, String firstName, String lastName, Integer grade, String email,
+			String emailSec, String active_inactive, String consultantPassword) {
 		super();
 		this.consultant_id = consultant_id;
-		this.type = type;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
@@ -151,17 +158,5 @@ public class UserEntity {
 	public void setConsultantPassword(String consultantPassword) {
 		this.consultantPassword = consultantPassword;
 	}
-
-
-	public String getType() {
-		return type;
-	}
-
-
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	
 	
 }
