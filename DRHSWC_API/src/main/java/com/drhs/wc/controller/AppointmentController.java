@@ -148,31 +148,15 @@ public class AppointmentController {
 		return appointmentService.getAllBlockedAppointments();
 	}
 			
-
 	/* ********************************
 	 * Delete blocked appointment date 
+	 * to edit existing date just delete and add
 	 ********************************/
-//	@DeleteMapping("/consultant/delete/{id}")
-//	public void deleteBlockedApptDate(@PathVariable LocalDate blockedDate){
-//		return appointmentService.deleteBlockeDate(blockedDate); 
-//	}
-	
-	
-	//***********************
-	// Delete Appointment
-	//***********************
-	
-	
-	
-	//****************************************
-	//Get all appointment by date & LunchType
-	//****************************************
-	
-	
-	//********************************
-	//Get all appointment by last name
-	//********************************
-	
-	
-	
+	@DeleteMapping("/appointment/blocked/delete/{BlockedApptDate}")
+	public void deleteBlockedApptDate(@PathVariable String BlockedApptDate){
+		
+		LocalDate blockedApptDate = LocalDate.parse(BlockedApptDate);
+		appointmentService.deleteblockedApptDate(blockedApptDate); 
+	}
+		
 }

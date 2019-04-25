@@ -17,6 +17,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	
 	@Autowired
 	private AppointmentRepository appointmentRepository;
+	
 
 	//Get All appointments
 	@Override
@@ -69,15 +70,5 @@ public class AppointmentDaoImpl implements AppointmentDao {
 		// TODO Auto-generated method stub
 		return appointmentRepository.getAppointmentsByDateRange(apptDateF, apptDateT);
 	}
-
-	/*@Override
-	public void deleteBlockedapptDate(LocalDate blockedapptDate) {
-		return appointmentRepository.deleteById(blockedapptDate);
-		
-	}*/
-
-
-
-
 
 }

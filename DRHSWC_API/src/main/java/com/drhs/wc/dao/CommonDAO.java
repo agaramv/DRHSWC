@@ -19,4 +19,10 @@ public interface CommonDAO {
 	
 	//get maximum time slot from the application configuration table
 	public Integer getMaxTimeSlot();
+	
+	
+	//Delete blocked date 
+	public void deleteBlockedApptDate(LocalDate blockedApptDate);
+
+	
 }

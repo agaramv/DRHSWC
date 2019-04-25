@@ -224,7 +224,16 @@ public class AppointmentServiceImpl implements AppointmentService{
 	  	return buildAppointmentReponse(appointmentEntity);
 	}
 	
-	
+	//***********************************
+	// Get appointments by date range
+	//***********************************
+	@Override
+	public List<AppointmentResponseAll> getAppointmentsByDateRange(LocalDate apptDateF, LocalDate apptDateT) {
+		List<AppointmentEntity> appointmentyEntity = appointmentDao.getAppointmentsByDateRange(apptDateF, apptDateT);
+		
+		return buildAppointmentReponse(appointmentyEntity);
+	}
+
 	//***********************************
 	// Block Appointment dates 
 	//***********************************
@@ -243,7 +252,15 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return apptDateconfigDAO.getAllBlockedAppointmentDate();
 	}
 
-	
+	//***********************************
+	// Delete blocked  appointments 
+	//***********************************
+
+	@Override
+	public void deleteblockedApptDate(LocalDate blockedApptDate) {
+		commonDao.deleteBlockedApptDate(blockedApptDate); 
+	}
+
 	//*************************************************************
 	//Landing Page
 	//Get Appointment schedule to make appointment
@@ -510,29 +527,5 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentResponse;
 		//return null;
 	}
-
-	@Override
-	public List<AppointmentResponseSchedule> countByAppointment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<AppointmentResponseAll> getAppointmentsByDateRange(LocalDate apptDateF, LocalDate apptDateT) {
-		List<AppointmentEntity> appointmentyEntity = appointmentDao.getAppointmentsByDateRange(apptDateF, apptDateT);
-		
-		return buildAppointmentReponse(appointmentyEntity);
-	}
-
-
-
-
-
-	
-
-	
-	
-	
 
 }
