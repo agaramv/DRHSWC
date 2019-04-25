@@ -12,8 +12,10 @@ public class AppointmentResponseAll {
 	private String firstName;
 	private String lastName;
 	private int grade;
+	private String email;
 	private String teacher;
 	private String topic;
+	private String fileLink;
 	private Integer consultant_id;
 	private String review;
 	private LocalDateTime reviewDate;
@@ -26,26 +28,10 @@ public class AppointmentResponseAll {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 
-	/**
-	 * @param apptDate
-	 * @param lunchType
-	 * @param timeSlot
-	 * @param firstName
-	 * @param lastName
-	 * @param grade
-	 * @param teacher
-	 * @param topic
-	 * @param consultant_id
-	 * @param review
-	 * @param reviewDate
-	 * @param createTimestamp
-	 */
 	public AppointmentResponseAll(LocalDate apptDate, String lunchType, Integer timeSlot, String firstName,
-			String lastName, int grade, String teacher, String topic, Integer consultant_id, String review,
-			LocalDateTime reviewDate, LocalDateTime createTimestamp) {
+			String lastName, int grade, String email, String teacher, String topic, String fileLink,
+			Integer consultant_id, String review, LocalDateTime reviewDate, LocalDateTime createTimestamp) {
 		super();
 		this.apptDate = apptDate;
 		this.lunchType = lunchType;
@@ -53,8 +39,10 @@ public class AppointmentResponseAll {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
+		this.email = email;
 		this.teacher = teacher;
 		this.topic = topic;
+		this.fileLink = fileLink;
 		this.consultant_id = consultant_id;
 		this.review = review;
 		this.reviewDate = reviewDate;
@@ -62,6 +50,25 @@ public class AppointmentResponseAll {
 	}
 
 
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getFileLink() {
+		return fileLink;
+	}
+
+
+	public void setFileLink(String fileLink) {
+		this.fileLink = fileLink;
+	}
 
 
 	public LocalDate getApptDate() {
