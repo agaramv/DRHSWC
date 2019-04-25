@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   getUserByEmail(email){
     this.authService.getUserByEmail(email).subscribe((data)=>{
       console.log(data)
-      this.authService.setUser(data)
+      this.authService.setUser(data.type)
     })
   }
 

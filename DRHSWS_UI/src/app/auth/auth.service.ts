@@ -40,7 +40,11 @@ export class AuthService {
   }
 
   setUser(user){
-    this.userType = user.type;
+    this.userType = user;
+  }
+
+  getUser(){
     console.log(this.userType)
+    return this.userType;
   }
 }
