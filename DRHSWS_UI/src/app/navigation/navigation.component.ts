@@ -49,6 +49,5 @@ export class NavigationComponent implements OnInit, DoCheck{
       this.student = false;
       this.admin = true;
     }
-
   }
 }

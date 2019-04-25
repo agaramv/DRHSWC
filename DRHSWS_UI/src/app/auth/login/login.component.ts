@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   errorText = '';
   loading = false;
   submitted = false;
+  userType='';
 
   constructor(
     private router: Router,
@@ -53,7 +54,10 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/appointment'], { replaceUrl: true })
+          this.userType = this.getUser()
+          console.log(this.userType)
+          this.assessUser()
+          // this.router.navigate(['/appointment'], { replaceUrl: true })
           this.getUserByEmail(this.formvalues.username.value)
         },
         error => {
@@ -71,4 +75,19 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  getUser(){
+    return this.authService.userType;
+  }
+
+  assessUser(){
+    if(this.userType =="C"){
+      this.router.navigate(['/review/pending'], { replaceUrl: true })
+    }
+    else if(this.userType =='A'){
+      this.router.navigate(['/review/past'], { replaceUrl: true })
+    }
+    else{
+      this.router.navigate(['/appointment'], { replaceUrl: true })
+    }
+  }
 }
