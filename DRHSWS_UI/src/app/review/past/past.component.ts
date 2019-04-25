@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class PastComponent implements OnInit {
   reviewsPast: Appointment[];
-  displayedColumns = ['Date', 'Lunch', 'Student', 'Grade', 'Teacher', 'Review'];
+  displayedColumns = ['Date', 'Lunch', 'Student', 'Review'];
   filter = {
     from: '',
     to: ''

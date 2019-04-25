@@ -1,6 +1,6 @@
 <br>
 <h3>Past Reviews</h3>
-<label>Filter Range</label>
+<label>Date Filter Range</label>
 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-inline">
   <div class="form-group">
     <input id="from" type="text" class="form-control mb-2 mr-sm-2" name="from" ngModel>
@@ -14,7 +14,8 @@
     <button id="sumbit" type="submit" class="btn btn-primary mb-2 mr-sm-2">Filter</button>
   </div>
 </form>
-<table mat-table [dataSource]="reviewsPast" class="mat-elevation-z8" width="100%">
+<div class="styles mat-elevation-z8">
+<table mat-table [dataSource]="reviewsPast" width="100%">
   <ng-container matColumnDef="Date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
     <td mat-cell *matCellDef="let reviewsPast"> {{ reviewsPast.apptDate}} </td>
@@ -38,4 +39,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<br>
+</div>
+<br><br>

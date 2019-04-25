@@ -24,11 +24,17 @@ public class AppointmentEntity {
 	@Column(name="student_grade")
 	private int grade;
 	
+	@Column(name="email")
+	private String email;
+	
 	@Column(name="student_teacher")
 	private String teacher;
 	
 	@Column(name="student_topic")
 	private String topic;
+	
+	@Column(name="file_link")
+	private String fileLink;
 
 	@Column(name="consultant_id")
 	private Integer consultant_id;
@@ -50,39 +56,25 @@ public class AppointmentEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-	/**
-	 * @param appointmentEntityKey
-	 * @param firstName
-	 * @param lastName
-	 * @param grade
-	 * @param teacher
-	 * @param topic
-	 * @param consultant_id
-	 * @param review
-	 * @param reviewDate
-	 * @param createTimestamp
-	 */
+	
+	
 	public AppointmentEntity(AppointmentEntityKey appointmentEntityKey, String firstName, String lastName, int grade,
-			String teacher, String topic, Integer consultant_id, String review, LocalDateTime reviewDate,
-			LocalDateTime createTimestamp) {
+			String email, String teacher, String topic, String fileLink, Integer consultant_id, String review,
+			LocalDateTime reviewDate, LocalDateTime createTimestamp) {
 		super();
 		this.appointmentEntityKey = appointmentEntityKey;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
+		this.email = email;
 		this.teacher = teacher;
 		this.topic = topic;
+		this.fileLink = fileLink;
 		this.consultant_id = consultant_id;
 		this.review = review;
 		this.reviewDate = reviewDate;
 		this.createTimestamp = createTimestamp;
 	}
-
-
-
-
 
 
 
@@ -165,5 +157,21 @@ public class AppointmentEntity {
 	public void setCreateTimestamp(LocalDateTime createTimestamp) {
 		this.createTimestamp = createTimestamp;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFileLink() {
+		return fileLink;
+	}
+
+	public void setFileLink(String fileLink) {
+		this.fileLink = fileLink;
+	}	
 	
 }
