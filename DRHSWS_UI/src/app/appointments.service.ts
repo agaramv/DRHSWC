@@ -29,6 +29,6 @@ export class AppointmentsService {
   }
 
   deleteReservedDisabledDate(date){
-    return this.http.delete<any>(this.endpoint+'/appointment/block/'+date);
+    return this.http.delete<any>(this.endpoint+'/appointment/blocked/delete/'+date);
   }
 }
