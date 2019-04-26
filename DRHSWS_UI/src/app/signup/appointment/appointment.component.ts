@@ -149,10 +149,12 @@ export class AppointmentComponent implements OnInit {
     this.keyWordBW = false;
     this.keyWordBWNorm = true;
   }
+
     //Sets correct values when current week
   onClickCurrent(){
     this.dateT = this.dateTC;
     this.dateW = this.dateWC;
+    this.resetValues();
     //Tuesday
     if(this.slotsTC[0] == -1){
       console.log("Hello");
