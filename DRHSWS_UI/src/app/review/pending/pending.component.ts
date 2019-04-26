@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Appointment } from 'src/app/signup/appointment.model';
 import { ReviewService } from '../review.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { NgForm } from '@angular/forms';
+import { NgForm, EmailValidator } from '@angular/forms';
 
 
 @Component({
@@ -27,6 +27,11 @@ export class PendingComponent implements OnInit{
   newReview: Appointment;
   submitted = false;
   write=false;
+  email = {
+    emailTo: '',
+    emailSubject: '',
+    emailBody: ''
+  }
 
   constructor(private reviewService: ReviewService) { }
 
@@ -66,12 +71,16 @@ export class PendingComponent implements OnInit{
     addNewReview(newReview){
       this.reviewService.addReview(newReview).subscribe((data)=>{
         this.getPendingReviews()
-        this.sendEmail(newReview)
+        this.email.emailTo = this.newReview.email;
+        this.email.emailSubject = 'DRHS Review';
+        this.email.emailBody = this.newReview.review;
+        console.log(this.email);
+        this.sendEmail(this.email)
       });
     }
 
-    sendEmail(newReview){
-      this.reviewService.emailReview(newReview).subscribe((data)=>{
+    sendEmail(email){
+      this.reviewService.emailReview(email).subscribe((data)=>{
         console.log('Emailed')
       })
     }

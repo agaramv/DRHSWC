@@ -37,7 +37,7 @@ export class AppointmentComponent implements OnInit {
   //All other Vars
   apptSelc: SignupInfo = {date: "",day: "",lunch: ""};
   apptSch;
-  submitted: boolean = this.signupService.onSelectedTime();
+  submitted: boolean = false;
   selected: boolean = false;
   
   curWeek: boolean = true;

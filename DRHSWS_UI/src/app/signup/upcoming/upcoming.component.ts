@@ -8,7 +8,7 @@ import { AppointmentsService } from 'src/app/appointments.service';
   styleUrls: ['./upcoming.component.scss']
 })
 export class UpcomingComponent implements OnInit {
-  displayedColumnsAU: string[] = ['Date', 'Lunch', 'Student', 'Grade', 'Teacher', 'Topic', 'File Link'];
+  displayedColumnsAU: string[] = ['Date', 'Lunch', 'Student', 'Grade', 'Teacher', 'Topic', 'Link'];
   apptUpcoming: AppointmentUpcPst[];
   constructor(private apptService: AppointmentsService) { }
 
