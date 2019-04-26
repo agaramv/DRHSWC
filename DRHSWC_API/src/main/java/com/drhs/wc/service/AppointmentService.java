@@ -12,38 +12,39 @@ import com.drhs.wc.param.AppointmentResponseAll;
 public interface AppointmentService {
 	
 	//get all appointments
-	List<AppointmentResponseAll> getAllAppointments();
+	public List<AppointmentResponseAll> getAllAppointments();
 	
 	//Add appointments
-	AppointmentEntity addAppointments(AppointmentResponseAdd_Update appointmentResponseAdd);
+	public AppointmentEntity addAppointments(AppointmentResponseAdd_Update appointmentResponseAdd);
 	
 	//Get appointments by date
-	List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate);
+	public List<AppointmentResponseAll> getAppointmentsByDate(LocalDate apptDate);
 	
 	//Get appointments by date range
-	List<AppointmentResponseAll> getAppointmentsByDateRange(LocalDate apptDateF,LocalDate apptDateT);
+	public List<AppointmentResponseAll> getAppointmentsByDateRange(LocalDate apptDateF,LocalDate apptDateT);
 	
 	//Get Past appointments
-	List<AppointmentResponseAll> getPastAppointments(LocalDate apptDate);
+	public List<AppointmentResponseAll> getPastAppointments(LocalDate apptDate);
 	
 	//Get upcoming appointments
-	List<AppointmentResponseAll> getUpcomingAppointments(LocalDate apptDate);
+	public List<AppointmentResponseAll> getUpcomingAppointments(LocalDate apptDate);
 	
 	//Get review
-	AppointmentEntity addReview(AppointmentResponseAdd_Update appointmentResponseAdd);
+	public AppointmentEntity addReview(AppointmentResponseAdd_Update appointmentResponseAdd);
 	
 	//Get all appointments with pending reviews
-	List<AppointmentResponseAll> getPendingReviews();
+	public List<AppointmentResponseAll> getPendingReviews();
 	
-	//Get count by appointment
-	List<AppointmentResponseSchedule> countByAppointment();
 	
 	//Appointment schedule - Landing page for students.
-	List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate);
+	public List<AppointmentResponseSchedule> getAppointmentDays(LocalDate currDate);
 
 	 //get all blocked appointments
-	List<AppointmentDateConfigEntity> getAllBlockedAppointments();
+	public List<AppointmentDateConfigEntity> getAllBlockedAppointments();
 	
 	//Block appointment date
-	AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentConfig);
+	public AppointmentDateConfigEntity blockAppointments(AppointmentDateConfigEntity appointmentConfig);
+	
+	//Block appointment date
+	public void deleteblockedApptDate(LocalDate dateBlocked);
 }

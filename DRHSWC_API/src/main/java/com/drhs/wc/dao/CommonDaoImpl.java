@@ -36,5 +36,11 @@ public class CommonDaoImpl implements CommonDAO{
 		return commonRepository.findAll();
 
 	}
+	
+	@Override
+	public void deleteBlockedApptDate(LocalDate blockedApptDate) {
+		commonRepository.deleteById(blockedApptDate);
+		
+	}
 
 }
