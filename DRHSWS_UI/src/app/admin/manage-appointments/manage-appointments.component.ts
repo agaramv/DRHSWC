@@ -83,4 +83,17 @@ export class ManageAppointmentsComponent implements OnInit {
     this.addDate = this.disabled;
     this.addReservedDisabledDate(this.addDate)
   }
+
+  
+    // //delete date
+    // delete(index){
+    //   this.id = index;
+    //   this.consultantService.getAllConsultants().subscribe((data: Consultant[])=>{
+    //     console.log(data[this.id].consultant_id)
+    //     this.id = data[this.id].consultant_id
+    //     this.consultantService.deleteConsultant(this.id.toString()).subscribe((data)=>{
+    //       console.log("Deleted consultant"+data)
+    //     }); 
+    //   })
+    // }
 }

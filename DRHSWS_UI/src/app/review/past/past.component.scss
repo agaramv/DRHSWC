@@ -2,3 +2,36 @@
     max-height: 520px;
     overflow: auto;
 }
+
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+  }
+  
+  .mat-header-cell{
+    width: 100%;
+  }
+  
+  .mat-row {
+    width: 100%;
+  }
+    
+  .mat-column-Date {
+    flex: 0 0 10% !important;
+    min-width: 100px !important;
+  }
+
+  .mat-column-Student {
+    flex: 0 0 15% !important;
+    min-width: 170px !important;
+  }
+
+  .mat-column-Lunch {
+    flex: 0 0 5% !important;
+    min-width: 70px !important;
+  }
+
+  .mat-column-Review {
+    flex: 0 0 30% !important;
+    min-width: 500px !important;
+  }

@@ -6,3 +6,46 @@
 .link{
   width: 100px;
 }
+
+.mat-table__wrapper .mat-table {
+  min-width: auto !important;
+  width: 100% !important;
+}
+
+.mat-header-cell{
+  width: 10%;
+}
+
+.mat-row {
+  width: 100%;
+}
+
+.mat-column-Link {
+  flex: 0 0 15% !important;
+  min-width: 120px !important;
+}
+
+.mat-column-Topic {
+  flex: 0 0 15% !important;
+  min-width: 120px !important;
+}
+
+.mat-column-Student {
+  flex: 0 0 15% !important;
+  min-width: 170px !important;
+}
+
+.mat-column-Teacher {
+  flex: 0 0 15% !important;
+  min-width: 120px !important;
+}
+
+.mat-column-Date {
+  flex: 0 0 10% !important;
+  min-width: 150px !important;
+}
+
+.mat-column-Grade {
+  flex: 0 0 10% !important;
+  min-width: 150px !important;
+}
