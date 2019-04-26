@@ -31,6 +31,7 @@ export class ManageAppointmentsComponent implements OnInit {
     description: ''
   }
   delDate = '';
+  id= 0;
 
   constructor(private apptService: AppointmentsService) { }
 
@@ -52,16 +53,19 @@ export class ManageAppointmentsComponent implements OnInit {
     return this.apptService.addReservedDisabledDate(addDate)
       .subscribe((data) =>{
         console.log("Block Date")
+        this.getReservedDisabledDates();
       })
   }
 
   //delete date
   delete(index){
+    this.id = index;
     this.apptService.getReservedDisabledDates().subscribe((data)=>{
-      console.log(data[index].consultant_id)
-      this.delDate = data[index].consultant_id
+      console.log(data[this.id].appt_date)
+      this.delDate = data[this.id].appt_date;
       this.apptService.deleteReservedDisabledDate(this.delDate).subscribe((data)=>{
-        console.log("Deleted date"+data)
+        console.log("Deleted date");
+        this.getReservedDisabledDates();
       }); 
     })
   }  
@@ -83,4 +87,5 @@ export class ManageAppointmentsComponent implements OnInit {
     this.addDate = this.disabled;
     this.addReservedDisabledDate(this.addDate)
   }
+
 }

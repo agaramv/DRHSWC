@@ -30,17 +30,17 @@ export class NavigationComponent implements OnInit, DoCheck{
 
   logout() {
     this.resetUser();
-    console.log("Student "+this.student)
-    console.log("Consultnt "+this.consultant)
-    console.log("Admin "+this.admin)
-    console.log("UserType: "+this.user)
+    // console.log("Student "+this.student)
+    // console.log("Consultnt "+this.consultant)
+    // console.log("Admin "+this.admin)
+    // console.log("UserType: "+this.user)
     this.authService.setUser(this.user);
     this.authService.logout();
   }
 
   assessUser(userType){
     this.user = userType;
-    console.log("User Type:"+this.user)
+    //console.log("User Type:"+this.user)
     if(this.user =="C"){
       this.student = false;
       this.consultant = true;
