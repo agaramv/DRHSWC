@@ -53,6 +53,7 @@ export class ManageAppointmentsComponent implements OnInit {
     return this.apptService.addReservedDisabledDate(addDate)
       .subscribe((data) =>{
         console.log("Block Date")
+        this.getReservedDisabledDates();
       })
   }
 

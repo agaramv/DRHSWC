@@ -61,6 +61,8 @@ export class AppointmentComponent implements OnInit {
   constructor(private signupService: SignupService, private http: HttpClient) { }
 
   ngOnInit() {
+    this.keyWordT = '';
+    this.keyWordW = '';
     this.getCurrentCalendar();
     console.log(this.dateTC)
   }
@@ -70,9 +72,10 @@ export class AppointmentComponent implements OnInit {
     this.dateT = this.dateTC;
     this.dateW = this.dateWC;
     //Tuesday
-    console.log(this.slotsTC);
+    console.log(this.slotsWN);
+    console.log(this.slotsTN);
     if(this.slotsTC[0] == -1){
-      console.log(this.slotsTC);
+      console.log("Hello");
       this.keyWordT = 'RESERVED';
       this.keyWordBT = true;
       this.keyWordBTNorm = false;
@@ -85,12 +88,12 @@ export class AppointmentComponent implements OnInit {
     }
     else{this.slotsT = this.slotsTC}
     //Wednesday
-    if(this.slotsTC[1] == -1){
+    if(this.slotsWC[1] == -1){
       this.keyWordW = 'RESERVED';
       this.keyWordBW = true;
       this.keyWordBWNorm = false;
     }
-    else if(this.slotsTC[1] == -2){
+    else if(this.slotsWC[1] == -2){
       this.keyWordW = 'DISABLED';
       this.keyWordBW = true;
       this.keyWordBWNorm = false;
@@ -138,29 +141,39 @@ export class AppointmentComponent implements OnInit {
     this.slotsWN[1]=this.apptSch[7].apptOpen;
   }
   
+  resetValues(){
+    this.keyWordW = '';
+    this.keyWordT = '';
+    this.keyWordBT = false;
+    this.keyWordBTNorm = true;
+    this.keyWordBW = false;
+    this.keyWordBWNorm = true;
+  }
     //Sets correct values when current week
   onClickCurrent(){
     this.dateT = this.dateTC;
     this.dateW = this.dateWC;
     //Tuesday
     if(this.slotsTC[0] == -1){
+      console.log("Hello");
       this.keyWordT = 'RESERVED';
       this.keyWordBT = true;
       this.keyWordBTNorm = false;
     }
     else if(this.slotsTC[0] == -2){
+      console.log("Hello1");
       this.keyWordT = 'DISABLED';
       this.keyWordBT = true;
       this.keyWordBTNorm = false;
     }
     else{this.slotsT = this.slotsTC}
     //Wednesday
-    if(this.slotsWN[1] == -1){
+    if(this.slotsWC[1] == -1){
       this.keyWordW = 'RESERVED';
       this.keyWordBW = true;
       this.keyWordBWNorm = false;
     }
-    else if(this.slotsWN[1] == -2){
+    else if(this.slotsWC[1] == -2){
       this.keyWordW = 'DISABLED';
       this.keyWordBW = true;
       this.keyWordBWNorm = false;
@@ -173,8 +186,11 @@ export class AppointmentComponent implements OnInit {
   onClickNext(){
     this.dateT = this.dateTN;
     this.dateW = this.dateWN;
+    this.resetValues()
+
     //Tuesday
-    if(this.slotsTN[0] = -1){
+    if(this.slotsTN[0] == -1){
+      
       this.keyWordT = 'RESERVED';
       this.keyWordBT = true;
       this.keyWordBTNorm = false;
@@ -184,7 +200,7 @@ export class AppointmentComponent implements OnInit {
       this.keyWordBT = true;
       this.keyWordBTNorm = false;
     }
-    else{this.slotsT = this.slotsTC}
+    else{this.slotsT = this.slotsTN}
     //Wednesday
     if(this.slotsWN[1] == -1){
       this.keyWordW = 'RESERVED';
@@ -192,11 +208,13 @@ export class AppointmentComponent implements OnInit {
       this.keyWordBWNorm = false;
     }
     else if(this.slotsWN[1] == -2){
+      console.log("Hello"+this.slotsWN);
       this.keyWordW = 'DISABLED';
       this.keyWordBW = true;
       this.keyWordBWNorm = false;
     }
-    else{this.slotsW = this.slotsWC}
+    else{this.slotsW = this.slotsWN}
+    console.log(this.keyWordW)
     this.toggle();
   }
 
