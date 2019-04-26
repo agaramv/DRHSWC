@@ -10,7 +10,7 @@
  
   <ng-container matColumnDef="Lunch">
     <th mat-header-cell *matHeaderCellDef> Lunch </th>
-    <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.lunchType}}-Lunch </td>
+    <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.lunchType}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Student">
@@ -33,12 +33,13 @@
     <td mat-cell *matCellDef="let apptUpcoming"> {{apptUpcoming.topic}}  </td>
   </ng-container>
 
-  <div class="link">
-  <ng-container matColumnDef="File Link">
+  <div class="link d-flex flex-wrap">
+  <ng-container matColumnDef="Link">
     <th mat-header-cell *matHeaderCellDef> File Link </th>
-    <td mat-cell *matCellDef="let apptUpcoming"> <a href="{{apptUpcoming.fileLink}}" target="_blank">{{apptUpcoming.fileLink}}</a> </td>
+    <td mat-cell *matCellDef="let apptUpcoming"> <a id="link" href="{{apptUpcoming.fileLink}}" target="_blank">{{apptUpcoming.fileLink}}</a> </td>
   </ng-container>
 </div>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumnsAU"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumnsAU;"></tr>
 </table>

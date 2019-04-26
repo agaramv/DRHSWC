@@ -44,7 +44,8 @@
     <form (ngSubmit)="onSubmitR(fR)" #fR="ngForm">
       
       <div class="form-group">
-        <label>Appointment Date</label>
+        <label>Appointment Date</label><br>
+        <label class="font-weight-light font-italic">Format: YYYY-MM-DD</label>
         <input id="dateR" type="text" class="form-control mb-2 mr-sm-2" name="date" ngModel>
       </div>		
       <div class="form-group">
@@ -61,7 +62,8 @@
     <h5>Disable Date</h5>
     <form (ngSubmit)="onSubmitD(fD)" #fD="ngForm">
       <div class="form-group">
-        <label>Appointment Date</label>
+        <label>Appointment Date</label><br>
+        <label class="font-weight-light font-italic">Format: YYYY-MM-DD</label>
         <input id="dateD" type="text" class="form-control mb-2 mr-sm-2" name="date" ngModel>
       </div>
       <div class="form-group">
