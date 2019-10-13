@@ -22,7 +22,6 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	//Get All appointments
 	@Override
 	public List<AppointmentEntity> getAllAppointments() {
-	
 		return appointmentRepository.findAll();
 	}
 	
@@ -41,7 +40,6 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	//get appointments by date and lunch type
 	@Override
 	public Integer apptCountByDateLunchType(LocalDate apptDate,String lunchType) {
-		
 		return appointmentRepository.apptCountByDateLunchType(apptDate,lunchType);
 	}
 

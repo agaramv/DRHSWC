@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.buildForm();
     this.loginForm.patchValue({
-      username: 'berry@gmail.com',
+      username: '',
       //   password: 's'
     });
   }

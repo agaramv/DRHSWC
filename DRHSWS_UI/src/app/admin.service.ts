@@ -10,10 +10,10 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getPassword(email){
-    return this.http.get<any>(this.endpoint+'/consultant/email/'+email);
+    return this.http.get<any>('http://localhost:8080/api/consultant/email/'+email);
   }
 
   changePassword(password, email){
-    return this.http.put<any>(this.endpoint+'/consultant/'+password+'/'+email, '');
+    return this.http.put<any>('http://localhost:8080/api/consultant/'+password+'/'+email, '');
   }
 }

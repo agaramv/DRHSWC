@@ -50,6 +50,7 @@ export class AppointmentComponent implements OnInit {
     grade: 0,
     email: '',
     teacher: '',
+    emailT: '',
     topic: '',
     fileLink: '',
     consultant_id: null,
@@ -234,6 +235,7 @@ export class AppointmentComponent implements OnInit {
     this.newAppt.grade = Number(form.value.grade);
     this.newAppt.email = form.value.email;
     this.newAppt.teacher = form.value.teacher;
+    this.newAppt.emailT = form.value.emailT;
     this.newAppt.topic = form.value.topic;
     this.newAppt.fileLink = form.value.fileLink;
     this.submitted = true;

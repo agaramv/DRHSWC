@@ -15,7 +15,8 @@ export class AuthService {
 
     let data = { username: username, password: password }
     console.log("in login")
-    return this.http.post<any>('/api/login',
+    console.log(password)
+    return this.http.post<any>('http://localhost:8080/api/login',
       new HttpParams()
         .set('username', username)
         .set('password', password).toString(),
@@ -36,7 +37,7 @@ export class AuthService {
   }
 
   getUserByEmail(email){
-    return this.http.get<any>(this.endpoint+'/user/email/'+email);
+    return this.http.get<any>('http://localhost:8080/api/user/email/'+email);
   }
 
   setUser(user){

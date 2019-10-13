@@ -9,26 +9,26 @@ export class AppointmentsService {
   constructor(private http: HttpClient) { }
 
   getPastAppoinments(){
-    return this.http.get<any>(this.endpoint+'/appointment/past');
+    return this.http.get<any>('http://localhost:8080/api/appointment/past');
   }
 
   getUpcomingAppointments(){
-    return this.http.get<any>(this.endpoint+'/appointment/upcoming');
+    return this.http.get<any>('http://localhost:8080/api/appointment/upcoming');
   }
 
   getAppointmentsByDateRange(from, to){
-    return this.http.get<any>(this.endpoint+'/appointment/range/'+from+'/'+to);
+    return this.http.get<any>('http://localhost:8080/api/appointment/range/'+from+'/'+to);
   }
 
   getReservedDisabledDates(){
-    return this.http.get<any>(this.endpoint+'/appointment/blocked/all');
+    return this.http.get<any>('http://localhost:8080/api/appointment/blocked/all');
   }
 
   addReservedDisabledDate(newDate){
-    return this.http.post<any>(this.endpoint+'/appointment/block', newDate);
+    return this.http.post<any>('http://localhost:8080/api/appointment/block', newDate);
   }
 
   deleteReservedDisabledDate(date){
-    return this.http.delete<any>(this.endpoint+'/appointment/blocked/delete/'+date);
+    return this.http.delete<any>('http://localhost:8080/api/appointment/blocked/delete/'+date);
   }
 }

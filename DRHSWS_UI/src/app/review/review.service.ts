@@ -12,17 +12,17 @@ export class ReviewService {
 
   //gets all appointments without reviews
   getPendingReviews(){
-    return this.http.get<any>(this.endpoint+'/appointment/review/pending');
+    return this.http.get<any>('http://localhost:8080/api/appointment/review/pending');
   }
 
   //Add review
   addReview(newReview){
-    return this.http.put<any>(this.endpoint+'/appointment/review/add', newReview);
+    return this.http.put<any>('http://localhost:8080/api/appointment/review/add', newReview);
   }
 
   //gets past reviews per consultant
   emailReview(email){
-    return this.http.post<any>(this.endpoint+'/sendemail', email);
+    return this.http.post<any>('http://localhost:8080/api/sendemail', email);
   }
 
 }

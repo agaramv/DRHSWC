@@ -15,6 +15,7 @@ public class AppointmentResponseAdd_Update {
 	private int grade;
 	private String email;
 	private String teacher;
+	private String emailT;
 	private String topic;
 	private String fileLink;
 	private Integer consultant_id;
@@ -38,6 +39,7 @@ public class AppointmentResponseAdd_Update {
 	 * @param lastName
 	 * @param grade
 	 * @param teacher
+	 * @param emailT
 	 * @param topic
 	 * @param consultant_id
 	 * @param review
@@ -45,7 +47,7 @@ public class AppointmentResponseAdd_Update {
 	 * @param createTimestamp
 	 */
 	public AppointmentResponseAdd_Update(LocalDate apptDate, String lunchType, Integer timeSlot, String firstName,
-			String lastName, int grade, String email, String teacher, String topic, String fileLink,
+			String lastName, int grade, String email, String teacher, String emailT, String topic, String fileLink,
 			Integer consultant_id, String review, LocalDateTime reviewDate, LocalDateTime createTimestamp) {
 		super();
 		this.apptDate = apptDate;
@@ -56,6 +58,7 @@ public class AppointmentResponseAdd_Update {
 		this.grade = grade;
 		this.email = email;
 		this.teacher = teacher;
+		this.emailT = emailT;
 		this.topic = topic;
 		this.fileLink = fileLink;
 		this.consultant_id = consultant_id;
@@ -123,6 +126,20 @@ public class AppointmentResponseAdd_Update {
 		this.teacher = teacher;
 	}
 
+	public String getEmailT() {
+		return emailT;
+	}
+
+	public void setEmailT(String emailT) {
+		this.emailT = emailT;
+	}
+
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
+
 	public String getTopic() {
 		return topic;
 	}
@@ -147,7 +164,6 @@ public class AppointmentResponseAdd_Update {
 		this.review = review;
 	}	
 	
-
 	public void setReviewDate(LocalDateTime reviewDate) {
 		this.reviewDate = reviewDate;
 	}

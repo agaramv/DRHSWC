@@ -14,6 +14,7 @@ public class AppointmentResponseAll {
 	private int grade;
 	private String email;
 	private String teacher;
+	private String emailT;
 	private String topic;
 	private String fileLink;
 	private Integer consultant_id;
@@ -30,7 +31,7 @@ public class AppointmentResponseAll {
 
 
 	public AppointmentResponseAll(LocalDate apptDate, String lunchType, Integer timeSlot, String firstName,
-			String lastName, int grade, String email, String teacher, String topic, String fileLink,
+			String lastName, int grade, String email, String teacher, String emailT, String topic, String fileLink,
 			Integer consultant_id, String review, LocalDateTime reviewDate, LocalDateTime createTimestamp) {
 		super();
 		this.apptDate = apptDate;
@@ -41,6 +42,7 @@ public class AppointmentResponseAll {
 		this.grade = grade;
 		this.email = email;
 		this.teacher = teacher;
+		this.emailT = emailT;
 		this.topic = topic;
 		this.fileLink = fileLink;
 		this.consultant_id = consultant_id;
@@ -112,7 +114,18 @@ public class AppointmentResponseAll {
 	}
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
+	} 
+	
+	public String getEmailT() {
+		return emailT;
 	}
+
+
+	public void setEmailT(String emailT) {
+		this.emailT = emailT;
+	}
+
+
 	public String getTopic() {
 		return topic;
 	}

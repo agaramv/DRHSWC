@@ -30,6 +30,9 @@ public class AppointmentEntity {
 	@Column(name="student_teacher")
 	private String teacher;
 	
+	@Column(name="student_teacher_email")
+	private String emailT;
+	
 	@Column(name="student_topic")
 	private String topic;
 	
@@ -56,11 +59,10 @@ public class AppointmentEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
+
 	public AppointmentEntity(AppointmentEntityKey appointmentEntityKey, String firstName, String lastName, int grade,
-			String email, String teacher, String topic, String fileLink, Integer consultant_id, String review,
-			LocalDateTime reviewDate, LocalDateTime createTimestamp) {
+			String email, String teacher, String emailT, String topic, String fileLink, Integer consultant_id,
+			String review, LocalDateTime reviewDate, LocalDateTime createTimestamp) {
 		super();
 		this.appointmentEntityKey = appointmentEntityKey;
 		this.firstName = firstName;
@@ -68,6 +70,7 @@ public class AppointmentEntity {
 		this.grade = grade;
 		this.email = email;
 		this.teacher = teacher;
+		this.emailT = emailT;
 		this.topic = topic;
 		this.fileLink = fileLink;
 		this.consultant_id = consultant_id;
@@ -75,7 +78,6 @@ public class AppointmentEntity {
 		this.reviewDate = reviewDate;
 		this.createTimestamp = createTimestamp;
 	}
-
 
 
 	public AppointmentEntityKey getAppointmentEntityKey() {
@@ -165,6 +167,15 @@ public class AppointmentEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getEmailT() {
+		return emailT;
+	}
+
+	public void setEmailT(String emailT) {
+		this.emailT = emailT;
+	}
+
 
 	public String getFileLink() {
 		return fileLink;

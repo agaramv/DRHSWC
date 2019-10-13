@@ -93,9 +93,9 @@ public class AppointmentController {
 		return appointmentService.getAppointmentsByDate(apptDate); 
 	}
 	
-	//****************************
+	//*****************************
 	//Get all upcoming appointments 
-	//****************************
+	//*****************************
 	@GetMapping("/appointment/upcoming")
 	public List<AppointmentResponseAll> getUpcomingAppointments(){
 					

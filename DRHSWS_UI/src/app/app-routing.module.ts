@@ -19,7 +19,7 @@ import { PastComponent } from './review/past/past.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/appointment/new', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'appointment', component: SignupComponent, children:[

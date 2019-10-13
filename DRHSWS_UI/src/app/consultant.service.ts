@@ -12,29 +12,29 @@ export class ConsultantService {
   constructor(private http: HttpClient) { }
 
   getAllReviews(){
-    return this.http.get<any>(this.endpoint+'/reviews/all');
+    return this.http.get<any>('http://localhost:8080/api/reviews/all');
   }
 
   getAllConsultants(){
-    return this.http.get<any>(this.endpoint+'/consultant/all');
+    return this.http.get<any>('http://localhost:8080/api/consultant/all');
   }
 
   deleteConsultant(index){
-    return this.http.delete<any>(this.endpoint+'/consultant/delete/'+index);
+    return this.http.delete<any>('http://localhost:8080/api/consultant/delete/'+index);
   }
 
   updateConsultant(updatedConsultant){
-    return this.http.put<any>(this.endpoint+'/consultant/update', updatedConsultant);
+    return this.http.put<any>('http://localhost:8080/api/consultant/update', updatedConsultant);
   }
 
   addNewConsultant(id, newConsultant){
     newConsultant.consultant_id = id;
     console.log(newConsultant)
     //return 8;
-    return this.http.post<any>(this.endpoint+"/consultant/new", newConsultant);
+    return this.http.post<any>("http://localhost:8080/api/consultant/new", newConsultant);
   }
 
   getConsultantById(index){
-    return this.http.get<any>(this.endpoint+'/consultant/'+index)
+    return this.http.get<any>('http://localhost:8080/api/consultant/'+index)
   }
 }
