@@ -1,0 +1,16 @@
+HOW TO CONNECT TO AN EC2 INSTANCE using Putty and Mac
+
+1. Create instance
+2. Make sure the private key is download in the last step before launch 
+
+WINDOWS 
+3. For windows using Putty
+	3.1 Load the public key 
+        3.2 Under SSH -> Auth select the private key
+MAC 
+
+1. Update repo
+    command: sudo yum update -y    
+
+2. Install Java
+    Command: sudo yum install java     
