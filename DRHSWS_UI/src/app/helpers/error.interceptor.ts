@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 // export class ApiInterceptor implements HttpInterceptor {
 
 //     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//         const apiReq = request.clone({ url: `http://localhost:8081/api${request.url}` });
+//         const apiReq = request.clone({ url: `http://ec2-3-14-145-246.us-east-2.compute.amazonaws.com:8081/api${request.url}` });
 //         return next.handle(apiReq);
 //     }
 // }

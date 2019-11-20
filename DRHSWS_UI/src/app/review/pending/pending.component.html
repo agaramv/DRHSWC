@@ -57,7 +57,8 @@
 <div *ngIf="write">
   <h5>Write Review:</h5>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <!-- <h6 *ngIf="write=true">{{newReview.firstName}} {{newReview.lastName}}</h6> -->
+    <h6>{{reviewNameSelected}} |</h6>
+    <h6>{{reviewDateSelected}}</h6>
     <div class="form-group">
       <textarea class="form-control" cols="9" rows="3" name="review" placeholder="Write Review" ngModel></textarea>
     </div>

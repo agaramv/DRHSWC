@@ -20,10 +20,10 @@ public class DrhswcApplication {
 	public static void main(String[] args) {
 
 		System.out.print("This: ");
-		System.out.println(new BCryptPasswordEncoder().encode("drhswca"));
-
-		SpringApplication.run(DrhswcApplication.class, args);
+		System.out.println(new BCryptPasswordEncoder().encode("drhswcc"));
 		
+		SpringApplication.run(DrhswcApplication.class, args);
+//		System.out.println(new BCryptPasswordEncoder().)
 	}
 
 	

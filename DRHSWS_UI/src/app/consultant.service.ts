@@ -1,40 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Consultant } from './models/consultant.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultantService {
   //consultants: Consultant[];
-  endpoint = "/api"||"http://localhost:8080";
+  endpoint = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getAllReviews(){
-    return this.http.get<any>('http://localhost:8080/api/reviews/all');
+    return this.http.get<any>(this.endpoint+'/reviews/all');
   }
 
   getAllConsultants(){
-    return this.http.get<any>('http://localhost:8080/api/consultant/all');
+    return this.http.get<any>(this.endpoint+'/consultant/all');
   }
 
   deleteConsultant(index){
-    return this.http.delete<any>('http://localhost:8080/api/consultant/delete/'+index);
+    return this.http.delete<any>(this.endpoint+'/consultant/delete/'+index);
   }
 
   updateConsultant(updatedConsultant){
-    return this.http.put<any>('http://localhost:8080/api/consultant/update', updatedConsultant);
+    return this.http.put<any>(this.endpoint+'/consultant/update', updatedConsultant);
   }
 
   addNewConsultant(id, newConsultant){
     newConsultant.consultant_id = id;
     console.log(newConsultant)
     //return 8;
-    return this.http.post<any>("http://localhost:8080/api/consultant/new", newConsultant);
+    return this.http.post<any>(this.endpoint+ '/consultant/new', newConsultant);
   }
 
   getConsultantById(index){
-    return this.http.get<any>('http://localhost:8080/api/consultant/'+index)
+    return this.http.get<any>(this.endpoint+'/consultant/'+index)
   }
 }

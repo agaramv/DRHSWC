@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  endpoint:string = "/api"||"http://localhost:8080";
+  endpoint:string = environment.apiUrl;
   userType: string = '';
 
   constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string) {
-    // return this.http.post<any>('http://localhost:8081/login', { username, password })
+    // return this.http.post<any>('http://ec2-3-14-145-246.us-east-2.compute.amazonaws.com:8081/login', { username, password })
 
     let data = { username: username, password: password }
     console.log("in login")
     console.log(password)
-    return this.http.post<any>('http://localhost:8080/api/login',
+    return this.http.post<any>('/api/login',
       new HttpParams()
         .set('username', username)
         .set('password', password).toString(),
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   getUserByEmail(email){
-    return this.http.get<any>('http://localhost:8080/api/user/email/'+email);
+    return this.http.get<any>(this.endpoint+'/user/email/'+email);
   }
 
   setUser(user){

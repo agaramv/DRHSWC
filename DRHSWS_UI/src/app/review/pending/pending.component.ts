@@ -25,6 +25,8 @@ export class PendingComponent implements OnInit{
   displayedColumns = ['Date', 'Lunch', 'Student', 'Grade', 'Review'];
   review: string = '';
   newReview: Appointment;
+  reviewNameSelected = ''
+  reviewDateSelected = ''
   submitted = false;
   write=false;
   email = {
@@ -55,6 +57,8 @@ export class PendingComponent implements OnInit{
     onClick(index: number){
       console.log(index)
       this.newReview = this.reviewsPending[index];
+      this.reviewNameSelected = this.newReview.firstName + ' ' + this.newReview.lastName;
+      this.reviewDateSelected = this.newReview.reviewDate;
     }
 
     //get all appointments

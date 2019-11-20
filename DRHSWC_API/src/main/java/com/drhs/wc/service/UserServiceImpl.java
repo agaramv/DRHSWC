@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
 	public UserEntity addNewConsultant(UserEntity consultantEntity) {
 		
 		//set default Password to DRHSwc01
-		consultantEntity.setConsultantPassword(new BCryptPasswordEncoder().encode("DRHSwc01")); 
+		consultantEntity.setConsultantPassword(new BCryptPasswordEncoder().encode("drhswcc")); 
 		
 		return consultantDao.addNewConsultant(consultantEntity);
 	}
